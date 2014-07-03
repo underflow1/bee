@@ -2,6 +2,7 @@ Ext.onReady(
 
     function(){
 
+
 function showWindow(){
         if(!win){
                 var win = new Ext.Window({

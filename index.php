@@ -1,6 +1,7 @@
 ﻿<?php
 
 
+
 include "Mail.php";
 
 function emailHtml($from, $subject, $message, $to) {
