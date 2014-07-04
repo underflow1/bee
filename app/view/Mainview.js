@@ -52,6 +52,9 @@ Ext.define('BeeApp.view.Mainview' ,{
                 width: 50
             },
             {
+                xtype: 'checkcolumn',
+                disabled : true,
+                disabledCls : 'x-item-enabled',
                 text     : 'роум',
                 dataIndex: 'roam',
                 width: 50
