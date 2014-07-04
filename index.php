@@ -55,7 +55,7 @@ $app->post('/test_ajax', function (Request $request) {
     $message = $request->get('act');
     return json_encode(array(
         "success" => true,
-        "msg" => $message
+        "msg" => $message."asfffffffffffffffsdfasdf"
     ));
 });
 
@@ -248,82 +248,43 @@ $app->get('/current', function() use ($app) {
 
     $sql = "
 SELECT	f1.phonenumber
-        ,sm.simnumber, sm.startdate as simstart
+        ,sm.simnumber
         ,tf.tariff, tf.startdate as trf_startdate
         ,ca.fio, ca.position
         ,bl.dtfblck
         ,contracts.contract,companynames.companyname
-        ,ow.deduction
-        ,tr.pkg, tr.dtfpkg
-        ,ro.dtfrm
+        ,ow.deduction, ow.pkg, ow.roam
 
 FROM phonenumbers AS f1
 
-#РїРѕР»СѓС‡Р°РµРј РЅРѕРјРµСЂ СЃРёРј РєР°СЂС‚С‹
-LEFT JOIN (
-    SELECT simnumber, phonenumber, MAX(startdate) as startdate, MAX(starttime)
-    FROM ph_simnumbers
-    GROUP BY phonenumber
-    ) AS sm ON
-    f1.phonenumber = sm.phonenumber
+# подтягиваем номер сим карты
+LEFT JOIN (SELECT MAX(id) as mi, phonenumber FROM ph_simnumbers GROUP BY phonenumber) as simnumbersmax on simnumbersmax.phonenumber = f1.phonenumber
+LEFT JOIN ph_simnumbers AS sm on sm.phonenumber = simnumbersmax.phonenumber AND simnumbersmax.mi = sm.id
 
-# РїРѕР»СѓС‡Р°РµРј С‚Р°СЂРёС„
-LEFT JOIN (SELECT MAX(id) as mi, phonenumber FROM ph_tariff GROUP BY phonenumber) as f1max on f1max.phonenumber = f1.phonenumber
-LEFT JOIN ph_tariff as tf on tf.phonenumber = f1max.phonenumber AND f1max.mi = tf.id
+# подтягиваем тариф
+LEFT JOIN (SELECT MAX(id) as mi, phonenumber FROM ph_tariff GROUP BY phonenumber) as tariffmax on tariffmax.phonenumber = f1.phonenumber
+LEFT JOIN ph_tariff as tf on tf.phonenumber = tariffmax.phonenumber AND tf.id = tariffmax.mi
 
-#РїРѕР»СѓС‡Р°РµРј РёРґ РІР»Р°РґРµР»СЊС†Р°
-LEFT JOIN (
-    SELECT phonenumber, cardholderid, MAX(startdate), MAX(starttime), deduction, pkg
-    FROM ev_owners
-    WHERE stopdate IS NULL
-    GROUP BY phonenumber
-    ) AS ow ON
-    ow.phonenumber = f1.phonenumber
-
-#РїРѕР»СѓС‡Р°РµРј С„РёРѕ Рё РґРѕР»Р¶РЅРѕСЃС‚СЊ
+# подтягиваем ид текущего владельца
+LEFT JOIN (SELECT MAX(id) AS mi, phonenumber FROM ev_owners GROUP BY phonenumber) as ownersmax on ownersmax.phonenumber = f1.phonenumber
+LEFT JOIN ev_owners as ow on ow.phonenumber = f1.phonenumber AND ow.id = ownersmax.mi
+#
 LEFT JOIN cardholders AS ca ON
 ow.cardholderid = ca.id
 
-# РїРѕР»СѓС‡Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ Р±Р»РѕРєРёСЂРѕРІРєРё
-LEFT JOIN (
-    SELECT phonenumber, MAX(startdate) as dtfblck, MAX(starttime)
-    FROM ev_blocks
-    WHERE stopdate IS NULL
-    GROUP BY phonenumber
-    ) as bl ON
-    bl.phonenumber = f1.phonenumber
+# подтягиваем дату блокировки
+LEFT JOIN (SELECT MAX(id) AS mi, phonenumber, startdate as dtfblck FROM ph_tariff WHERE tariff IS NULL GROUP BY phonenumber) as bl on bl.phonenumber = f1.phonenumber
 
-# РїРѕР»СѓС‡Р°РµРј РёРґ РґРѕРіРѕРІРѕСЂР°
-LEFT JOIN (
-    SELECT phonenumber, MAX(startdate), MAX(starttime), contractid
-    FROM ph_contracts
-    GROUP BY phonenumber
-    ) AS co ON
-    co.phonenumber = f1.phonenumber
-# РїРѕР»СѓС‡Р°РµРј РЅРѕРјРµСЂ РґРѕРіРѕРІРѕСЂР° Рё РЅР°Р·РІР°РЅРёРµ РѕСЂРіР°РЅРёР·Р°С†РёРё СЃ РЅР°С€РµР№ СЃС‚РѕСЂРѕРЅС‹
+# подтягиваем ид договора
+LEFT JOIN (SELECT MAX(id) AS mi, phonenumber FROM ph_contracts GROUP BY phonenumber) as contractsmax on contractsmax.phonenumber = f1.phonenumber
+LEFT JOIN ph_contracts AS co ON co.phonenumber = f1.phonenumber AND co.id = contractsmax.mi
+
+# подтягиваем номер договора и название компании
 LEFT JOIN contracts ON contracts.id = co.contractid
 LEFT JOIN companynames ON companynames.id = contracts.companynameid
 
-# РїРѕР»СѓС‡Р°РµРј РїР°РєРµС‚С‹ С‚СЂР°С„РёРєР°
-LEFT JOIN (
-    SELECT phonenumber, pkg, MAX(startdate) as dtfpkg
-    FROM ev_traffic
-    WHERE stopdate IS NULL AND pkg IS NOT NULL
-    GROUP BY phonenumber
-    ) AS tr ON
-    tr.phonenumber = f1.phonenumber
-
-# РїРѕР»СѓС‡Р°РµРј РґР°С‚Сѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ СЂРѕСѓРјРёРЅРіР°
-LEFT JOIN (
-    SELECT phonenumber, MAX(startdate) as dtfrm
-    FROM ev_roam
-    WHERE stopdate IS NULL
-    GROUP BY phonenumber
-    ) AS ro ON
-    ro.phonenumber = f1.phonenumber
-
 # РІС‹Р±СЂР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РѕРґРЅРѕРјСѓ РЅРѕРјРµСЂСѓ
-#WHERE phonenumbers.phonenumber =9684599322
+#WHERE f1.phonenumber =9684599322
 WHERE companynames.companyname IS NOT NULL
 
 ORDER BY companynames.companyname, bl.dtfblck, ca.fio ASC

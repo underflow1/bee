@@ -4,49 +4,53 @@ Ext.define('BeeApp.view.Cellwindow', {
     title: 'Действия с сим картой',
     layout: 'fit',
     width : 400,
-    height: 400,
     autoShow: true,
     modal: true,
 
     initComponent: function() {
         this.items = [{
             xtype: 'form',
-            items: [{   xtype: 'textfield',
+            border: false,
+            bodyPadding: 10,
+            defaultType: 'textfield',
+            defaults :{
+                anchor: '100%',
+                labelWidth: 110,
+                readOnly: true
+            },
+            items: [{
                 fieldLabel: 'номер',
-                name: 'phonenumber',
                 id: 'form-phonenumber'
             },{
-                xtype: 'textfield',
-                name: 'fio',
+                fieldLabel: 'симкарта',
+                id: 'form-simnumber'
+            },{
+                fieldLabel: 'тариф',
+                id: 'form-tariff'
+            },{
                 fieldLabel: 'Владелец',
-                width: 350,
                 id: 'form-fio'
             },{
-                xtype: 'textfield',
+                fieldLabel: 'Должность',
+                id: 'form-position'
+            },{
                 fieldLabel: 'договор',
-                name: 'contract',
                 id: 'form-contract'
-            }]
-        }];
-        this.dockedItems=[{
-            xtype:'toolbar',
-            docked: 'top',
-            items: [{
-                text:'Выдать',
-                iconCls:'new-icon',
-                action: 'new'
             },{
-                text:'Сохранить',
-                iconCls:'save-icon',
-                action: 'save'
-            },{
-                text:'Возврат',
-                iconCls:'delete-icon',
-                action: 'delete'
+                fieldLabel: 'Компания',
+                id: 'form-companyname'
             }]
         }];
         this.buttons = [{
-            text: 'Очистить',
+            text: 'Возврат',
+            scope: this,
+            action: 'return'
+        },{
+            text: 'Перевыпуск',
+            scope: this,
+            action: 'clear'
+        },{
+            text: 'Сменить ТП',
             scope: this,
             action: 'clear'
         }];

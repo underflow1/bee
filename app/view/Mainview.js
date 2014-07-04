@@ -47,14 +47,14 @@ Ext.define('BeeApp.view.Mainview' ,{
                 dataIndex: 'deduction',
                 width: 50
             },{
-                text     : 'трф',
+                text     : 'пакет',
                 dataIndex: 'pkg',
-                width: 30
+                width: 50
             },
             {
-                text     : 'рм',
-                dataIndex: 'dtfrm',
-                width: 70
+                text     : 'роум',
+                dataIndex: 'roam',
+                width: 50
             }
         ];
 
