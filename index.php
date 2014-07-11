@@ -1,8 +1,7 @@
 ﻿<?php
-
-
-
 include "Mail.php";
+//include "sim.php";
+
 
 function emailHtml($from, $subject, $message, $to) {
     $host = "mail01.ce.int";
@@ -99,7 +98,12 @@ $app->get('/simback/{phonenumber}/{date_end}', function($phonenumber, $date_end)
     SELECT cardholderid, MAX(startdate) as startdate, MAX(starttime) as starttime
     FROM ev_owners
     WHERE phonenumber = $phonenumber AND stopdate IS NULL
-    ORDER BY startdate DESC";
+    ORDER BY startdate DESC;
+
+    INSERT INTO ph_tariff (phonenumber, startdate, starttime, tariff) values
+    ($phonenumber, now(), now(), NULL);
+"
+    ;
 
     $fired_user_id =  $app['db']-> fetchassoc($sql);
     $fired_user_id = $fired_user_id[cardholderid];
@@ -273,7 +277,8 @@ LEFT JOIN cardholders AS ca ON
 ow.cardholderid = ca.id
 
 # подтягиваем дату блокировки
-LEFT JOIN (SELECT MAX(id) AS mi, phonenumber, startdate as dtfblck FROM ph_tariff WHERE tariff IS NULL GROUP BY phonenumber) as bl on bl.phonenumber = f1.phonenumber
+LEFT JOIN (SELECT MAX(id) AS mi, phonenumber, startdate FROM ph_tariff GROUP BY phonenumber) as blmax on blmax.phonenumber = f1.phonenumber
+LEFT JOIN (SELECT id, phonenumber, if (tariff IS NULL, startdate, NULL) as dtfblck FROM ph_tariff) as bl on bl.phonenumber = blmax.phonenumber AND bl.id = blmax.mi
 
 # подтягиваем ид договора
 LEFT JOIN (SELECT MAX(id) AS mi, phonenumber FROM ph_contracts GROUP BY phonenumber) as contractsmax on contractsmax.phonenumber = f1.phonenumber
