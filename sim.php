@@ -1,16 +1,20 @@
 <?php
 
 require_once 'lib/base.php';
-F3::set('AUTOLOAD','app/data/');
-F3::set('DB',
-    new DB(
-        'mysql:host=localhost;port=3306;dbname=mobile2',
-        'mob2',
-        '123qweQWE'
-    )
+$db= new DB\SQL(
+    'mysql:host=localhost;port=3306;dbname=mobile2',
+    'mob2',
+    '123qweQWE'
 );
 
 
+
+
+$ph= new DB\SQL\Mapper($db, 'ph_tariff');
+$ph->phonenumber=1231231122;
+$ph->save();
+echo $id =$ph->_id;
+
 class sim {
 
-} 
+}

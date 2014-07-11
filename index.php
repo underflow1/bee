@@ -255,44 +255,26 @@ SELECT	f1.phonenumber
         ,sm.simnumber
         ,tf.tariff, tf.startdate as trf_startdate
         ,ca.fio, ca.position
-        ,bl.dtfblck
-        ,contracts.contract,companynames.companyname
-        ,ow.deduction, ow.pkg, ow.roam
+        ,if (tf.tariff IS NULL, tf.startdate, NULL) as dtfblck
+        ,ph_contracts.contract,companynames.companyname
+        ,ho.deduction, ho.pkg, ho.roam
 
 FROM phonenumbers AS f1
-
 # подтягиваем номер сим карты
-LEFT JOIN (SELECT MAX(id) as mi, phonenumber FROM ph_simnumbers GROUP BY phonenumber) as simnumbersmax on simnumbersmax.phonenumber = f1.phonenumber
-LEFT JOIN ph_simnumbers AS sm on sm.phonenumber = simnumbersmax.phonenumber AND simnumbersmax.mi = sm.id
-
+LEFT JOIN ph_simnumbers AS sm on sm.id = f1.simnumberid
 # подтягиваем тариф
-LEFT JOIN (SELECT MAX(id) as mi, phonenumber FROM ph_tariff GROUP BY phonenumber) as tariffmax on tariffmax.phonenumber = f1.phonenumber
-LEFT JOIN ph_tariff as tf on tf.phonenumber = tariffmax.phonenumber AND tf.id = tariffmax.mi
-
+LEFT JOIN ph_tariff as tf on tf.id = f1.tariffid
 # подтягиваем ид текущего владельца
-LEFT JOIN (SELECT MAX(id) AS mi, phonenumber FROM ev_owners GROUP BY phonenumber) as ownersmax on ownersmax.phonenumber = f1.phonenumber
-LEFT JOIN ev_owners as ow on ow.phonenumber = f1.phonenumber AND ow.id = ownersmax.mi
-#
-LEFT JOIN cardholders AS ca ON
-ow.cardholderid = ca.id
-
-# подтягиваем дату блокировки
-LEFT JOIN (SELECT MAX(id) AS mi, phonenumber, startdate FROM ph_tariff GROUP BY phonenumber) as blmax on blmax.phonenumber = f1.phonenumber
-LEFT JOIN (SELECT id, phonenumber, if (tariff IS NULL, startdate, NULL) as dtfblck FROM ph_tariff) as bl on bl.phonenumber = blmax.phonenumber AND bl.id = blmax.mi
-
+LEFT JOIN ph_holders as ho on ho.id = f1.holderid
+LEFT JOIN cardholders AS ca ON ho.cardholderid = ca.id
 # подтягиваем ид договора
-LEFT JOIN (SELECT MAX(id) AS mi, phonenumber FROM ph_contracts GROUP BY phonenumber) as contractsmax on contractsmax.phonenumber = f1.phonenumber
-LEFT JOIN ph_contracts AS co ON co.phonenumber = f1.phonenumber AND co.id = contractsmax.mi
-
+LEFT JOIN ph_contracts on ph_contracts.id = f1.contractid
 # подтягиваем номер договора и название компании
-LEFT JOIN contracts ON contracts.id = co.contractid
-LEFT JOIN companynames ON companynames.id = contracts.companynameid
-
-# РІС‹Р±СЂР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РѕРґРЅРѕРјСѓ РЅРѕРјРµСЂСѓ
+LEFT JOIN companynames ON companynames.id = ph_contracts.companynameid
+# тут можно зафигачить по одному номеру
 #WHERE f1.phonenumber =9684599322
 WHERE companynames.companyname IS NOT NULL
-
-ORDER BY companynames.companyname, bl.dtfblck, ca.fio ASC
+ORDER BY companynames.companyname, dtfblck, ca.fio ASC
 ";
 
     $post = $app['db']->fetchAll($sql);
