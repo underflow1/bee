@@ -31,9 +31,12 @@ Ext.define('BeeApp.view.Mainview' ,{
                 dataIndex: 'position',
                 width: 250
             },{
+                xtype: 'checkcolumn',
+                disabled : true,
+                disabledCls : 'x-item-enabled',
                 text     : 'блок',
-                dataIndex: 'dtfblck',
-                width: 70
+                dataIndex: 'blocked',
+                width: 50
             },{
                 text     : 'Договор',
                 dataIndex: 'contract',

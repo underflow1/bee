@@ -1,7 +1,5 @@
 ﻿<?php
 include "Mail.php";
-//include "sim.php";
-
 
 function emailHtml($from, $subject, $message, $to) {
     $host = "mail01.ce.int";
@@ -251,30 +249,17 @@ return json_encode(array(
 $app->get('/current', function() use ($app) {
 
     $sql = "
-SELECT	f1.phonenumber
-        ,sm.simnumber
-        ,tf.tariff, tf.startdate as trf_startdate
-        ,ca.fio, ca.position
-        ,if (tf.tariff IS NULL, tf.startdate, NULL) as dtfblck
-        ,ph_contracts.contract,companynames.companyname
+SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, f1.tariff
+        ,ho.fio, ho.position
         ,ho.deduction, ho.pkg, ho.roam
 
 FROM phonenumbers AS f1
-# подтягиваем номер сим карты
-LEFT JOIN ph_simnumbers AS sm on sm.id = f1.simnumberid
-# подтягиваем тариф
-LEFT JOIN ph_tariff as tf on tf.id = f1.tariffid
 # подтягиваем ид текущего владельца
-LEFT JOIN ph_holders as ho on ho.id = f1.holderid
-LEFT JOIN cardholders AS ca ON ho.cardholderid = ca.id
-# подтягиваем ид договора
-LEFT JOIN ph_contracts on ph_contracts.id = f1.contractid
-# подтягиваем номер договора и название компании
-LEFT JOIN companynames ON companynames.id = ph_contracts.companynameid
+LEFT JOIN holders as ho on ho.id = f1.holderid
 # тут можно зафигачить по одному номеру
 #WHERE f1.phonenumber =9684599322
-WHERE companynames.companyname IS NOT NULL
-ORDER BY companynames.companyname, dtfblck, ca.fio ASC
+WHERE f1.own IS NULL
+ORDER BY f1.companyname, f1.blocked, ho.fio ASC
 ";
 
     $post = $app['db']->fetchAll($sql);

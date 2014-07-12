@@ -6,7 +6,7 @@ Ext.define('BeeApp.model.Currentstate', {
         {name: 'tariff', type: 'string'},
         {name: 'fio', type: 'string'},
         {name: 'position', type: 'string'},
-        {name: 'dtfblck', type: 'string'},
+        {name: 'blocked', type: 'string'},
         {name: 'contract', type: 'string'},
         {name: 'companyname', type: 'string'},
         {name: 'deduction', type: 'string'},
