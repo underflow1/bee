@@ -1,5 +1,17 @@
 ﻿<?php
+require __DIR__.'/lib/base.php';
+F3::set('DEBUG',3);
+F3::set('AUTOLOAD','data/');
+F3::set('DB',
+    new DB\SQL(
+        'mysql:host=localhost;port=3306;dbname=mobile2',
+        'mob2',
+        '123qweQWE'
+    )
+);
+
 include "Mail.php";
+//
 
 function emailHtml($from, $subject, $message, $to) {
     $host = "mail01.ce.int";
@@ -56,6 +68,25 @@ $app->post('/test_ajax', function (Request $request) {
     ));
 });
 
+$app->get('/testsim/{phonenumber}', function($phonenumber) use($app) {
+    $test = new Sim();
+    return $test-> getcurrentstate($phonenumber);
+});
+
+$app->get('/testsim/{phonenumber}/block', function($phonenumber) use($app) {
+    $test = new Sim();
+    return $test-> block($phonenumber);
+});
+
+$app->get('/testsim/{phonenumber}/settariff/{tariff}', function($phonenumber,$tariff) use($app) {
+    $test = new Sim();
+    return $test-> settariff($phonenumber,$tariff);
+});
+
+$app->get('/testsim/{phonenumber}/setnewsimnumber/{simnumber}', function($phonenumber,$simnumber) use($app) {
+    $test = new Sim();
+    return $test-> setnewsimnumber($phonenumber,$simnumber);
+});
 
 
 $app->get('/', function() use($app) {
