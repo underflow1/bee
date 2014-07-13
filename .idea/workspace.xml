@@ -23,37 +23,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="9" selection-start="1470" selection-end="1683" vertical-scroll-proportion="-2.2692308" vertical-offset="1063" max-vertical-offset="5355">
+            <state line="321" column="47" selection-start="10177" selection-end="10583" vertical-scroll-proportion="0.5074627" vertical-offset="5049" max-vertical-offset="5797">
               <folding>
-                <element signature="e#1371#1416#0" expanded="true" />
-                <marker date="1405204380922" expanded="true" signature="3620:3728" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3634:3670" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3756:3776" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3791:3883" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-                <marker date="1405204380922" expanded="false" signature="4188:4277" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="4361:4489" placeholder="..." />
-                <marker date="1405204380922" expanded="true" signature="4369:4461" placeholder="..." />
+                <marker date="1405281325004" expanded="true" signature="4941:5049" placeholder="..." />
+                <marker date="1405281325004" expanded="false" signature="4955:4991" placeholder="..." />
+                <marker date="1405281325004" expanded="true" signature="4992:5045" placeholder="..." />
+                <marker date="1405281325004" expanded="false" signature="5077:5097" placeholder="..." />
+                <marker date="1405281325004" expanded="true" signature="5098:5814" placeholder="..." />
+                <marker date="1405281325004" expanded="false" signature="5112:5204" placeholder="..." />
+                <marker date="1405281325004" expanded="true" signature="5205:5495" placeholder="..." />
+                <marker date="1405281325004" expanded="false" signature="5509:5598" placeholder="..." />
+                <marker date="1405281325004" expanded="true" signature="5682:5810" placeholder="..." />
+                <marker date="1405281325004" expanded="false" signature="5690:5782" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sim.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitattributes" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitattributes">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="476">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sim.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/sim.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="28" selection-start="2462" selection-end="2477" vertical-scroll-proportion="0.5808937" vertical-offset="915" max-vertical-offset="1717">
+            <state line="185" column="0" selection-start="8062" selection-end="8062" vertical-scroll-proportion="-16.115385" vertical-offset="2726" max-vertical-offset="5049">
               <folding>
                 <element signature="e#6#137#0" expanded="true" />
               </folding>
@@ -64,7 +69,7 @@
       <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="28" selection-start="67" selection-end="67" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="408">
+            <state line="2" column="28" selection-start="67" selection-end="67" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="408">
               <folding />
             </state>
           </provider>
@@ -73,7 +78,7 @@
       <file leaf-file-name="Mainview.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Mainview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+            <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -91,7 +96,7 @@
       <file leaf-file-name="Currentstate.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/model/Currentstate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="29" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+            <state line="8" column="37" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
               <folding />
             </state>
           </provider>
@@ -100,7 +105,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+            <state line="10" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="459">
               <folding />
             </state>
           </provider>
@@ -109,16 +114,7 @@
       <file leaf-file-name="Bee.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="849" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="884">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Application.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="31" selection-start="2639" selection-end="2646" vertical-scroll-proportion="0.0" vertical-offset="2282" max-vertical-offset="2958">
+            <state line="32" column="0" selection-start="849" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
@@ -127,7 +123,7 @@
       <file leaf-file-name="Cellwindow.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Cellwindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1105">
+            <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1105">
               <folding />
             </state>
           </provider>
@@ -151,8 +147,8 @@
         <option value="$PROJECT_DIR$/app/view/Cellwindow.js" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/app/view/Mainview.js" />
-        <option value="$PROJECT_DIR$/app/model/Currentstate.js" />
         <option value="$PROJECT_DIR$/sim.php" />
+        <option value="$PROJECT_DIR$/app/model/Currentstate.js" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/data/sim.php" />
       </list>
@@ -161,7 +157,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1" />
-    <option name="width" value="1164" />
+    <option name="width" value="1705" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -316,16 +312,16 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="options.lastSelected" value="editor.preferences.smartKeys" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FullScreen" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FullScreen" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig" serverName="252" serverId="7774b5bd-081a-4cd9-b9ae-2f52360780db" autoUpload="true">
     <servers>
@@ -393,7 +389,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1164" height="1040" extended-state="0" />
+    <frame x="1" y="0" width="1705" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18233296" sideWeight="0.49957806" order="7" side_tool="false" content_ui="tabs" />
@@ -403,7 +399,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16424683" sideWeight="0.81766707" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11199026" sideWeight="0.81766707" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18772137" sideWeight="0.50042194" order="7" side_tool="true" content_ui="tabs" />
@@ -433,17 +429,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="55" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="168" column="0" selection-start="5713" selection-end="5713" vertical-scroll-proportion="0.0" vertical-offset="2265" max-vertical-offset="2958">
@@ -455,32 +444,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="5950">
           <folding>
-            <element signature="e#1371#1416#0" expanded="true" />
-            <marker date="1405204380922" expanded="true" signature="3620:3728" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3634:3670" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3756:3776" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3791:3883" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="false" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4361:4489" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4369:4461" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="4941:5049" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="4955:4991" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="4992:5045" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5077:5097" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5098:5814" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5112:5204" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5205:5495" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5509:5598" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5682:5810" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5690:5782" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Application.js">
@@ -492,9 +472,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="43" selection-start="308" selection-end="308" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
+        <state line="6" column="43" selection-start="308" selection-end="308" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="323" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
@@ -506,7 +484,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="28" selection-start="67" selection-end="67" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="408">
+        <state line="2" column="28" selection-start="67" selection-end="67" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="408">
           <folding />
         </state>
       </provider>
@@ -514,20 +492,6 @@
     <entry file="file://$PROJECT_DIR$/app/Application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="71" column="31" selection-start="2639" selection-end="2646" vertical-scroll-proportion="0.0" vertical-offset="2282" max-vertical-offset="2958">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Currentstate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="29" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/store/Currentstate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
@@ -553,36 +517,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/app/store/Currentstate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="9" selection-start="1470" selection-end="1683" vertical-scroll-proportion="-2.2692308" vertical-offset="1063" max-vertical-offset="5355">
-          <folding>
-            <element signature="e#1371#1416#0" expanded="true" />
-            <marker date="1405204380922" expanded="true" signature="3620:3728" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3634:3670" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3671:3724" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3756:3776" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3777:4493" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3791:3883" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="3884:4174" placeholder="..." />
-            <marker date="1405204380922" expanded="false" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4188:4277" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4361:4489" placeholder="..." />
-            <marker date="1405204380922" expanded="true" signature="4369:4461" placeholder="..." />
-          </folding>
+        <state line="2" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/Currentstate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="37" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="650">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/sim.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="28" selection-start="2462" selection-end="2477" vertical-scroll-proportion="0.5808937" vertical-offset="915" max-vertical-offset="1717">
+        <state line="185" column="0" selection-start="8062" selection-end="8062" vertical-scroll-proportion="-16.115385" vertical-offset="2726" max-vertical-offset="5049">
           <folding>
             <element signature="e#6#137#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="321" column="47" selection-start="10177" selection-end="10583" vertical-scroll-proportion="0.5074627" vertical-offset="5049" max-vertical-offset="5797">
+          <folding>
+            <marker date="1405281325004" expanded="true" signature="4941:5049" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="4955:4991" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="4992:5045" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5077:5097" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5098:5814" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5112:5204" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5205:5495" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5509:5598" placeholder="..." />
+            <marker date="1405281325004" expanded="true" signature="5682:5810" placeholder="..." />
+            <marker date="1405281325004" expanded="false" signature="5690:5782" placeholder="..." />
           </folding>
         </state>
       </provider>

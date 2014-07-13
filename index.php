@@ -68,14 +68,14 @@ $app->post('/test_ajax', function (Request $request) {
     ));
 });
 
-$app->get('/testsim/{phonenumber}', function($phonenumber) use($app) {
+$app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($app) {
     $test = new Sim();
     return $test-> getcurrentstate($phonenumber);
 });
 
-$app->get('/testsim/{phonenumber}/block', function($phonenumber) use($app) {
+$app->get('/testsim/{phonenumber}/setblock/{state}', function($phonenumber,$state) use($app) {
     $test = new Sim();
-    return $test-> block($phonenumber);
+    return $test-> setblock($phonenumber,$state);
 });
 
 $app->get('/testsim/{phonenumber}/settariff/{tariff}', function($phonenumber,$tariff) use($app) {
@@ -83,11 +83,40 @@ $app->get('/testsim/{phonenumber}/settariff/{tariff}', function($phonenumber,$ta
     return $test-> settariff($phonenumber,$tariff);
 });
 
-$app->get('/testsim/{phonenumber}/setnewsimnumber/{simnumber}', function($phonenumber,$simnumber) use($app) {
+$app->get('/testsim/{phonenumber}/setsimnumber/{simnumber}', function($phonenumber,$simnumber) use($app) {
     $test = new Sim();
-    return $test-> setnewsimnumber($phonenumber,$simnumber);
+    return $test-> setsimnumber($phonenumber,$simnumber);
 });
 
+$app->get('/testsim/{phonenumber}/appendholder/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber,$fio,$position,$deduction,$pkg,$roam) use($app) {
+    $test = new Sim();
+    return $test-> appendholder($phonenumber, $fio, $position, $deduction, $pkg, $roam);
+});
+
+$app->get('/testsim/{phonenumber}/setholder/{holderid}', function($phonenumber, $holderid) use($app) {
+    $test = new Sim();
+    return $test-> setholder($phonenumber,$holderid);
+});
+
+$app->get('/testsim/endholder/{holderid}', function($holderid) use($app) {
+    $test = new Sim();
+    return $test-> endholder($holderid);
+});
+
+$app->get('/testsim/{phonenumber}/returnthenumber', function($phonenumber) use($app) {
+    $test = new Sim();
+    return $test-> returnthenumber($phonenumber);
+});
+
+$app->get('/testsim/{phonenumber}/appenddata/{what}/{state}', function($phonenumber,$what,$state) use($app) {
+    $test = new Sim();
+    return $test-> appenddata($phonenumber,$what,$state);
+});
+
+$app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam) use($app) {
+    $test = new Sim();
+    return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
+});
 
 $app->get('/', function() use($app) {
     return file_get_contents('home.html');
