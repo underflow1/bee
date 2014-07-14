@@ -1,5 +1,7 @@
 ﻿<?php
-require __DIR__.'/lib/base.php';
+//require __DIR__.'/lib/base.php';
+$f3 = require('lib/base.php');
+//include "Mail.php";
 F3::set('DEBUG',3);
 F3::set('AUTOLOAD','data/');
 F3::set('DB',
@@ -10,8 +12,7 @@ F3::set('DB',
     )
 );
 
-include "Mail.php";
-//
+
 
 function emailHtml($from, $subject, $message, $to) {
     $host = "mail01.ce.int";
@@ -23,6 +24,11 @@ function emailHtml($from, $subject, $message, $to) {
         'Subject' => $subject,
         'X-Mailer' => "Microsoft Office Outlook 12.0"
     );
+
+//    $mail = new Mail;
+//    $smtp = $mail->factory('smtp', array ('host' => $host, 'auth' => false));
+//    $mail->send($to, $headers, $message);
+
     $smtp = Mail::factory('smtp', array ('host' => $host, 'auth' => false));
     $mail = $smtp->send($to, $headers, $message);
     if (PEAR::isError($mail)) {
@@ -105,7 +111,11 @@ $app->get('/testsim/endholder/{holderid}', function($holderid) use($app) {
 
 $app->get('/testsim/{phonenumber}/returnthenumber', function($phonenumber) use($app) {
     $test = new Sim();
-    return $test-> returnthenumber($phonenumber);
+    $res = $test-> returnthenumber($phonenumber);
+
+    json_decode($res);
+
+    return $res;
 });
 
 $app->get('/testsim/{phonenumber}/appenddata/{what}/{state}', function($phonenumber,$what,$state) use($app) {
@@ -115,7 +125,9 @@ $app->get('/testsim/{phonenumber}/appenddata/{what}/{state}', function($phonenum
 
 $app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam) use($app) {
     $test = new Sim();
+
     return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
+
 });
 
 $app->get('/', function() use($app) {
@@ -136,16 +148,36 @@ $app->get('/phonenumbers', function() use ($app) {
 
 });
 
+
+function f3send(){
+
+    $smtp = new SMTP('mail01.ce.int',25,'plain',NULL,NULL);
+    $smtp->set('From','it@teploset.ru');
+    $smtp->set('Mail','it@teploset.ru');
+    $smtp->set('To','it@teploset.ru');
+    $smtp->set('Subject','F3 email test');
+    $message='sdafasdf';
+    $smtp->send($message);
+    echo $smtp->log . "<hr>" ;
+}
+
 $app->get('/sendemail', function() use ($app) {
+    // Create the Transport
+    $transport = Swift_SmtpTransport::newInstance('mail01.ce.int', 25)
+        ->setUsername('')
+        ->setPassword('');
+    $mailer = Swift_Mailer::newInstance($transport);
+    $message = Swift_Message::newInstance('Wonderful Subject')
+        ->setFrom(array('it@teploset.ru' => 'Харламов Алексей Олегович'))
+        ->setTo(array('it@teploset.ru'))
+        ->setContentType("text/html; charset=UTF-8")
+        ->setBody("asdfsadf");
 
-$message = "HUYAMBA";
-
-
-$res = emailHtml("it@teploset.ru", "сим карты", $message, "it@teploset.ru, ab@teploset.ru");
+    $result = $mailer->send($message);
 
     return json_encode(array(
         "success" => true,
-        "data" => $res
+        "data" => $result
     ));
 
 });
@@ -335,5 +367,19 @@ ORDER BY f1.companyname, f1.blocked, ho.fio ASC
 
 
 $app->run();
+
+$f3->route('GET /sendemail2',
+    function() {
+        $smtp = new SMTP ( 'mail01.ce.int', '25', 'tls','ce\kharlamov.a', '123zxcZXC');
+        $smtp->set('From','akharlamov@teploset.ru');
+        $smtp->set('To','syncamide@gmail.com');
+        $smtp->set('Subject','сим карты');
+//    $message=$smtp->attach('test.html');
+        $message = "HUYAMBA";
+        $res = $smtp->send($message);
+    }
+);
+
+//$f3->run();
 
 ?>
