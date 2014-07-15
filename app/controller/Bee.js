@@ -36,7 +36,7 @@ Ext.define('BeeApp.controller.Bee', {
 
     _showWindow: function(grid, record) {
 //        this.getCell().show();
-        var win = Ext.widget('cellwindow', {
+        Ext.widget('cellwindow', {
             record: record
         }).show();
         
