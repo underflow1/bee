@@ -12,6 +12,9 @@ Ext.define('BeeApp.controller.Bee', {
             },
             'cellwindow button[action=return]': {
                 click: this._simReturn
+            },
+            '#myWindow': {
+                show: this:_onShowWindow
             }
         });
     },
@@ -42,6 +45,10 @@ Ext.define('BeeApp.controller.Bee', {
         var ph = Ext.getCmp('form-position').setValue(record.get('position'));
         var ph = Ext.getCmp('form-contract').setValue(record.get('contract'));
         var ph = Ext.getCmp('form-companyname').setValue(record.get('companyname'));
+    }
+
+    _onShowWindow: function(win) {
+        console.log(win);
     }
 
 });
