@@ -13,7 +13,7 @@ Ext.define('BeeApp.controller.Bee', {
             'cellwindow button[action=return]': {
                 click: this._simReturn
             },
-            '#myWindow': {
+            'cellwindow': {
                 show: this:_onShowWindow
             }
         });
@@ -36,8 +36,10 @@ Ext.define('BeeApp.controller.Bee', {
 
     _showWindow: function(grid, record) {
 //        this.getCell().show();
-        var win = new BeeApp.view.Cellwindow();
-        win.show();
+        var win = Ext.widget('cellwindow', {
+            record: record
+        }).show();
+        
         var ph = Ext.getCmp('form-phonenumber').setValue(record.get('phonenumber'));
         var ph = Ext.getCmp('form-simnumber').setValue(record.get('simnumber'));
         var ph = Ext.getCmp('form-tariff').setValue(record.get('tariff'));
@@ -48,7 +50,15 @@ Ext.define('BeeApp.controller.Bee', {
     }
 
     _onShowWindow: function(win) {
-        console.log(win);
+        Ext.Ajax.request({
+            url: '/testsim/' + win.record.get('phonenumber') + '/currentstate',
+            success: function(response) {
+                console.log(response);
+            },
+            failure: function() {
+                alert('ERROR');
+            }
+        });
     }
 
 });
