@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="0" selection-start="5149" selection-end="5149" vertical-scroll-proportion="0.6850746" vertical-offset="2567" max-vertical-offset="6630">
+            <state line="76" column="49" selection-start="1902" selection-end="1917" vertical-scroll-proportion="25.5" vertical-offset="1955" max-vertical-offset="6630">
               <folding>
                 <element signature="e#1554#1599#0" expanded="true" />
                 <marker date="1405373502102" expanded="true" signature="5891:5999" placeholder="..." />
@@ -114,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sim.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="sim.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/sim.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="194" column="107" selection-start="8671" selection-end="8746" vertical-scroll-proportion="-12.192307" vertical-offset="2981" max-vertical-offset="5049">
+            <state line="183" column="34" selection-start="8053" selection-end="8053" vertical-scroll-proportion="1.1293759" vertical-offset="2369" max-vertical-offset="5049">
               <folding>
                 <element signature="e#6#137#0" expanded="true" />
               </folding>
@@ -137,7 +137,7 @@
       <file leaf-file-name="Mainview.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Mainview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1275">
+            <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -173,7 +173,7 @@
       <file leaf-file-name="Bee.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="849" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="884">
+            <state line="48" column="34" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1190">
               <folding />
             </state>
           </provider>
@@ -182,7 +182,7 @@
       <file leaf-file-name="Cellwindow.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Cellwindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1105">
+            <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
               <folding />
             </state>
           </provider>
@@ -202,14 +202,14 @@
         <option value="$PROJECT_DIR$/home.html" />
         <option value="$PROJECT_DIR$/app/store/Currentstate.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/app/controller/Bee.js" />
         <option value="$PROJECT_DIR$/app/view/Cellwindow.js" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/app/view/Mainview.js" />
         <option value="$PROJECT_DIR$/sim.php" />
         <option value="$PROJECT_DIR$/app/model/Currentstate.js" />
-        <option value="$PROJECT_DIR$/data/sim.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/app/controller/Bee.js" />
+        <option value="$PROJECT_DIR$/data/sim.php" />
       </list>
     </option>
   </component>
@@ -448,7 +448,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1705" height="1040" extended-state="1" />
+    <frame x="1" y="0" width="1705" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18233296" sideWeight="0.49957806" order="7" side_tool="false" content_ui="tabs" />
@@ -488,7 +488,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -614,27 +614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="849" selection-end="850" vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Cellwindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Mainview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/store/Currentstate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
@@ -659,18 +638,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/sim.php">
+    <entry file="file://$PROJECT_DIR$/app/view/Cellwindow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="107" selection-start="8671" selection-end="8746" vertical-scroll-proportion="-12.192307" vertical-offset="2981" max-vertical-offset="5049">
-          <folding>
-            <element signature="e#6#137#0" expanded="true" />
-          </folding>
+        <state line="24" column="39" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Mainview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="26" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="0" selection-start="5149" selection-end="5149" vertical-scroll-proportion="0.6850746" vertical-offset="2567" max-vertical-offset="6630">
+        <state line="76" column="49" selection-start="1902" selection-end="1917" vertical-scroll-proportion="25.5" vertical-offset="1955" max-vertical-offset="6630">
           <folding>
             <element signature="e#1554#1599#0" expanded="true" />
             <marker date="1405373502102" expanded="true" signature="5891:5999" placeholder="..." />
@@ -741,6 +725,22 @@
             <marker date="1405373502102" expanded="true" signature="6459:6548" placeholder="..." />
             <marker date="1405373502102" expanded="true" signature="6632:6760" placeholder="..." />
             <marker date="1405373502102" expanded="true" signature="6640:6732" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="34" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/sim.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="34" selection-start="8053" selection-end="8053" vertical-scroll-proportion="1.1293759" vertical-offset="2369" max-vertical-offset="5049">
+          <folding>
+            <element signature="e#6#137#0" expanded="true" />
           </folding>
         </state>
       </provider>

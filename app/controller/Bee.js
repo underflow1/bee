@@ -14,7 +14,7 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._simReturn
             },
             'cellwindow': {
-                show: this:_onShowWindow
+                show: this._onShowWindow
             }
         });
     },
@@ -47,11 +47,11 @@ Ext.define('BeeApp.controller.Bee', {
         var ph = Ext.getCmp('form-position').setValue(record.get('position'));
         var ph = Ext.getCmp('form-contract').setValue(record.get('contract'));
         var ph = Ext.getCmp('form-companyname').setValue(record.get('companyname'));
-    }
+    },
 
     _onShowWindow: function(win) {
         Ext.Ajax.request({
-            url: '/testsim/' + win.record.get('phonenumber') + '/currentstate',
+            url: '/testsim/' + win.record.get('phonenumber') + '/getcurrentstate',
             success: function(response) {
                 console.log(response);
             },
