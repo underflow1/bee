@@ -1,48 +1,45 @@
-Ext.define('BeeApp.view.Cellwindow', {
-    extend: 'Ext.window.Window',
-    alias: 'widget.cellwindow',
-    title: 'Действия с сим картой',
-    layout: 'fit',
-    width : 400,
-    autoShow: true,
-    modal: true,
-
-
-    initComponent: function() {
-        this.items = [{
+/**
+ * Created by kharlamov.a on 15.01.2015.
+ */
+Ext.define('BeeApp.view.Cellwindow2', {
+        extend: 'Ext.window.Window',
+        alias: 'widget.cellwindow2',
+        width : 400,
+        title: 'Действия с сим картой',
+        modal: true,
+        items: [{
             xtype: 'form',
-            border: false,
             bodyPadding: 10,
-            defaultType: 'textfield',
             defaults :{
                 anchor: '100%',
                 labelWidth: 110,
                 readOnly: true
             },
+            defaultType: 'textfield',
             items: [{
                 fieldLabel: 'номер',
-                id: 'form-phonenumber'
+                name: 'phonenumber'
             },{
                 fieldLabel: 'симкарта',
-                id: 'form-simnumber'
+                name: 'simnumber'
             },{
                 fieldLabel: 'тариф',
-                id: 'form-tariff'
+                name: 'tariff'
             },{
                 fieldLabel: 'Владелец',
-                id: 'form-fio'
+                name: 'fio'
             },{
                 fieldLabel: 'Должность',
-                id: 'form-position'
+                name: 'position'
             },{
                 fieldLabel: 'договор',
-                id: 'form-contract'
+                name: 'contract'
             },{
                 fieldLabel: 'Компания',
-                id: 'form-companyname'
+                name: 'companyname'
             }]
-        }];
-        this.buttons = [{
+        }],
+        buttons: [{
             text: 'Возврат',
             scope: this,
             action: 'return'
@@ -53,9 +50,10 @@ Ext.define('BeeApp.view.Cellwindow', {
         },{
             text: 'Сменить ТП',
             scope: this,
-            action: 'clear'
-        }];
+            action: 'clear'}],
 
-        this.callParent(arguments);
+        initComponent: function() {
+            this.callParent(arguments);
+        }
     }
-});
+)

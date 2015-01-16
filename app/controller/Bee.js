@@ -1,7 +1,7 @@
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
-    views: ['Mainview', 'Cellwindow'],
+    views: ['Mainview', 'Cellwindow', 'Cellwindow2'],
     stores: ['Currentstate'],
     models: ['Currentstate'],
 
@@ -10,16 +10,30 @@ Ext.define('BeeApp.controller.Bee', {
             'viewport > mainview': {
                 itemdblclick: this._showWindow
             },
-            'cellwindow button[action=return]': {
+            'cellwindow2 button[action=return]': {
                 click: this._simReturn
-            },
-            'cellwindow': {
-                show: this._onShowWindow
             }
+/*            ,
+            'cellwindow2': {
+                show: this._onShowWindow
+            } */
         });
     },
 
-    _simReturn: function() {
+    _simReturn: function(btn) {
+        var win = btn.up('window');
+        form = win.down('form');
+//        console.log(form.getForm().getValues());
+//        console.log(form.getForm().findField('phonenumber').getValue());
+
+        Ext.Ajax.request({
+            url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/returnthenumber',
+            success: function(response){
+                Ext.Msg.alert('Возврат',response.responseText);
+                win.close();
+            }
+        })
+/*
         Ext.Ajax.request({
             url: '/test_ajax',
             method: 'POST',
@@ -30,26 +44,21 @@ Ext.define('BeeApp.controller.Bee', {
                     Ext.Msg.alert('Обновление',data.msg);
                 }
             }
-        })
+        }) */
     },
 
-
-    _showWindow: function(grid, record) {
-//        this.getCell().show();
-        Ext.widget('cellwindow', {
+    _showWindow: function(grid,record) {
+        var view = Ext.widget('cellwindow2', {
             record: record
-        }).show();
-        
-        var ph = Ext.getCmp('form-phonenumber').setValue(record.get('phonenumber'));
-        var ph = Ext.getCmp('form-simnumber').setValue(record.get('simnumber'));
-        var ph = Ext.getCmp('form-tariff').setValue(record.get('tariff'));
-        var ph = Ext.getCmp('form-fio').setValue(record.get('fio'));
-        var ph = Ext.getCmp('form-position').setValue(record.get('position'));
-        var ph = Ext.getCmp('form-contract').setValue(record.get('contract'));
-        var ph = Ext.getCmp('form-companyname').setValue(record.get('companyname'));
-    },
+        });
+//        console.log(view.record.get('phonenumber'));
+        view.down('form').loadRecord(record);
+        view.show();
+    }
 
+/*
     _onShowWindow: function(win) {
+    console.log(win.record.get('phonenumber'));
         Ext.Ajax.request({
             url: '/testsim/' + win.record.get('phonenumber') + '/getcurrentstate',
             success: function(response) {
@@ -60,5 +69,5 @@ Ext.define('BeeApp.controller.Bee', {
             }
         });
     }
-
+*/
 });

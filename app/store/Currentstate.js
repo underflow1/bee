@@ -12,3 +12,4 @@ Ext.define('BeeApp.store.Currentstate', {
         }
     }
 });
+
