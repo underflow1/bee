@@ -3,7 +3,10 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-    requires: ['Ext.container.Viewport'],
+    requires: [
+        'Ext.container.Viewport',
+        'Ext.tip.*'
+    ],
 
     name: 'BeeApp',
     appFolder: 'app',

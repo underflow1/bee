@@ -63,14 +63,20 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _reloadAll: function(number) {
-        if(!Ext.isObject(number)) {
-            Ext.getCmp('windowcell').down('form').load({
-                method:'GET',
-                url: '/testsim/' + number + '/getcurrentstate'
-            });
+        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', showResult);
+        function showResult(btn){
+            if (btn === 'yes') {
+                if(!Ext.isObject(number)) {
+                    Ext.getCmp('windowcell').down('form').load({
+                        method:'GET',
+                        url: '/testsim/' + number + '/getcurrentstate'
+                    });
+                }
+                Ext.getCmp('mainviewgrid_id').getStore().load();
+            }
+            console.log(btn);
         }
-        Ext.getCmp('mainviewgrid_id').getStore().load();
-    },
+     },
 
     _changeSim: function(btn) {
         var win = btn.up('window');
@@ -99,31 +105,37 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _simReturn: function(btn) {
-        var win = btn.up('window');
-        form = win.down('form');
-        grid = btn.up('grid');
-        Ext.Ajax.request({
-            url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/returnthenumber',
-            success: function(response){
-                var data = Ext.decode(response.responseText);
-                if(data.success){
-                    console.log(data.success);
-                    console.log(data);
-                    Ext.Msg.alert('Возврат',data.msg);
-                    form.load({
-                        method:'GET',
-                        url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/getcurrentstate'
-                    });
-                    this._reloadAll();
-                    //Ext.getCmp('mainviewgrid_id').getStore().load();
-                } else {
-                    Ext.Msg.alert('Возврат',data.msg);
-                }
-            },
-            failure: function() {
-                alert('ERROR');
+        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', showResult);
+        function showResult(btn2) {
+            console.log(btn2);
+            if (btn2 === 'yes') {
+                var win = btn.up('window');
+                form = win.down('form');
+                grid = btn.up('grid');
+                Ext.Ajax.request({
+                    url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/returnthenumber',
+                    success: function (response) {
+                        var data = Ext.decode(response.responseText);
+                        if (data.success) {
+                            console.log(data.success);
+                            console.log(data);
+                            Ext.Msg.alert('Возврат', data.msg);
+                            form.load({
+                                method: 'GET',
+                                url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/getcurrentstate'
+                            });
+                            //this._reloadAll();
+                            Ext.getCmp('mainviewgrid_id').getStore().load();
+                        } else {
+                            Ext.Msg.alert('Возврат', data.msg);
+                        }
+                    },
+                    failure: function () {
+                        alert('ERROR');
+                    }
+                })
             }
-        })
+        }
     },
 
     _showWindow: function(grid,record) {
