@@ -168,7 +168,7 @@ class Sim {
         $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
         $holders->load('id='.$phonenumber->holderid);
         if ($holders->fio == 'резерв') {
-            $result = array ('success' => false, 'msg' => "Sim card is in reserved state");
+            $result = array ('success' => false, 'msg' => "Сим карта уже находится в резерве");
         } else {
             $setblockresult = json_decode(Sim::setblock($number, true));
             $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
@@ -176,6 +176,7 @@ class Sim {
             $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
             $result = array (
                 'success' => true,
+                'msg' => 'Сим карта сдана',
                 'block' => $setblockresult->{'msg'},
                 'end' => $endholderresult->{'msg'},
                 'append' => $appendholderresult->{'msg'},

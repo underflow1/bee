@@ -1,6 +1,7 @@
 Ext.define('BeeApp.view.Mainview' ,{
     extend: 'Ext.grid.Panel',
     alias: 'widget.mainview',
+    id: 'mainviewgrid_id',
     store: 'Currentstate',
     height: 900,
     width: 1245,
@@ -65,5 +66,6 @@ Ext.define('BeeApp.view.Mainview' ,{
         ];
 
         this.callParent(arguments);
+        console.log('mainview');
     }
 });
