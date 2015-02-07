@@ -5,7 +5,7 @@ Ext.define('BeeApp.view.Windowcell', {
         extend: 'Ext.window.Window',
         alias: 'widget.windowcell',
         id: 'windowcell',
-        width : 400,
+        width : 450,
         title: 'Действия с сим картой',
         modal: true,
         items: [{
@@ -33,6 +33,9 @@ Ext.define('BeeApp.view.Windowcell', {
                 fieldLabel: 'Должность',
                 name: 'position'
             },{
+                fieldLabel: 'заблокирована',
+                name: 'blocked'
+            },{
                 fieldLabel: 'договор',
                 name: 'contract'
             },{
@@ -43,7 +46,18 @@ Ext.define('BeeApp.view.Windowcell', {
         buttons: [{
             text: 'Возврат',
             scope: this,
-            action: 'return'
+            action: 'return',
+            itemID: 'block_hide'
+        },{
+            text: 'Выдать',
+            scope: this,
+            action: 'showgive',
+            itemID: 'block_show'
+        },{
+            text: 'Передать',
+            scope: this,
+            action: 'showtransfer',
+            itemID: 'block_hide'
         },{
             text: 'Перевыпуск',
             scope: this,
@@ -51,11 +65,8 @@ Ext.define('BeeApp.view.Windowcell', {
         },{
             text: 'Сменить ТП',
             scope: this,
-            action: 'showchangeplan'
-        },{
-            text: 'reload',
-            scope: this,
-            action: 'reload'
+            action: 'showchangeplan',
+            itemID: 'block_hide'
         }],
 
         initComponent: function() {

@@ -21,7 +21,7 @@ Ext.define('BeeApp.view.Mainview' ,{
             {
                 text     : 'ТП',
                 dataIndex: 'tariff',
-                width: 30
+                width: 125
             },
             {
                 text     : 'ФИО',

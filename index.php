@@ -89,6 +89,21 @@ $app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduc
     $test = new Sim();
     return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
 });
+$app->post('/givethenumber', function(Request $request) {
+    $test = new Sim();
+    return $test->givethenumber($request->get('phonenumber'), $request->get('tariff'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'));
+});
+
+$app->post('/transferthenumber', function (Request $request) {
+    $test = new Sim();
+    //echo $request->get('phonenumber');
+    return $test->transferthenumber($request->get('phonenumber'),$request->get('fio'),$request->get('position'));
+    //return $request->get('phonenumber').$request->get('fio').$request->get('position');
+});
+
+$app->post('/arraysend', function (Request $request) {
+    return $request;
+});
 
 $app->get('/', function() use($app) {
     return file_get_contents('home.html');

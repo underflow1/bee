@@ -210,7 +210,24 @@ class Sim {
     }
 
 
-
+    function transferthenumber($number, $fio, $position) {
+        $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
+        $phonenumber-> load('phonenumber ='.$number);
+        $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
+        $holders->load('id='.$phonenumber->holderid);
+        if ($holders->fio !== 'резерв') {
+            $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
+            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $holders->deduction,$holders->pkg,$holders->roam));
+            $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
+            $result = array (
+                'success' => true,
+                'end' => $endholderresult->{'msg'},
+                'append' => $appendholderresult->{'msg'},
+                'set' => $setholderresult->{'msg'},
+            );
+        } else {$result = array ('success' => false, 'msg' => "Сим карта находится в резерве");}
+        return json_encode($result);
+    }
 
 /*
     function returnthenumber($number) {
