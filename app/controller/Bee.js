@@ -18,6 +18,9 @@ Ext.define('BeeApp.controller.Bee', {
             'windowcell button[action=showchangeplan]': {
                 click: this._showWindowPlan
             },
+            'windowcell button[action=email]': {
+                click: this._sendObject
+            },
             'windowcell button[action=block]': {
                 click: this._setBlock
             },
@@ -49,6 +52,24 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._giveTheNumber
             }
         });
+    },
+
+    _sendObject: function(btn) {
+        var win = btn.up('window');
+        form = win.down('form');
+        email = 'it@teploset.ru';
+        mydata = form.getForm().getValues();
+        mydata.email = email;
+        console.log(mydata);
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/sendobject',
+            async: false,
+            params : mydata,
+            success: function(response) {
+                console.log(response.responseText)
+            }
+        })
     },
 
     _setBlock: function() {

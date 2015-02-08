@@ -13,6 +13,8 @@ F3::set('DB',
 );
 
 require_once __DIR__.'/silex/vendor/autoload.php';
+require_once 'twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();
 
 function validateDate($date)
 {
@@ -96,27 +98,31 @@ $app->post('/givethenumber', function(Request $request) {
 
 $app->post('/transferthenumber', function (Request $request) {
     $test = new Sim();
-    //echo $request->get('phonenumber');
     return $test->transferthenumber($request->get('phonenumber'),$request->get('fio'),$request->get('position'));
-    //return $request->get('phonenumber').$request->get('fio').$request->get('position');
 });
 
-$app->post('/arraysend', function (Request $request) {
-    return $request;
+$app->post('/sendobject', function (Request $request) {
+    // получаем массив со всеми полями:
+    $vari = $request->request->all();
+    // инициализируем шаблон:
+    $loader = new Twig_Loader_Filesystem('templates');
+    $twig = new Twig_Environment($loader);
+    $template = $twig->loadTemplate('letter_activate.html');
+    $test = $template->render($vari);
+    // инициализируем почтовик
+    $transport = Swift_SmtpTransport::newInstance('mail01.ce.int', 25)
+        ->setUsername('')
+        ->setPassword('');
+    $mailer = Swift_Mailer::newInstance($transport);
+    $message = Swift_Message::newInstance('сим карты')
+        ->setFrom(array('it@teploset.ru' => 'Харламов Алексей Олегович'))
+        ->setTo(array('Akharlamov@teploset.ru'))
+        ->setContentType("text/html; charset=UTF-8")
+        ->setBody($test,'text/html');
+    $result = $mailer->send($message);
+    return $result;
 });
 
-$app->get('/', function() use($app) {
-    return file_get_contents('home.html');
-});
-
-$app->get('/phonenumbers', function() use ($app) {
-    $sql = "SELECT phonenumber FROM phonenumbers";
-    $post = $app['db']->fetchAll($sql);
-    return json_encode(array(
-        "success" => true,
-        "data" => $post
-    ));
-});
 
 $app->post('/sendemail2', function (Request $request) {
     $transport = Swift_SmtpTransport::newInstance('mail01.ce.int', 25)
@@ -186,6 +192,19 @@ ORDER BY total.companyname, total.fio
 ";
     $post = $app['db']->fetchAll($sql);
 return json_encode(array(
+        "success" => true,
+        "data" => $post
+    ));
+});
+
+$app->get('/', function() use($app) {
+    return file_get_contents('home.html');
+});
+
+$app->get('/phonenumbers', function() use ($app) {
+    $sql = "SELECT phonenumber FROM phonenumbers";
+    $post = $app['db']->fetchAll($sql);
+    return json_encode(array(
         "success" => true,
         "data" => $post
     ));
