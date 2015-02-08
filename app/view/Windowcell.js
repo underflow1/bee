@@ -50,6 +50,11 @@ Ext.define('BeeApp.view.Windowcell', {
             action: 'return',
             itemID: 'block_hide'
         },{
+            text: 'Блокировать',
+            scope: this,
+            action: 'block',
+            itemID: 'block_button'
+        },{
             text: 'Выдать',
             scope: this,
             action: 'showgive',

@@ -18,6 +18,9 @@ Ext.define('BeeApp.controller.Bee', {
             'windowcell button[action=showchangeplan]': {
                 click: this._showWindowPlan
             },
+            'windowcell button[action=block]': {
+                click: this._setBlock
+            },
             'windowcell button[action=showchangesim]': {
                 click: this._showWindowsimnumber
             },
@@ -46,6 +49,24 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._giveTheNumber
             }
         });
+    },
+
+    _setBlock: function() {
+        if (currentdata.blocked) {
+            blockaction = 0;
+            blocktext = 'Блокировка снята!'
+        } else {
+            blockaction = 1;
+            blocktext = 'Блокировка установлена!'}
+        Ext.Ajax.request({
+            scope: this,
+            url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
+            success: function(response) {
+                currentdata.blocked = !currentdata.blocked;
+                Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
+                this._refreshWindowcell();
+            }
+        })
     },
 
     _transferTheNumber: function(btn) {
@@ -183,9 +204,11 @@ Ext.define('BeeApp.controller.Bee', {
         if(currentdata.blocked) {
             view.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(true)});
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(false)});
+            view.query('button[itemID=block_button]').forEach(function(buttons){buttons.setText('Разблокировать!')});
         } else {
             view.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(false)});
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(true)});
+            view.query('button[itemID=block_button]').forEach(function(buttons){buttons.setText('Блокировать!')});
         };
         view.down('form').load({
             method:'GET',
