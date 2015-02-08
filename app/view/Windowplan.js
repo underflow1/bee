@@ -39,8 +39,11 @@ Ext.define('BeeApp.view.Windowplan', {
                     data:plans
                 }),
                 fieldLabel: 'ТП',
-                valueField: 'id',
+                valueField: 'name',
                 displayField:'name',
+                //forceSelection: true,
+                //editable: 'false',
+                //readOnly: 'true',
                 queryMode:'local'
             }]
         }],

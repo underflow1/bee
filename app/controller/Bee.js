@@ -1,3 +1,5 @@
+var currentdata = new Object();
+
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
@@ -9,6 +11,9 @@ Ext.define('BeeApp.controller.Bee', {
         this.control({
             'viewport > mainview': {
                 itemdblclick: this._showWindow
+            },
+            'windowcell': {
+                close: this._updateGrid
             },
             'windowcell button[action=showchangeplan]': {
                 click: this._showWindowPlan
@@ -26,7 +31,7 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._changePlan
             },
             'windowcell button[action=reload]': {
-                click: this._reloadAll
+                click: this._refreshWindowcell
             },
             'windowcell button[action=showtransfer]': {
                 click: this._showWindowTransfer
@@ -40,10 +45,6 @@ Ext.define('BeeApp.controller.Bee', {
             'windowgive button[action=givethenumber]': {
                 click: this._giveTheNumber
             }
-
-
-
-
         });
     },
 
@@ -51,10 +52,16 @@ Ext.define('BeeApp.controller.Bee', {
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
-
-            this._transfer(form.getForm().getValues());
-            this._reloadAll(form.getForm().findField('phonenumber').getValue());
-            win.close();
+            Ext.Ajax.request({
+                scope: this,
+                method: 'POST',
+                url: '/transferthenumber',
+                params : form.getForm().getValues(),
+                success: function() {
+                    this._refreshWindowcell();
+                    win.close();
+                }
+            });
         } else {
             Ext.Msg.alert('Передать сим карту','Заполнены не все поля!');
         }
@@ -70,100 +77,28 @@ Ext.define('BeeApp.controller.Bee', {
                 url: '/givethenumber',
                 params : form.getForm().getValues(),
                 success: function() {
-                    //_reloadAll(form.getForm().findField('phonenumber').getValue());
-                    this._reloadAll(form.getForm().findField('phonenumber').getValue());
+                    currentdata.blocked = false;
+                    this._refreshWindowcell();
                     win.close();
-                },
-                failure: function(response) {
-                    console.log(response)
                 }
             });
-            //this._give(form.getForm().getValues());
         } else {
             Ext.Msg.alert('Выдать сим карту','Заполнены не все поля!');
         }
     },
 
-    _give: function(array1) {
-        Ext.Ajax.request({
-            method: 'POST',
-            url: '/givethenumber',
-            params : array1
-        })
-    },
-
-    _transfer: function(array1) {
-        Ext.Ajax.request({
-            method: 'POST',
-            url: '/transferthenumber',
-            params : array1
-        })
-    },
-
-    _showWindowGive: function(btn) {
-        var view = Ext.widget('windowgive');
-        view.down('form').getForm().findField('phonenumber').setValue(btn.up('window').down('form').getForm().findField('phonenumber').getValue());
-        view.show();
-    },
-
-    _showWindowTransfer: function(btn) {
-        var view = Ext.widget('windowtransfer');
-        view.down('form').getForm().findField('phonenumber').setValue(btn.up('window').down('form').getForm().findField('phonenumber').getValue());
-        view.show();
-    },
-
-    _set_simNumber: function(phonenumber1, simnumber1) {
-        Ext.Ajax.request({
-            url: '/testsim/' + phonenumber1 + '/setsimnumber/' + simnumber1
-        });
-    },
-
-    _set_Plan: function(phonenumber1, plan1) {
-        Ext.Ajax.request({
-            url: '/testsim/' + phonenumber1 + '/settariff/' + plan1
-        });
-    },
-
-    _sendEmail: function(subject1,action1,phonenumber1,contract1){
-        Ext.Ajax.request({
-            method: 'POST',
-            url: '/sendemail2',
-            params : {
-                subject: subject1,
-                action: action1,
-                phonenumber: phonenumber1,
-                contract: contract1
-            }
-        })
-    },
-
-    _showWindowPlan: function(btn){
-
-        var view = Ext.widget('windowplan');
-        view.down('form').getForm().findField('phonenumber').setValue(btn.up('window').down('form').getForm().findField('phonenumber').getValue());
-        view.show();
-    },
-
-    _reloadAll: function(number) {
-        if(!Ext.isObject(number)) {
-            win = Ext.getCmp('windowcell');
-            win.down('form').load({
-                method:'GET',
-                url: '/testsim/' + number + '/getcurrentstate'
-            });
-        }
-        console.log(number);
-        Ext.getCmp('mainviewgrid_id').getStore().load();
-     },
-
     _changeSim: function(btn) {
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
-            this._set_simNumber(form.getForm().findField('phonenumber').getValue(), form.getForm().findField('simnumber').getValue());
-            this._sendEmail('сим карты','перевыпустить на болванку ' + form.getForm().findField('simnumber').getValue(),form.getForm().findField('phonenumber').getValue(),'');
-            this._reloadAll(form.getForm().findField('phonenumber').getValue());
-        win.close();
+            Ext.Ajax.request({
+                scope: this,
+                url: '/testsim/' + currentdata.phonenumber + '/setsimnumber/' + form.getForm().findField('simnumber').getValue(),
+                success: function() {
+                    this._refreshWindowcell();
+                    win.close();
+                }
+            });
         } else {
             Ext.Msg.alert('Замена сим карты','неверный формат номера сим карты');
         }
@@ -173,73 +108,88 @@ Ext.define('BeeApp.controller.Bee', {
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
-            this._set_Plan(form.getForm().findField('phonenumber').getValue(), form.getForm().findField('plan').getValue());
-            this._sendEmail('сим карты','установить ТП ' + form.getForm().findField('plan').getValue(),form.getForm().findField('phonenumber').getValue(),'');
-            this._reloadAll(form.getForm().findField('phonenumber').getValue());
-            win.close();
+            Ext.Ajax.request({
+                scope: this,
+                url: '/testsim/' + currentdata.phonenumber + '/settariff/' + form.getForm().findField('plan').getValue(),
+                success: function() {
+                    this._refreshWindowcell();
+                    win.close();
+                }
+            });
         } else {
             Ext.Msg.alert('Смена ТП','не выбран ТП');
         }
     },
 
-    _simReturn: function(btn) {
-        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', showResult);
-        function showResult(btn2) {
-            console.log(btn2);
+    _simReturn: function() {
+        var me = this;
+        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
             if (btn2 === 'yes') {
-                var win = btn.up('window');
-                form = win.down('form');
-                grid = btn.up('grid');
                 Ext.Ajax.request({
-                    url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/returnthenumber',
+                    url: '/testsim/' + currentdata.phonenumber + '/returnthenumber',
                     success: function (response) {
-                        var data = Ext.decode(response.responseText);
-                        if (data.success) {
-                            console.log(data.success);
-                            console.log(data);
-                            Ext.Msg.alert('Возврат', data.msg);
-                            form.load({
-                                method: 'GET',
-                                url: '/testsim/' + form.getForm().findField('phonenumber').getValue() + '/getcurrentstate'
-                            });
-                            Ext.getCmp('mainviewgrid_id').getStore().load();
-                            win.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(true)});
-                            win.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(false)});
-
-                        } else {
-                            Ext.Msg.alert('Возврат', data.msg);
-                        }
+                        currentdata.blocked = true;
+                        me._refreshWindowcell();
                     },
                     failure: function () {
                         alert('ERROR');
                     }
                 });
             }
-        }
+        });
+    },
+
+    _showWindowGive: function() {
+        var view = Ext.widget('windowgive');
+        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+        view.show();
+    },
+
+    _showWindowTransfer: function() {
+        var view = Ext.widget('windowtransfer');
+        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+        view.show();
+    },
+
+    _showWindowsimnumber: function() {
+        var view = Ext.widget('windowsimnumber');
+        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+        view.show();
+    },
+
+    _showWindowPlan: function(){
+        var view = Ext.widget('windowplan');
+        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+        view.show();
     },
 
     _showWindow: function(grid,record) {
         var view = Ext.widget('windowcell', {
             record: record
         });
-        view.down('form').load({
-            method:'GET',
-            url: '/testsim/' + view.record.get('phonenumber') + '/getcurrentstate'
-        });
-        if(view.record.get('blocked')) {
+        currentdata.phonenumber = view.record.get('phonenumber');
+        currentdata.blocked = view.record.get('blocked');
+        this._refreshWindowcell();
+        view.show();
+    },
+
+    _updateGrid: function() {
+        Ext.getCmp('mainviewgrid_id').getStore().load();
+    },
+
+    _refreshWindowcell: function() {
+        console.log(currentdata);
+        view = Ext.getCmp('windowcell');
+        if(currentdata.blocked) {
             view.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(true)});
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(false)});
         } else {
             view.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(false)});
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(true)});
-        }
-        view.show();
-    },
-
-    _showWindowsimnumber: function(btn) {
-        var view = Ext.widget('windowsimnumber');
-        view.down('form').getForm().findField('phonenumber').setValue(btn.up('window').down('form').getForm().findField('phonenumber').getValue());
-        view.show();
+        };
+        view.down('form').load({
+            method:'GET',
+            url: '/testsim/' + currentdata.phonenumber + '/getcurrentstate'
+        });
     }
-
 });
