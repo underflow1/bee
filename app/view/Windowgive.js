@@ -7,7 +7,6 @@ Ext.define('BeeApp.view.Windowgive', {
         width : 400,
         title: 'выдать сим карту',
         modal: true,
-        resizable: false,
         items: [{
             //'/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}'
             xtype: 'form',

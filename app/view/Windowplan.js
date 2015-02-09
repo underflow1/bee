@@ -14,7 +14,6 @@ Ext.define('BeeApp.view.Windowplan', {
         width : 400,
         title: 'смена тарифа',
         modal: true,
-        resizable: false,
         items: [{
             xtype: 'form',
             bodyPadding: 10,

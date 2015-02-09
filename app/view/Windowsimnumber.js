@@ -19,7 +19,6 @@ Ext.define('BeeApp.view.Windowsimnumber', {
         width : 400,
         title: 'замена болванки',
         modal: true,
-        resizable: false,
         items: [{
             xtype: 'form',
             bodyPadding: 10,
