@@ -9,6 +9,8 @@ Ext.define('BeeApp.view.Windowcell', {
         width : 450,
         title: 'Действия с сим картой',
         modal: true,
+        border: false,
+        resizable: false,
         items: [{
             xtype: 'form',
             bodyPadding: 10,
