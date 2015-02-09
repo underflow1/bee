@@ -9,6 +9,8 @@ Ext.define('BeeApp.view.Windowcell', {
         width : 450,
         title: 'Действия с сим картой',
         modal: true,
+        border: false,
+        resizable: false,
         items: [{
             xtype: 'form',
             bodyPadding: 10,
@@ -43,6 +45,20 @@ Ext.define('BeeApp.view.Windowcell', {
                 fieldLabel: 'Компания',
                 name: 'companyname'
             }]
+        },{
+            xtype: 'checkboxfield',
+            boxLabel: 'Отправить письмо',
+            checked: true,
+            listeners: {
+                change: function (v) {
+                    currentdata.sendletter = v.checked;
+                    console.log(currentdata);
+                },
+                render: function(v) {
+                    currentdata.sendletter = v.checked;
+                    //console.log(currentdata);
+                }
+            }
         }],
         buttons: [{
             text: 'email',

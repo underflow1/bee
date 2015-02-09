@@ -64,7 +64,6 @@ Ext.define('BeeApp.controller.Bee', {
         Ext.Ajax.request({
             method: 'POST',
             url: '/sendobject',
-            async: false,
             params : mydata,
             success: function(response) {
                 console.log(response.responseText)
@@ -73,19 +72,25 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _setBlock: function() {
-        if (currentdata.blocked) {
-            blockaction = 0;
-            blocktext = 'Блокировка снята!'
-        } else {
-            blockaction = 1;
-            blocktext = 'Блокировка установлена!'}
-        Ext.Ajax.request({
-            scope: this,
-            url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
-            success: function(response) {
-                currentdata.blocked = !currentdata.blocked;
-                Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
-                this._refreshWindowcell();
+        var me = this;
+        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
+            if (btn2 === 'yes') {
+                if (currentdata.blocked) {
+                    blockaction = 0;
+                    blocktext = 'Блокировка снята!'
+                } else {
+                    blockaction = 1;
+                    blocktext = 'Блокировка установлена!'
+                }
+                Ext.Ajax.request({
+                    scope: this,
+                    url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
+                    success: function (response) {
+                        currentdata.blocked = !currentdata.blocked;
+                        Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
+                        me._refreshWindowcell();
+                    }
+                })
             }
         })
     },
@@ -211,8 +216,8 @@ Ext.define('BeeApp.controller.Bee', {
         });
         currentdata.phonenumber = view.record.get('phonenumber');
         currentdata.blocked = view.record.get('blocked');
-        this._refreshWindowcell();
         view.show();
+        this._refreshWindowcell();
     },
 
     _updateGrid: function() {
