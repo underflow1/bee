@@ -107,7 +107,7 @@ $app->post('/sendobject', function (Request $request) {
     // инициализируем шаблон:
     $loader = new Twig_Loader_Filesystem('templates');
     $twig = new Twig_Environment($loader);
-    $template = $twig->loadTemplate('letter_activate.html');
+    $template = $twig->loadTemplate($request->get('template'));
     $test = $template->render($vari);
     // инициализируем почтовик
     $transport = Swift_SmtpTransport::newInstance('mail01.ce.int', 25)
@@ -115,8 +115,10 @@ $app->post('/sendobject', function (Request $request) {
         ->setPassword('');
     $mailer = Swift_Mailer::newInstance($transport);
     $message = Swift_Message::newInstance('сим карты')
-        ->setFrom(array('it@teploset.ru' => 'Харламов Алексей Олегович'))
-        ->setTo(array('Akharlamov@teploset.ru'))
+        ->setFrom(array('Akharlamov@teploset.ru' => 'Харламов Алексей Олегович'))
+        ->setTo(array(
+            'Akharlamov@teploset.ru' => 'Харламов Алексей Олегович',
+            'it@teploset.ru' => 'Харламов Алексей Олегович'))
         ->setContentType("text/html; charset=UTF-8")
         ->setBody($test,'text/html');
     $result = $mailer->send($message);

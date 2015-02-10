@@ -1,14 +1,20 @@
 /**
  * Created by underflow on 07.02.2015.
  */
-Ext.define('BeeApp.view.Windowgive', {
+var plans = [
+    [1, 'Интрасеть'],
+    [2, 'Привилегированный'],
+    [3, 'Престижный'],
+    [4, 'Специальный+']
+];
+
+    Ext.define('BeeApp.view.Windowgive', {
         extend: 'Ext.window.Window',
         alias: 'widget.windowgive',
         width : 400,
         title: 'выдать сим карту',
         modal: true,
         items: [{
-            //'/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}'
             xtype: 'form',
             bodyPadding: 10,
             defaults :{
@@ -22,9 +28,20 @@ Ext.define('BeeApp.view.Windowgive', {
                 name: 'phonenumber',
                 readOnly: true
             },{
-                fieldLabel: 'тариф',
                 name: 'tariff',
-                readOnly: false
+                xtype: 'combobox',
+                store: new Ext.data.SimpleStore({
+                    fields:
+                        [
+                            'id',   //числовое значение - номер элемента
+                            'name' //текст
+                        ],
+                    data:plans
+                }),
+                fieldLabel: 'ТП',
+                valueField: 'name',
+                displayField:'name',
+                queryMode:'local'
             },{
                 fieldLabel: 'ФИО',
                 name: 'fio',

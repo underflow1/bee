@@ -31,7 +31,8 @@ Ext.define('BeeApp.view.Windowcell', {
                 name: 'tariff'
             },{
                 fieldLabel: 'Владелец',
-                name: 'fio'
+                name: 'fio',
+                id: 'fiotextfield'
             },{
                 fieldLabel: 'Должность',
                 name: 'position'
@@ -49,6 +50,7 @@ Ext.define('BeeApp.view.Windowcell', {
             xtype: 'checkboxfield',
             boxLabel: 'Отправить письмо',
             checked: true,
+            id: 'lettercheckbox',
             listeners: {
                 change: function (v) {
                     currentdata.sendletter = v.checked;
@@ -73,6 +75,7 @@ Ext.define('BeeApp.view.Windowcell', {
             text: 'Блокировать',
             scope: this,
             action: 'block',
+            id: 'blockbutton',
             itemID: 'block_button'
         },{
             text: 'Выдать',

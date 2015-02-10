@@ -1,4 +1,5 @@
 var currentdata = new Object();
+currentdata.letter =  Object();
 
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
@@ -54,21 +55,21 @@ Ext.define('BeeApp.controller.Bee', {
         });
     },
 
-    _sendObject: function(btn) {
-        var win = btn.up('window');
-        form = win.down('form');
-        email = 'it@teploset.ru';
-        mydata = form.getForm().getValues();
-        mydata.email = email;
-        console.log(mydata);
-        Ext.Ajax.request({
-            method: 'POST',
-            url: '/sendobject',
-            params : mydata,
-            success: function(response) {
-                console.log(response.responseText)
-            }
-        })
+    _sendObject: function() {
+        if(Ext.getCmp('lettercheckbox').checked){
+            currentdata.letter.phonenumber = currentdata.phonenumber;
+//            console.log(currentdata.letter);
+            Ext.Ajax.request({
+                method: 'POST',
+                url: '/sendobject',
+                params : currentdata.letter,
+                success: function(response) {
+                    console.log(response.responseText);
+                }
+            })
+        }
+        currentdata.letter = Object();
+//        console.log(currentdata.letter);
     },
 
     _setBlock: function() {
@@ -77,18 +78,21 @@ Ext.define('BeeApp.controller.Bee', {
             if (btn2 === 'yes') {
                 if (currentdata.blocked) {
                     blockaction = 0;
-                    blocktext = 'Блокировка снята!'
+                    blocktext = 'Блокировка снята!';
+                    currentdata.letter.template = 'letter_unblock.html';
                 } else {
                     blockaction = 1;
-                    blocktext = 'Блокировка установлена!'
+                    blocktext = 'Блокировка установлена!';
+                    currentdata.letter.template = 'letter_block.html';
                 }
                 Ext.Ajax.request({
-                    scope: this,
+
                     url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
                     success: function (response) {
                         currentdata.blocked = !currentdata.blocked;
                         Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
                         me._refreshWindowcell();
+                        me._sendObject();
                     }
                 })
             }
@@ -115,6 +119,7 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _giveTheNumber: function(btn) {
+        var me = this;
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
@@ -126,6 +131,9 @@ Ext.define('BeeApp.controller.Bee', {
                 success: function() {
                     currentdata.blocked = false;
                     this._refreshWindowcell();
+                    currentdata.letter = form.getForm().getValues();
+                    currentdata.letter.template = 'letter_activate.html';
+                    this._sendObject();
                     win.close();
                 }
             });
@@ -143,6 +151,9 @@ Ext.define('BeeApp.controller.Bee', {
                 url: '/testsim/' + currentdata.phonenumber + '/setsimnumber/' + form.getForm().findField('simnumber').getValue(),
                 success: function() {
                     this._refreshWindowcell();
+                    currentdata.letter.simnumber = form.getForm().getValues();
+                    currentdata.letter.template = 'letter_changesim.html';
+                    this._sendObject();
                     win.close();
                 }
             });
@@ -157,9 +168,12 @@ Ext.define('BeeApp.controller.Bee', {
         if (form.isValid()) {
             Ext.Ajax.request({
                 scope: this,
-                url: '/testsim/' + currentdata.phonenumber + '/settariff/' + form.getForm().findField('plan').getValue(),
+                url: '/testsim/' + currentdata.phonenumber + '/settariff/' + form.getForm().findField('tariff').getValue(),
                 success: function() {
                     this._refreshWindowcell();
+                    currentdata.letter.tariff= form.getForm().findField('tariff').getValue();
+                    currentdata.letter.template = 'letter_changeplan.html';
+                    this._sendObject();
                     win.close();
                 }
             });
@@ -176,6 +190,8 @@ Ext.define('BeeApp.controller.Bee', {
                     url: '/testsim/' + currentdata.phonenumber + '/returnthenumber',
                     success: function (response) {
                         currentdata.blocked = true;
+                        currentdata.letter.template = 'letter_return.html';
+                        me._sendObject();
                         me._refreshWindowcell();
                     },
                     failure: function () {
@@ -225,8 +241,11 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _refreshWindowcell: function() {
-        console.log(currentdata);
         view = Ext.getCmp('windowcell');
+        view.down('form').load({
+            method:'GET',
+            url: '/testsim/' + currentdata.phonenumber + '/getcurrentstate'
+        });
         if(currentdata.blocked) {
             view.query('button[itemID=block_show]').forEach(function(buttons){buttons.setVisible(true)});
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(false)});
@@ -236,9 +255,6 @@ Ext.define('BeeApp.controller.Bee', {
             view.query('button[itemID=block_hide]').forEach(function(buttons){buttons.setVisible(true)});
             view.query('button[itemID=block_button]').forEach(function(buttons){buttons.setText('Блокировать!')});
         };
-        view.down('form').load({
-            method:'GET',
-            url: '/testsim/' + currentdata.phonenumber + '/getcurrentstate'
-        });
     }
+
 });

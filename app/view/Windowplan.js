@@ -28,7 +28,7 @@ Ext.define('BeeApp.view.Windowplan', {
                 name: 'phonenumber',
                 readOnly: true
             },{
-                name: 'plan',
+                name: 'tariff',
                 xtype: 'combobox',
                 store: new Ext.data.SimpleStore({
                     fields:
