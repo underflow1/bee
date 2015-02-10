@@ -7,6 +7,7 @@ Ext.define('BeeApp.view.Windowtransfer', {
         width : 400,
         title: 'Передать сим карту',
         modal: true,
+        resizable: false,
         items: [{
             //'/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}'
             xtype: 'form',
