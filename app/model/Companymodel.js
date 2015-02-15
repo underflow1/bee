@@ -5,7 +5,7 @@ Ext.define('BeeApp.model.Companymodel', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'id', type: 'string'},
-        {name: 'companyname', type: 'string'},
+        {name: 'truddogcompany', type: 'string'},
         {name: 'director', type: 'string'},
         {name: 'directorspos', type: 'string'}
     ],

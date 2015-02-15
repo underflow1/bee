@@ -20,8 +20,10 @@ class Sim {
     function getcurrentstate ($get) {
         $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
         $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
+        $company = new DB\SQL\Mapper(F3::get('DB'), 'company');
             $phonenumber->load("phonenumber = ".$get);
             $holders->load("id = ".$phonenumber->holderid);
+            $company->load("id = ".$holders->truddogcompany);
         $currentstate = array(
             'phonenumber' => $phonenumber->phonenumber,
             'simnumber' => $phonenumber->simnumber,
@@ -33,10 +35,16 @@ class Sim {
 	        'position' => $holders->position,
 	        'deduction' => $holders->deduction,
 	        'pkg' => $holders->pkg,
-	        'roam' => $holders->roam
+	        'roam' => $holders->roam,
+            'truddognumber' => $holders->truddognumber,
+            'truddogdate' => $holders->truddogdate,
+            'purpose' => $holders->purpose,
+            'truddogcompany' => $company->truddogcompany,
+            'director' => $company->director,
+            'directorspos' => $company->directorspos
         );
-        $result = array ('success' => true, 'data' => $currentstate);
-        return json_encode($result);
+        //$result = array ('success' => true, 'data' => $currentstate);
+        return $currentstate;
     }
 
     function appenddata($number,$what,$state) {

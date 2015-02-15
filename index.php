@@ -42,7 +42,11 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($app) {
     $test = new Sim();
-    return $test-> getcurrentstate($phonenumber);
+    $result = $test-> getcurrentstate($phonenumber);
+    return json_encode(array(
+        "success" => true,
+        "data" => $result
+    ));
 });
 
 $app->get('/testsim/{phonenumber}/setblock/{state}', function($phonenumber,$state) use($app) {
@@ -60,10 +64,10 @@ $app->get('/testsim/{phonenumber}/setsimnumber/{simnumber}', function($phonenumb
     return $test-> setsimnumber($phonenumber,$simnumber);
 });
 
-$app->get('/testsim/{phonenumber}/appendholder/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber,$fio,$position,$deduction,$pkg,$roam) use($app) {
-    $test = new Sim();
-    return $test-> appendholder($phonenumber, $fio, $position, $deduction, $pkg, $roam);
-});
+//$app->get('/testsim/{phonenumber}/appendholder/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber,$fio,$position,$deduction,$pkg,$roam) use($app) {
+//    $test = new Sim();
+//    return $test-> appendholder($phonenumber, $fio, $position, $deduction, $pkg, $roam);
+//});
 
 $app->get('/testsim/{phonenumber}/setholder/{holderid}', function($phonenumber, $holderid) use($app) {
     $test = new Sim();
@@ -204,6 +208,16 @@ return json_encode(array(
 
 $app->get('/', function() use($app) {
     return file_get_contents('home.html');
+});
+
+$app->get('/pril/{phonenumber}', function($phonenumber) use($app) {
+    $test = new Sim();
+    $vari = $test-> getcurrentstate($phonenumber);
+    $loader = new Twig_Loader_Filesystem('templates');
+    $twig = new Twig_Environment($loader);
+    $template = $twig->loadTemplate('pril.html');
+    $test = $template->render($vari);
+    return $test;
 });
 
 $app->get('/company', function() use ($app) {
