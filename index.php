@@ -91,9 +91,12 @@ $app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduc
     $test = new Sim();
     return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
 });
+
+
+
 $app->post('/givethenumber', function(Request $request) {
     $test = new Sim();
-    return $test->givethenumber($request->get('phonenumber'), $request->get('tariff'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'));
+    return $test->givethenumber($request->get('phonenumber'), $request->get('tariff'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'),$request->get('truddognumber'),$request->get('truddogdate'),$request->get('truddogcompany'),$request->get('purpose'));
 });
 
 $app->post('/transferthenumber', function (Request $request) {
@@ -201,6 +204,15 @@ return json_encode(array(
 
 $app->get('/', function() use($app) {
     return file_get_contents('home.html');
+});
+
+$app->get('/company', function() use ($app) {
+    $sql = "SELECT * FROM company";
+    $post = $app['db']->fetchAll($sql);
+    return json_encode(array(
+        "success" => true,
+        "data" => $post
+    ));
 });
 
 $app->get('/phonenumbers', function() use ($app) {

@@ -2,10 +2,15 @@
  * Created by underflow on 07.02.2015.
  */
 var plans = [
-    [1, 'Интрасеть'],
-    [2, 'Привилегированный'],
-    [3, 'Престижный'],
-    [4, 'Специальный+']
+    [1, 'Интрасеть (Национальный ВИП (фед.))'],
+    [2, 'Привилегированный (Привилегированный (фед))'],
+    [3, 'Престижный (ВдБ Золото 1000 1.0 (фед))'],
+    [4, 'Специальный+ (Специальный+ (фед))']
+];
+var purpose = [
+    [1, 'связь'],
+    [2, 'на отдел'],
+    [3, 'интернет']
 ];
 
     Ext.define('BeeApp.view.Windowgive', {
@@ -52,7 +57,18 @@ var plans = [
                 readOnly: false
             },,{
                 fieldLabel: 'назначение',
+                xtype: 'combobox',
+                store: new Ext.data.SimpleStore({
+                    fields: [
+                        'id',
+                        'purpose'
+                    ],
+                    data:purpose
+                }),
                 name: 'purpose',
+                valueField: 'purpose',
+                displayField:'purpose',
+                queryMode:'local',
                 readOnly: false,
                 value: 0
             },{
@@ -76,6 +92,8 @@ var plans = [
                 readOnly: false,
                 value: 0
             },{
+                xtype: 'datefield',
+                format: 'Y-m-d',
                 fieldLabel: 'дата договора',
                 name: 'truddogdate',
                 readOnly: false,
@@ -84,7 +102,10 @@ var plans = [
                 fieldLabel: 'Компания',
                 name: 'truddogcompany',
                 readOnly: false,
-                value: 0
+                xtype: 'combobox',
+                store: 'Companystore',
+                valueField: 'id',
+                displayField:'companyname'
             }]
         }],
         buttons: [{

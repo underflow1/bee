@@ -102,7 +102,7 @@ class Sim {
         return json_encode($result);
     }
 
-    function appendholder ($number, $fio, $position, $deduction, $pkg, $roam) {
+    function appendholder ($number, $fio, $position, $deduction, $pkg, $roam,$truddognumber,$truddogdate,$truddogcompany,$purpose) {
         $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
         $holders-> phonenumber = $number;
         $holders-> startdate = date("Y-m-d");
@@ -112,6 +112,10 @@ class Sim {
         $holders-> deduction = $deduction;
         $holders-> pkg = $pkg;
         $holders-> roam = $roam;
+        $holders-> truddognumber = $truddognumber;
+        $holders-> truddogdate = $truddogdate;
+        $holders-> truddogcompany = $truddogcompany;
+        $holders-> purpose = $purpose;
         $holders-> save();
         if ($holders->_id > 0 ) {
             $result = array ('success' => true, 'msg' => 'New holder appended', 'appended_id' => $holders->_id);
@@ -172,7 +176,7 @@ class Sim {
         } else {
             $setblockresult = json_decode(Sim::setblock($number, true));
             $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-            $appendholderresult = json_decode(Sim::appendholder($number,'резерв','резерв',NULL,NULL,NULL));
+            $appendholderresult = json_decode(Sim::appendholder($number,'резерв','резерв',NULL,NULL,NULL,NULL,NULL,NULL,NULL));
             $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
             $result = array (
                 'success' => true,
@@ -186,14 +190,14 @@ class Sim {
         return json_encode($result);
     }
 
-    function givethenumber($number, $tariff, $fio, $position, $deduction, $pkg, $roam) {
+    function givethenumber($number, $tariff, $fio, $position, $deduction, $pkg, $roam,$truddognumber,$truddogdate,$truddogcompany,$purpose) {
         $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
         $phonenumber-> load('phonenumber ='.$number);
         $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
         $holders->load('id='.$phonenumber->holderid);
         if ($holders->fio == 'резерв') {
             $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $deduction, $pkg, $roam));
+            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $deduction, $pkg, $roam,$truddognumber,$truddogdate,$truddogcompany,$purpose));
             $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
             $setblockresult = json_decode(Sim::setblock($number, false));
             $settariffresult = json_decode(Sim::settariff($number, $tariff));

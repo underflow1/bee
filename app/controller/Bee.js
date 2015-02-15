@@ -5,7 +5,7 @@ Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
     views: ['Mainview', 'Windowcell', 'Windowsimnumber','Windowplan','Windowgive','Windowtransfer'],
-    stores: ['Currentstate'],
+    stores: ['Currentstate', 'Companystore'],
     models: ['Currentstate'],
 
     init: function() {
@@ -119,7 +119,7 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _giveTheNumber: function(btn) {
-        var me = this;
+       // var me = this;
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
