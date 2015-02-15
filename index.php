@@ -11,19 +11,6 @@ F3::set('DB',
         '123qweQWE'
     )
 );
-require_once('/var/www/bilet/libs/MPDF53/mpdf.php');
-//$html = file_get_contents('templates/2.html');
-//$mpdf=new mPDF('cp-1251', 'A4');
-//$mpdf->setFooter('Лист согласования распечатан '.date("d.m.Y H:i:s").'');
-//$mpdf->WriteHTML($html);
-//$mpdf->Output(date("Y-m-d").'.pdf', 'D');
-
-
-//require_once "dompdf_config.inc.php";
-//$dompdf = new DOMPDF();
-//$dompdf->load_html_file('templates/2.html');
-//$dompdf->render();
-//$dompdf->stream("hello.pdf");
 
 require_once __DIR__.'/silex/vendor/autoload.php';
 require_once 'twig/lib/Twig/Autoloader.php';
