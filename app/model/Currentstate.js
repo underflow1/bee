@@ -11,7 +11,13 @@ Ext.define('BeeApp.model.Currentstate', {
         {name: 'companyname', type: 'string'},
         {name: 'deduction', type: 'string'},
         {name: 'pkg', type: 'string'},
-        {name: 'roam', type: 'bool'}
+        {name: 'roam', type: 'bool'},
+        {name: 'truddognumber', type: 'string'},
+        {name: 'truddogdate', type: 'string'},
+        {name: 'truddogcompany', type: 'string'},
+        {name: 'director', type: 'string'},
+        {name: 'directorspos', type: 'string'},
+        {name: 'purpose', type: 'string'}
     ],
     idProperty: 'phonenumber'
 });

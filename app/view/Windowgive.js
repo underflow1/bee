@@ -50,6 +50,11 @@ var plans = [
                 fieldLabel: 'должность',
                 name: 'position',
                 readOnly: false
+            },,{
+                fieldLabel: 'назначение',
+                name: 'purpose',
+                readOnly: false,
+                value: 0
             },{
                 fieldLabel: 'удержание',
                 name: 'deduction',
@@ -63,6 +68,21 @@ var plans = [
             },{
                 fieldLabel: 'роуминг',
                 name: 'roam',
+                readOnly: false,
+                value: 0
+            },{
+                fieldLabel: 'договор',
+                name: 'truddognumber',
+                readOnly: false,
+                value: 0
+            },{
+                fieldLabel: 'дата договора',
+                name: 'truddogdate',
+                readOnly: false,
+                value: 0
+            },{
+                fieldLabel: 'Компания',
+                name: 'truddogcompany',
                 readOnly: false,
                 value: 0
             }]

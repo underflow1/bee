@@ -217,11 +217,14 @@ $app->get('/current', function() use ($app) {
     $sql = "
 SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, f1.tariff
         ,ho.fio, ho.position
-        ,ho.deduction, ho.pkg, ho.roam
+        ,ho.deduction, ho.pkg, ho.roam, ho.truddognumber, ho.truddogdate, ho.purpose
+        ,co.companyname as truddogcompany
 
 FROM phonenumbers AS f1
 # подтягиваем ид текущего владельца
 LEFT JOIN holders as ho on ho.id = f1.holderid
+# подтягиваем название компании по договору
+LEFT JOIN company as co on co.id = ho.truddogcompany
 # тут можно зафигачить по одному номеру
 #WHERE f1.phonenumber =9684599322
 WHERE f1.own IS NULL
@@ -239,11 +242,14 @@ $app->get('/current/{phonenumber}', function($phonenumber) use ($app) {
     $sql = "
 SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, f1.tariff
         ,ho.fio, ho.position
-        ,ho.deduction, ho.pkg, ho.roam
+        ,ho.deduction, ho.pkg, ho.roam, ho.truddognumber, ho.truddogdate, ho.purpose
+        ,co.companyname as truddogcompany, co.director, co.directorspos
 
 FROM phonenumbers AS f1
 # подтягиваем ид текущего владельца
 LEFT JOIN holders as ho on ho.id = f1.holderid
+# подтягиваем название компании по договору
+LEFT JOIN company as co on co.id = ho.truddogcompany
 WHERE f1.phonenumber = \"$phonenumber\"
 ";
     $post = $app['db']->fetchAll($sql);

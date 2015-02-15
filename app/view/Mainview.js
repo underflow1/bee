@@ -32,6 +32,10 @@ Ext.define('BeeApp.view.Mainview' ,{
                 dataIndex: 'position',
                 width: 250
             },{
+                text     : 'назначение',
+                dataIndex: 'purpose',
+                width: 125
+            },{
                 xtype: 'checkcolumn',
                 disabled : true,
                 disabledCls : 'x-item-enabled',
