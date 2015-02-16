@@ -33,19 +33,12 @@ var purpose = [
                 name: 'phonenumber',
                 readOnly: true
             },{
-                name: 'tariff',
+                name: 'tariffid',
                 xtype: 'combobox',
-                store: new Ext.data.SimpleStore({
-                    fields:
-                        [
-                            'id',   //числовое значение - номер элемента
-                            'name' //текст
-                        ],
-                    data:plans
-                }),
+                store: 'Tariffstore',
                 fieldLabel: 'ТП',
-                valueField: 'name',
-                displayField:'name',
+                valueField: 'id',
+                displayField:'internalname',
                 queryMode:'local'
             },{
                 fieldLabel: 'ФИО',
@@ -55,7 +48,7 @@ var purpose = [
                 fieldLabel: 'должность',
                 name: 'position',
                 readOnly: false
-            },,{
+            },{
                 fieldLabel: 'назначение',
                 xtype: 'combobox',
                 store: new Ext.data.SimpleStore({
@@ -74,17 +67,17 @@ var purpose = [
             },{
                 fieldLabel: 'удержание',
                 name: 'deduction',
-                readOnly: false,
+                readOnly: true,
                 value: 0
             },{
                 fieldLabel: 'пакет',
                 name: 'pkg',
-                readOnly: false,
+                readOnly: true,
                 value: 0
             },{
                 fieldLabel: 'роуминг',
                 name: 'roam',
-                readOnly: false,
+                readOnly: true,
                 value: 0
             },{
                 fieldLabel: 'договор',
@@ -100,12 +93,12 @@ var purpose = [
                 value: 0
             },{
                 fieldLabel: 'Компания',
-                name: 'truddogcompany',
+                name: 'truddogcompanyid',
                 readOnly: false,
                 xtype: 'combobox',
                 store: 'Companystore',
                 valueField: 'id',
-                displayField:'companyname'
+                displayField:'truddogcompanyname'
             }]
         }],
         buttons: [{

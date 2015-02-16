@@ -1,14 +1,14 @@
 /**
- * Created by kharlamov.a on 12.02.2015.
+ * Created by kharlamov.a on 04.02.2015.
  */
-Ext.define('BeeApp.store.Companystore', {
+Ext.define('BeeApp.store.Tariffstore', {
     extend: 'Ext.data.Store',
-    model: 'BeeApp.model.Companymodel',
+    model: 'BeeApp.model.Tariffmodel',
     autoLoad: true,
-    storeId: 'Companystore',
+    storeId: 'Tariffstore',
     proxy:{
         type: 'ajax',
-        url: '/company',
+        url: '/tariff',
         reader: {
             type: 'json',
             root: 'data'

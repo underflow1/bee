@@ -91,16 +91,14 @@ $app->get('/testsim/{phonenumber}/appenddata/{what}/{state}', function($phonenum
     return $test-> appenddata($phonenumber,$what,$state);
 });
 
-$app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam) use($app) {
-    $test = new Sim();
-    return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
-});
-
-
+//$app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam) use($app) {
+//    $test = new Sim();
+//    return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
+//});
 
 $app->post('/givethenumber', function(Request $request) {
     $test = new Sim();
-    return $test->givethenumber($request->get('phonenumber'), $request->get('tariff'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'),$request->get('truddognumber'),$request->get('truddogdate'),$request->get('truddogcompany'),$request->get('purpose'));
+    return $test->givethenumber($request->get('phonenumber'), $request->get('tariffid'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'),$request->get('truddognumber'),$request->get('truddogdate'),$request->get('truddogcompanyid'),$request->get('purpose'));
 });
 
 $app->post('/transferthenumber', function (Request $request) {
@@ -110,7 +108,9 @@ $app->post('/transferthenumber', function (Request $request) {
 
 $app->post('/sendobject', function (Request $request) {
     // получаем массив со всеми полями:
-    $vari = $request->request->all();
+    //$vari = $request->request->all();
+    $test = new Sim();
+    $vari = $test-> getcurrentstate($request->get('phonenumber'));
     // инициализируем шаблон:
     $loader = new Twig_Loader_Filesystem('templates');
     $twig = new Twig_Environment($loader);
@@ -229,6 +229,15 @@ $app->get('/company', function() use ($app) {
     ));
 });
 
+$app->get('/tariff', function() use ($app) {
+    $sql = "SELECT * FROM tariff";
+    $post = $app['db']->fetchAll($sql);
+    return json_encode(array(
+        "success" => true,
+        "data" => $post
+    ));
+});
+
 $app->get('/phonenumbers', function() use ($app) {
     $sql = "SELECT phonenumber FROM phonenumbers";
     $post = $app['db']->fetchAll($sql);
@@ -241,16 +250,18 @@ $app->get('/phonenumbers', function() use ($app) {
 $app->get('/current', function() use ($app) {
 
     $sql = "
-SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, f1.tariff
+SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, ta.internalname as tariff
         ,ho.fio, ho.position
         ,ho.deduction, ho.pkg, ho.roam, ho.truddognumber, ho.truddogdate, ho.purpose
-        ,co.companyname as truddogcompany
+        ,co.truddogcompanyname
 
 FROM phonenumbers AS f1
 # подтягиваем ид текущего владельца
 LEFT JOIN holders as ho on ho.id = f1.holderid
 # подтягиваем название компании по договору
-LEFT JOIN company as co on co.id = ho.truddogcompany
+LEFT JOIN company as co on co.id = ho.truddogcompanyid
+# подтягиваем название тарифа
+LEFT JOIN tariff as ta on ta.id = f1.tariffid
 # тут можно зафигачить по одному номеру
 #WHERE f1.phonenumber =9684599322
 WHERE f1.own IS NULL
@@ -264,24 +275,30 @@ ORDER BY f1.companyname, f1.blocked, ho.fio ASC
 });
 
 $app->get('/current/{phonenumber}', function($phonenumber) use ($app) {
-
+    $test = new Sim();
+    $vari = $test-> getcurrentstate($phonenumber);
+/*
     $sql = "
-SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, f1.tariff
+SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, ta.internalname as tariff
         ,ho.fio, ho.position
         ,ho.deduction, ho.pkg, ho.roam, ho.truddognumber, ho.truddogdate, ho.purpose
-        ,co.companyname as truddogcompany, co.director, co.directorspos
+        ,co.truddogcompanyname, co.director, co.directorspos
 
 FROM phonenumbers AS f1
 # подтягиваем ид текущего владельца
 LEFT JOIN holders as ho on ho.id = f1.holderid
 # подтягиваем название компании по договору
-LEFT JOIN company as co on co.id = ho.truddogcompany
+LEFT JOIN company as co on co.id = ho.truddogcompanyid
+# подтягиваем название тарифа
+LEFT JOIN tariff as ta on ta.id = f1.tariffid
 WHERE f1.phonenumber = \"$phonenumber\"
 ";
+
     $post = $app['db']->fetchAll($sql);
+*/
     return json_encode(array(
         "success" => true,
-        "data" => $post
+        "data" => $vari
     ));
 });
 

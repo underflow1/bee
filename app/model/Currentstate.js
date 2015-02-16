@@ -4,6 +4,7 @@ Ext.define('BeeApp.model.Currentstate', {
         {name: 'phonenumber', type: 'string'},
         {name: 'simnumber', type: 'string'},
         {name: 'tariff', type: 'string'},
+        {name: 'operatorsname', type: 'string'},
         {name: 'fio', type: 'string'},
         {name: 'position', type: 'string'},
         {name: 'blocked', type: 'bool'},
@@ -14,7 +15,7 @@ Ext.define('BeeApp.model.Currentstate', {
         {name: 'roam', type: 'bool'},
         {name: 'truddognumber', type: 'string'},
         {name: 'truddogdate', type: 'string'},
-        {name: 'truddogcompany', type: 'string'},
+        {name: 'truddogcompanyname', type: 'string'},
         {name: 'director', type: 'string'},
         {name: 'directorspos', type: 'string'},
         {name: 'purpose', type: 'string'}

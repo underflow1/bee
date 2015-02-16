@@ -5,7 +5,7 @@ Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
     views: ['Mainview', 'Windowcell', 'Windowsimnumber','Windowplan','Windowgive','Windowtransfer'],
-    stores: ['Currentstate', 'Companystore'],
+    stores: ['Currentstate', 'Companystore','Tariffstore'],
     models: ['Currentstate'],
 
     init: function() {
@@ -21,6 +21,9 @@ Ext.define('BeeApp.controller.Bee', {
             },
             'windowcell button[action=email]': {
                 click: this._sendObject
+            },
+            'windowcell button[action=pril]': {
+                click: this._printPril
             },
             'windowcell button[action=block]': {
                 click: this._setBlock
@@ -53,6 +56,19 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._giveTheNumber
             }
         });
+    },
+
+    _printPril: function() {
+        var pril = Ext.create("Ext.window.Window", {
+                title: 'HTML Window',
+                modal: true,
+                html: "<iframe width=100% height=100% src=/pril/" + currentdata.phonenumber + '>',
+                width: 650,
+                height: 500
+            }
+        );
+        pril.show();
+
     },
 
     _sendObject: function() {
@@ -168,10 +184,10 @@ Ext.define('BeeApp.controller.Bee', {
         if (form.isValid()) {
             Ext.Ajax.request({
                 scope: this,
-                url: '/testsim/' + currentdata.phonenumber + '/settariff/' + form.getForm().findField('tariff').getValue(),
+                url: '/testsim/' + currentdata.phonenumber + '/settariff/' + form.getForm().findField('tariffid').getValue(),
                 success: function() {
                     this._refreshWindowcell();
-                    currentdata.letter.tariff= form.getForm().findField('tariff').getValue();
+                    currentdata.letter.tariff= form.getForm().findField('tariffid').getValue();
                     currentdata.letter.template = 'letter_changeplan.html';
                     this._sendObject();
                     win.close();

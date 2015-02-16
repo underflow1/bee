@@ -63,9 +63,9 @@ Ext.define('BeeApp.view.Windowcell', {
             }
         }],
         buttons: [{
-            text: 'email',
+            text: 'Приложение',
             scope: this,
-            action: 'email'
+            action: 'pril'
         },{
             text: 'Возврат',
             scope: this,

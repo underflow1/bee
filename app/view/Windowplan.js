@@ -28,19 +28,12 @@ Ext.define('BeeApp.view.Windowplan', {
                 name: 'phonenumber',
                 readOnly: true
             },{
-                name: 'tariff',
+                name: 'tariffid',
                 xtype: 'combobox',
-                store: new Ext.data.SimpleStore({
-                    fields:
-                        [
-                            'id',   //числовое значение - номер элемента
-                            'name' //текст
-                        ],
-                    data:plans
-                }),
+                store: 'Tariffstore',
                 fieldLabel: 'ТП',
-                valueField: 'name',
-                displayField:'name',
+                valueField: 'id',
+                displayField:'internalname',
                 //forceSelection: true,
                 //editable: 'false',
                 //readOnly: 'true',
