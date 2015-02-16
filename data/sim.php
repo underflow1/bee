@@ -234,7 +234,7 @@ class Sim {
         $holders->load('id='.$phonenumber->holderid);
         if ($holders->fio !== 'резерв') {
             $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $holders->deduction,$holders->pkg,$holders->roam));
+            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $holders->deduction,$holders->pkg,$holders->roam,$holders-> truddognumber, $holders-> truddogdate, $holders-> truddogcompanyid, $holders-> purpose));
             $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
             $result = array (
                 'success' => true,
