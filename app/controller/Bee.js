@@ -1,6 +1,15 @@
 var currentdata = new Object();
 currentdata.letter =  Object();
 
+Ext.Ajax.request({
+    url: '/currentuser',
+    success: function(response) {
+        currentdata.login = Ext.decode(response.responseText).data.login;
+        currentdata.rights = Ext.decode(Ext.decode(response.responseText).data.rights);
+        console.log(currentdata);
+    }
+});
+
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
@@ -58,18 +67,7 @@ Ext.define('BeeApp.controller.Bee', {
         });
     },
 
-    _printPril: function() {
-        var pril = Ext.create("Ext.window.Window", {
-                title: 'HTML Window',
-                modal: true,
-                html: "<iframe width=100% height=100% src=/pril/" + currentdata.phonenumber + '>',
-                width: 650,
-                height: 500
-            }
-        );
-        pril.show();
 
-    },
 
     _sendObject: function() {
         if(Ext.getCmp('lettercheckbox').checked){
@@ -88,32 +86,7 @@ Ext.define('BeeApp.controller.Bee', {
 //        console.log(currentdata.letter);
     },
 
-    _setBlock: function() {
-        var me = this;
-        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
-            if (btn2 === 'yes') {
-                if (currentdata.blocked) {
-                    blockaction = 0;
-                    blocktext = 'Блокировка снята!';
-                    currentdata.letter.template = 'letter_unblock.html';
-                } else {
-                    blockaction = 1;
-                    blocktext = 'Блокировка установлена!';
-                    currentdata.letter.template = 'letter_block.html';
-                }
-                Ext.Ajax.request({
 
-                    url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
-                    success: function (response) {
-                        currentdata.blocked = !currentdata.blocked;
-                        Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
-                        me._refreshWindowcell();
-                        me._sendObject();
-                    }
-                })
-            }
-        })
-    },
 
     _transferTheNumber: function(btn) {
         var win = btn.up('window');
@@ -199,47 +172,122 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _simReturn: function() {
-        var me = this;
-        Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
-            if (btn2 === 'yes') {
-                Ext.Ajax.request({
-                    url: '/testsim/' + currentdata.phonenumber + '/returnthenumber',
-                    success: function (response) {
-                        currentdata.blocked = true;
-                        currentdata.letter.template = 'letter_return.html';
-                        me._sendObject();
-                        me._refreshWindowcell();
-                    },
-                    failure: function () {
-                        alert('ERROR');
+        if(currentdata.rights.give){
+            var me = this;
+            Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
+                if (btn2 === 'yes') {
+                    Ext.Ajax.request({
+                        url: '/testsim/' + currentdata.phonenumber + '/returnthenumber',
+                        success: function (response) {
+                            currentdata.blocked = true;
+                            currentdata.letter.template = 'letter_return.html';
+                            me._sendObject();
+                            me._refreshWindowcell();
+                        },
+                        failure: function () {
+                            alert('ERROR');
+                        }
+                    });
+                }
+            });
+        } else {
+            console.log('права: ' + currentdata.rights.give);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
+    },
+
+    _setBlock: function() {
+        if(currentdata.rights.block){
+            var me = this;
+            Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
+                if (btn2 === 'yes') {
+                    if (currentdata.blocked) {
+                        blockaction = 0;
+                        blocktext = 'Блокировка снята!';
+                        currentdata.letter.template = 'letter_unblock.html';
+                    } else {
+                        blockaction = 1;
+                        blocktext = 'Блокировка установлена!';
+                        currentdata.letter.template = 'letter_block.html';
                     }
-                });
-            }
-        });
+                    Ext.Ajax.request({
+
+                        url: '/testsim/' + currentdata.phonenumber + '/setblock/' + blockaction,
+                        success: function (response) {
+                            currentdata.blocked = !currentdata.blocked;
+                            Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
+                            me._refreshWindowcell();
+                            me._sendObject();
+                        }
+                    })
+                }
+            })
+        } else {
+            console.log('права: ' + currentdata.rights.block);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
     },
 
     _showWindowGive: function() {
-        var view = Ext.widget('windowgive');
-        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
-        view.show();
+        if(currentdata.rights.give){
+            var view = Ext.widget('windowgive');
+            view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+            view.show();
+        } else {
+            console.log('права: ' + currentdata.rights.give);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
     },
 
     _showWindowTransfer: function() {
-        var view = Ext.widget('windowtransfer');
-        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
-        view.show();
+        if(currentdata.rights.transfer){
+            var view = Ext.widget('windowtransfer');
+            view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+            view.show();
+        } else {
+            console.log('права: ' + currentdata.rights.transfer);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
     },
 
     _showWindowsimnumber: function() {
-        var view = Ext.widget('windowsimnumber');
-        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
-        view.show();
+        if(currentdata.rights.changesim){
+            var view = Ext.widget('windowsimnumber');
+            view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+            view.show();
+        } else {
+            console.log('права: ' + currentdata.rights.changesim);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
     },
 
     _showWindowPlan: function(){
-        var view = Ext.widget('windowplan');
-        view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
-        view.show();
+        if(currentdata.rights.changeplan){
+            console.log('права: ' + currentdata.rights.changeplan);
+            var view = Ext.widget('windowplan');
+            view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
+            view.show();
+        } else {
+            console.log('права: ' + currentdata.rights.changeplan);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
+    },
+
+    _printPril: function() {
+        if(currentdata.rights.pril){
+            var pril = Ext.create("Ext.window.Window", {
+                    title: 'HTML Window',
+                    modal: true,
+                    html: "<iframe width=100% height=100% src=/pril/" + currentdata.phonenumber + '>',
+                    width: 650,
+                    height: 500
+                }
+            );
+            pril.show();
+        } else {
+            console.log('права: ' + currentdata.rights.pril);
+            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
+        }
     },
 
     _showWindow: function(grid,record) {

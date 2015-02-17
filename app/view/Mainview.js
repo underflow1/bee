@@ -70,6 +70,5 @@ Ext.define('BeeApp.view.Mainview' ,{
         ];
 
         this.callParent(arguments);
-        console.log('mainview');
     }
 });

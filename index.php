@@ -247,8 +247,26 @@ $app->get('/phonenumbers', function() use ($app) {
     ));
 });
 
-$app->get('/current', function() use ($app) {
+$app->get('/currentuser', function() use ($app) {
+    $principal = explode("@",$_SERVER['REMOTE_USER']);
+    $login = $principal[0];
+    $sql = "SELECT login, rights FROM rights WHERE login = \"$login\" LIMIT 1";
+    $post = $app['db']->fetchAll($sql);
+    $falseresult = '{"return":false,"block":false,"transfer":false,"give":false,"changesim":false,"changeplan":false,"pril":false}';
+    if (!empty($post)) {
+        return json_encode(array(
+            "success" => true,
+            "data" => $post[0]
+        ));
+    } else {
+        return json_encode(array(
+            "success" => false,
+            "data" => array("login" => $login, "rights" => $falseresult )
+        ));
+    }
+});
 
+$app->get('/current', function() use ($app) {
     $sql = "
 SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, ta.internalname as tariff
         ,ho.fio, ho.position

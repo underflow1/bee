@@ -13,7 +13,6 @@ Ext.application({
     controllers: ['Bee'],
 
     launch: function() {
-        console.log("sdafsdaf");
         Ext.create('Ext.container.Viewport', {
             layout: 'fit',
             items: {
