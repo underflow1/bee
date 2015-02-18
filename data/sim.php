@@ -48,12 +48,27 @@ class Sim {
             'directorstd' => $company->directorstd,
             'directorsposstd' => $company->directorsposstd
         );
-        //$result = array ('success' => true, 'data' => $currentstate);
+        return $currentstate;
+    }
+
+    function getnakldata ($get) {
+        $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
+        $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
+        $phonenumber->load("phonenumber = ".$get);
+        $holders->load("id = ".$phonenumber->holderid);
+        $holderfio = $holders -> fio;
+        $holders->load("id = ".$phonenumber->prevholderid);
+        $prevholderfio = $holders -> fio;
+        $currentstate = array(
+            'phonenumber' => $phonenumber->phonenumber,
+            'date' => date("Y-m-d"),
+            'holderfio' => $holderfio,
+            'prevholderfio' => $prevholderfio
+        );
         return $currentstate;
     }
 
     function appenddata($number,$what,$state) {
-//        switch ($what): tariff block simnumber
         $append = new DB\SQL\Mapper(F3::get('DB'), 'ph_'.$what.'s');
         $append->phonenumber = $number;
         $append->startdate = date("Y-m-d");
@@ -170,6 +185,7 @@ class Sim {
                 if ($holders->id <> $holderid) {
                     $result = array ('success' => false, 'msg' => 'Holder is not present');
                 } else {
+                    $phonenumber-> prevholderid = $phonenumber-> holderid;
                     $phonenumber-> holderid = $holderid;
                     $phonenumber-> save();
                     $result = array ('success' => true, 'msg' => 'Sim card has new owner');
@@ -226,15 +242,14 @@ class Sim {
         return json_encode($result);
     }
 
-
-    function transferthenumber($number, $fio, $position) {
+    function transferthenumber($number, $fio, $position,$truddognumber,$truddogdate,$truddogcompanyid,$purpose) {
         $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
         $phonenumber-> load('phonenumber ='.$number);
         $holders = new DB\SQL\Mapper(F3::get('DB'), 'holders');
         $holders->load('id='.$phonenumber->holderid);
         if ($holders->fio !== 'резерв') {
             $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $holders->deduction,$holders->pkg,$holders->roam,$holders-> truddognumber, $holders-> truddogdate, $holders-> truddogcompanyid, $holders-> purpose));
+            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $holders->deduction,$holders->pkg,$holders->roam,$truddognumber, $truddogdate, $truddogcompanyid, $purpose));
             $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
             $result = array (
                 'success' => true,
@@ -245,83 +260,6 @@ class Sim {
         } else {$result = array ('success' => false, 'msg' => "Сим карта находится в резерве");}
         return json_encode($result);
     }
-
-/*
-    function returnthenumber($number) {
-        $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
-        $phonenumber-> load('phonenumber ='.$number);
-
-        $setblockresult = json_decode(Sim::setblock($number, true));
-        if ($setblockresult->{'success'} == true) {
-            $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-            if ($endholderresult->{'success'} == true) {
-                $appendholderresult = json_decode(Sim::appendholder($number,'резерв','резерв',NULL,NULL,NULL));
-                if ($appendholderresult->{'success'} == true) {
-                    $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
-                    if ($setholderresult->{'success'} == true) {
-                        $result = array (
-                            'success' => true,
-                            'block' => $setblockresult->{'success'},
-                            'end' => $endholderresult->{'success'},
-                            'append' => $appendholderresult->{'success'},
-                            'set' => $setholderresult->{'success'}
-                        );
-                    } else {$result = array ('success' => false, 'msg' => 'not set', 'setholdermsg' => $setholderresult->{'msg'});}
-                } else {$result = array ('success' => false, 'msg' => 'not append', 'appendholdermsg' => $appendholderresult->{'msg'});}
-            } else {$result = array ('success' => false, 'msg' => 'not ended', 'endholdermsg' => $endholderresult->{'msg'});}
-        } else {$result = array ('success' => false, 'msg' => 'not blocked', 'blockmsg' => $setblockresult->{'msg'});}
-        return json_encode($result);
-    }
-
-
-    function givethenumber($number, $tariff, $fio, $position, $deduction, $pkg, $roam) {
-        $phonenumber = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
-        $phonenumber-> load('phonenumber ='.$number);
-
-        $endholderresult = json_decode(Sim::endholder($phonenumber->holderid));
-        if ($endholderresult->{'success'} == true) {
-            $appendholderresult = json_decode(Sim::appendholder($number, $fio, $position, $deduction, $pkg, $roam));
-            if ($appendholderresult->{'success'} == true) {
-                $setholderresult  = json_decode(Sim::setholder($number, $appendholderresult->{'appended_id'}));
-                if ($setholderresult->{'success'} == true) {
-                    $setblockresult = json_decode(Sim::setblock($number, false));
-                    if ($setblockresult->{'success'} == true) {
-                        $settariffresult = json_decode(Sim::settariff($number, $tariff));
-                        if ($settariffresult->{'success'} == true) {
-                            $result = array ('success' => true);
-                        } else {$result = array ('success' => false, 'msg' => '5 end append set block tariff', 'tariffmsg' => $settariffresult->{'msg'});}
-                    } else {$result = array ('success' => false, 'msg' => '4 end append set block', 'blockmsg' => $setblockresult->{'msg'});}
-                } else {$result = array ('success' => false, 'msg' => '3 end append set', 'setholdermsg' => $setholderresult->{'msg'});}
-            } else {$result = array ('success' => false, 'msg' => '2 end append', 'appendholdermsg' => $appendholderresult->{'msg'});}
-        } else {$result = array ('success' => false, 'msg' => '1 end ', 'endholdermsg' => $endholderresult->{'msg'});}
-        return json_encode($result);
-    }
-
-
-
-
-
-/*
-    function getback ($number) {
-        $phonenumbers = new DB\SQL\Mapper(F3::get('DB'), 'phonenumbers');
-        $phonenumbers->load('phonenumber ='.$number);
-        $blockresult = json_decode(Sim::block($number));
-        if ($blockresult->{'success'} == true) {
-            $endholderresult = json_decode(Sim::endholder($phonenumbers->holderid));
-            if ($endholderresult->{'success'} == true) {
-                $newholderresult = Sim::newholder($number,'резерв','резерв',NULL,NULL,NULL);
-                $setholderresult = json_decode(Sim::setholder($number,$newholderresult));
-                if ($setholderresult->{'success'} == true) {
-                    $result = array ('success' => true, 'data' => 'blocked and ended','newholderid' => $newholderresult);
-                } else $result = array ('success' => false, 'data' => 'blocked and ended but not reserved');
-            } else $result = array ('success' => false, 'data' => 'blocked but not ended');
-        } else $result = array ('success' => false, 'data' => 'not blocked');
-
-        return json_encode($result);
-    }
-
-*/
-
 
 }
 

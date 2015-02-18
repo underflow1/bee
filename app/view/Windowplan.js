@@ -1,13 +1,6 @@
 /**
  * Created by kharlamov.a on 04.02.2015.
  */
-var plans = [
-    [1, 'Интрасеть'],
-    [2, 'Привилегированный'],
-    [3, 'Престижный'],
-    [4, 'Специальный+']
-];
-
 Ext.define('BeeApp.view.Windowplan', {
         extend: 'Ext.window.Window',
         alias: 'widget.windowplan',
@@ -30,13 +23,11 @@ Ext.define('BeeApp.view.Windowplan', {
             },{
                 name: 'tariffid',
                 xtype: 'combobox',
+                editable: false,
                 store: 'Tariffstore',
                 fieldLabel: 'ТП',
                 valueField: 'id',
                 displayField:'internalname',
-                //forceSelection: true,
-                //editable: 'false',
-                //readOnly: 'true',
                 queryMode:'local'
             }]
         }],

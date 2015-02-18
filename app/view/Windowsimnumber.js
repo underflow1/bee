@@ -5,7 +5,6 @@
 var passNumberVType = {
     passNumber: function(val, field){
         var passNumberRegex = /^\d{18}$/;
-        //var passNumberRegex = /^\d{20}\s\d{6}$/;
         return passNumberRegex.test(val);
     },
     passNumberText: 'номер сим карты состоит из 18 цифр',

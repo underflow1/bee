@@ -1,5 +1,3 @@
-
-
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
@@ -23,6 +21,9 @@ Ext.define('BeeApp.controller.Bee', {
             },
             'windowcell button[action=pril]': {
                 click: this._printPril
+            },
+            'windowcell button[action=nakl]': {
+                click: this._printNakl
             },
             'windowcell button[action=block]': {
                 click: this._setBlock
@@ -62,7 +63,6 @@ Ext.define('BeeApp.controller.Bee', {
     _sendObject: function() {
         if(Ext.getCmp('lettercheckbox').checked){
             currentdata.letter.phonenumber = currentdata.phonenumber;
-//            console.log(currentdata.letter);
             Ext.Ajax.request({
                 method: 'POST',
                 url: '/sendobject',
@@ -73,7 +73,6 @@ Ext.define('BeeApp.controller.Bee', {
             })
         }
         currentdata.letter = Object();
-//        console.log(currentdata.letter);
     },
 
 
@@ -98,7 +97,6 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _giveTheNumber: function(btn) {
-       // var me = this;
         var win = btn.up('window');
         form = win.down('form');
         if (form.isValid()) {
@@ -278,6 +276,18 @@ Ext.define('BeeApp.controller.Bee', {
             console.log('права: ' + currentdata.rights.pril);
             Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
         }
+    },
+
+    _printNakl: function() {
+            var nakl = Ext.create("Ext.window.Window", {
+                    title: 'HTML Window',
+                    modal: true,
+                    html: "<iframe width=100% height=100% src=/nakl/" + currentdata.phonenumber + '>',
+                    width: 650,
+                    height: 500
+                }
+            );
+            nakl.show();
     },
 
     _showWindow: function(grid,record) {

@@ -13,7 +13,6 @@ Ext.define('BeeApp.view.Mainview' ,{
             }
         }
     },
-    //features: [Ext.create('Ext.grid.feature.Grouping', {groupHeaderTpl: 'Группа  {name}'})],
 
     initComponent: function() {
         this.columns = [

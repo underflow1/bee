@@ -1,7 +1,5 @@
 ﻿<?php
-//require __DIR__.'/lib/base.php';
 $f3 = require('lib/base.php');
-//include "Mail.php";
 F3::set('DEBUG',3);
 F3::set('AUTOLOAD','data/');
 F3::set('DB',
@@ -64,11 +62,6 @@ $app->get('/testsim/{phonenumber}/setsimnumber/{simnumber}', function($phonenumb
     return $test-> setsimnumber($phonenumber,$simnumber);
 });
 
-//$app->get('/testsim/{phonenumber}/appendholder/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber,$fio,$position,$deduction,$pkg,$roam) use($app) {
-//    $test = new Sim();
-//    return $test-> appendholder($phonenumber, $fio, $position, $deduction, $pkg, $roam);
-//});
-
 $app->get('/testsim/{phonenumber}/setholder/{holderid}', function($phonenumber, $holderid) use($app) {
     $test = new Sim();
     return $test-> setholder($phonenumber,$holderid);
@@ -91,11 +84,6 @@ $app->get('/testsim/{phonenumber}/appenddata/{what}/{state}', function($phonenum
     return $test-> appenddata($phonenumber,$what,$state);
 });
 
-//$app->get('/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}', function($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam) use($app) {
-//    $test = new Sim();
-//    return $test-> givethenumber($phonenumber, $tariff, $fio, $position, $deduction, $pkg, $roam);
-//});
-
 $app->post('/givethenumber', function(Request $request) {
     $test = new Sim();
     return $test->givethenumber($request->get('phonenumber'), $request->get('tariffid'),$request->get('fio'),$request->get('position'),$request->get('deduction'),$request->get('pkg'),$request->get('roam'),$request->get('truddognumber'),$request->get('truddogdate'),$request->get('truddogcompanyid'),$request->get('purpose'));
@@ -103,7 +91,7 @@ $app->post('/givethenumber', function(Request $request) {
 
 $app->post('/transferthenumber', function (Request $request) {
     $test = new Sim();
-    return $test->transferthenumber($request->get('phonenumber'),$request->get('fio'),$request->get('position'));
+    return $test->transferthenumber($request->get('phonenumber'),$request->get('fio'),$request->get('position'),$request->get('truddognumber'),$request->get('truddogdate'),$request->get('truddogcompanyid'),$request->get('purpose'));
 });
 
 $app->post('/sendobject', function (Request $request) {
@@ -130,36 +118,6 @@ $app->post('/sendobject', function (Request $request) {
         ->setBody($test,'text/html');
     $result = $mailer->send($message);
     return $result;
-});
-
-
-$app->post('/sendemail2', function (Request $request) {
-    $transport = Swift_SmtpTransport::newInstance('mail01.ce.int', 25)
-        ->setUsername('')
-        ->setPassword('');
-    $mailer = Swift_Mailer::newInstance($transport);
-
-    $message = Swift_Message::newInstance($request->get('subject'))
-        ->setFrom(array('it@teploset.ru' => 'Харламов Алексей Олегович'))
-        ->setTo(array('it@teploset.ru'))
-        ->setContentType("text/html; charset=UTF-8")
-        ->setBody(
-            '<html>' .
-            ' <head></head>' .
-            ' <body>' .
-            '<span style=font-size:10.0pt;font-family:Arial,sans-serif>' .
-            $request->get('phonenumber') .' '. $request->get('action') . '<br>' .
-            '</span>' .
-            '</body>' .
-            '</html>',
-            'text/html'
-        );
-     $result = $mailer->send($message);
-
-    return json_encode(array(
-        "success" => true,
-        "data" => $result
-    ));
 });
 
 $app->get('/months/{date_begin}/{date_end}', function($date_begin, $date_end) use ($app) {
@@ -216,6 +174,16 @@ $app->get('/pril/{phonenumber}', function($phonenumber) use($app) {
     $loader = new Twig_Loader_Filesystem('templates');
     $twig = new Twig_Environment($loader);
     $template = $twig->loadTemplate('pril.html');
+    $test = $template->render($vari);
+    return $test;
+});
+
+$app->get('/nakl/{phonenumber}', function($phonenumber) use($app) {
+    $test = new Sim();
+    $vari = $test-> getnakldata($phonenumber);
+    $loader = new Twig_Loader_Filesystem('templates');
+    $twig = new Twig_Environment($loader);
+    $template = $twig->loadTemplate('nakl.html');
     $test = $template->render($vari);
     return $test;
 });
@@ -295,25 +263,6 @@ ORDER BY f1.companyname, f1.blocked, ho.fio ASC
 $app->get('/current/{phonenumber}', function($phonenumber) use ($app) {
     $test = new Sim();
     $vari = $test-> getcurrentstate($phonenumber);
-/*
-    $sql = "
-SELECT	f1.phonenumber, f1.simnumber, f1.contract, f1.companyname, f1.blocked, ta.internalname as tariff
-        ,ho.fio, ho.position
-        ,ho.deduction, ho.pkg, ho.roam, ho.truddognumber, ho.truddogdate, ho.purpose
-        ,co.truddogcompanyname, co.director, co.directorspos
-
-FROM phonenumbers AS f1
-# подтягиваем ид текущего владельца
-LEFT JOIN holders as ho on ho.id = f1.holderid
-# подтягиваем название компании по договору
-LEFT JOIN company as co on co.id = ho.truddogcompanyid
-# подтягиваем название тарифа
-LEFT JOIN tariff as ta on ta.id = f1.tariffid
-WHERE f1.phonenumber = \"$phonenumber\"
-";
-
-    $post = $app['db']->fetchAll($sql);
-*/
     return json_encode(array(
         "success" => true,
         "data" => $vari

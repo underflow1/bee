@@ -8,7 +8,6 @@ Ext.define('BeeApp.view.Windowtransfer', {
         title: 'Передать сим карту',
         modal: true,
         items: [{
-            //'/testsim/{phonenumber}/givethenumber/{tariff}/{fio}/{position}/{deduction}/{pkg}/{roam}'
             xtype: 'form',
             bodyPadding: 10,
             defaults :{
@@ -29,6 +28,42 @@ Ext.define('BeeApp.view.Windowtransfer', {
                 fieldLabel: 'должность',
                 name: 'position',
                 readOnly: false
+            },{
+                fieldLabel: 'назначение',
+                xtype: 'combobox',
+                editable: false,
+                store: new Ext.data.SimpleStore({
+                    fields: [
+                        'id',
+                        'purpose'
+                    ],
+                    data:purpose
+                }),
+                name: 'purpose',
+                valueField: 'purpose',
+                displayField:'purpose',
+                queryMode:'local',
+                readOnly: false
+            },{
+                fieldLabel: 'договор',
+                name: 'truddognumber',
+                readOnly: false
+            },{
+                xtype: 'datefield',
+                format: 'Y-m-d',
+                fieldLabel: 'дата договора',
+                name: 'truddogdate',
+                readOnly: false,
+                value: new Date()
+            },{
+                fieldLabel: 'Компания',
+                name: 'truddogcompanyid',
+                readOnly: false,
+                xtype: 'combobox',
+                editable: false,
+                store: 'Companystore',
+                valueField: 'id',
+                displayField:'truddogcompanyname'
             }]
         }],
         buttons: [{

@@ -1,12 +1,6 @@
 /**
  * Created by underflow on 07.02.2015.
  */
-var plans = [
-    [1, 'Интрасеть (Национальный ВИП (фед.))'],
-    [2, 'Привилегированный (Привилегированный (фед))'],
-    [3, 'Престижный (ВдБ Золото 1000 1.0 (фед))'],
-    [4, 'Специальный+ (Специальный+ (фед))']
-];
 var purpose = [
     [1, 'связь'],
     [2, 'на отдел'],
@@ -35,6 +29,7 @@ var purpose = [
             },{
                 name: 'tariffid',
                 xtype: 'combobox',
+                editable: false,
                 store: 'Tariffstore',
                 fieldLabel: 'ТП',
                 valueField: 'id',
@@ -51,6 +46,7 @@ var purpose = [
             },{
                 fieldLabel: 'назначение',
                 xtype: 'combobox',
+                editable: false,
                 store: new Ext.data.SimpleStore({
                     fields: [
                         'id',
@@ -63,7 +59,7 @@ var purpose = [
                 displayField:'purpose',
                 queryMode:'local',
                 readOnly: false,
-                value: 0
+                value: 'связь'
             },{
                 fieldLabel: 'удержание',
                 name: 'deduction',
@@ -82,20 +78,20 @@ var purpose = [
             },{
                 fieldLabel: 'договор',
                 name: 'truddognumber',
-                readOnly: false,
-                value: 0
+                readOnly: false
             },{
                 xtype: 'datefield',
                 format: 'Y-m-d',
                 fieldLabel: 'дата договора',
                 name: 'truddogdate',
                 readOnly: false,
-                value: 0
+                value: new Date()
             },{
                 fieldLabel: 'Компания',
                 name: 'truddogcompanyid',
                 readOnly: false,
                 xtype: 'combobox',
+                editable: false,
                 store: 'Companystore',
                 valueField: 'id',
                 displayField:'truddogcompanyname'

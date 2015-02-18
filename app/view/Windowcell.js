@@ -48,11 +48,10 @@ Ext.define('BeeApp.view.Windowcell', {
             }]
         },{
             xtype: 'panel',
-            //bodyPadding: 10,
             layout:'hbox',
             buttons: [{
                 xtype: 'checkboxfield',
-                boxLabel: 'Отправлять письмо',
+                boxLabel: 'письмо',
                 checked: true,
                 id: 'lettercheckbox',
                 listeners: {
@@ -64,6 +63,10 @@ Ext.define('BeeApp.view.Windowcell', {
                         currentdata.sendletter = v.checked;
                     }
                 }
+            },{
+                text: 'накладная',
+                scope: this,
+                action: 'nakl'
             },{
                 text: 'Приложение',
                 scope: this,

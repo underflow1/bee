@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
+    <style type="text/css">
+        .aaa {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+        p{
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+    <tr>
+        <td  ><p align="center" class="aaa"><strong>НАКЛАДНАЯ</strong> <br>
+            <em>(передача ТМЦ)</em></p>
+            <table border="1" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td  width="108" colspan="3" class="aaa"><p align="center">№</p></td>
+                    <td  width="119"><p align="center">&nbsp;</p></td>
+                    <td  width="127" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                    <td  width="141" colspan="4"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Отправитель</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">ФИО</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">{{prevholderfio}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Адрес</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Телефон</p></td>
+                    <td  width="388" colspan="7"><p>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Получатель</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">ФИО</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">{{holderfio}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Адрес</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Телефон</p></td>
+                    <td  width="388" colspan="7"><p>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Описание    ТМЦ</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center" class="aaa">№</p></td>
+                    <td  width="350" colspan="6"><p align="center" class="aaa">Наименование</p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Ед. изм.</p></td>
+                    <td  width="60"><p align="center" class="aaa">Кол-во</p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center" class="aaa">1</p></td>
+                    <td  width="350" colspan="6"><p class="aaa">сим карта {{phonenumber}}</p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Шт.</p></td>
+                    <td  width="60" valign="bottom"><p align="center" class="aaa">1</p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center">&nbsp;</p></td>
+                    <td  width="350" colspan="6"><p align="right" class="aaa"><strong>Итого</strong></p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Шт.</p></td>
+                    <td  width="60" valign="bottom"><p align="center" class="aaa">1</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10" valign="top"><p class="aaa"><strong><em>Подтверждение отправки</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center">&nbsp;</p></td>
+                    <td  width="224" colspan="3"><p align="center" class="aaa">ФИО</p></td>
+                    <td  width="125" colspan="3"><p align="center" class="aaa">Подпись</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center" class="aaa">Отправитель</p></td>
+                    <td  width="224" colspan="3"><p align="center">&nbsp;</p>
+                        <p align="center">&nbsp;</p></td>
+                    <td  width="125" colspan="3"><p align="center">&nbsp;</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Подтверждение доставки</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center">&nbsp;</p></td>
+                    <td  width="224" colspan="3"><p align="center" class="aaa">ФИО</p></td>
+                    <td  width="125" colspan="3"><p align="center" class="aaa">Подпись</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center" class="aaa">Получатель</p></td>
+                    <td  width="224" colspan="3"><p align="center">&nbsp;</p>
+                        <p align="center">&nbsp;</p></td>
+                    <td  width="125" colspan="3"><p align="center">&nbsp;</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+            </table></td>
+        <td width="50"  >&nbsp;</td>
+        <td  ><p align="center" class="aaa"><strong>НАКЛАДНАЯ</strong> <br>
+            <em>(передача ТМЦ)</em></p>
+            <table border="1" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td  width="108" colspan="3" class="aaa"><p align="center">№</p></td>
+                    <td  width="119"><p align="center">&nbsp;</p></td>
+                    <td  width="127" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                    <td  width="141" colspan="4"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Отправитель</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">ФИО</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">{{prevholderfio}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Адрес</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Телефон</p></td>
+                    <td  width="388" colspan="7"><p>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Получатель</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">ФИО</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">{{holderfio}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Адрес</p></td>
+                    <td  width="388" colspan="7"><p class="aaa">&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="108" colspan="3"><p class="aaa">Телефон</p></td>
+                    <td  width="388" colspan="7"><p>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Описание    ТМЦ</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center" class="aaa">№</p></td>
+                    <td  width="350" colspan="6"><p align="center" class="aaa">Наименование</p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Ед. изм.</p></td>
+                    <td  width="60"><p align="center" class="aaa">Кол-во</p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center" class="aaa">1</p></td>
+                    <td  width="350" colspan="6"><p class="aaa">сим карта {{phonenumber}}</p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Шт.</p></td>
+                    <td  width="60" valign="bottom"><p align="center" class="aaa">1</p></td>
+                </tr>
+                <tr>
+                    <td  width="32"><p align="center">&nbsp;</p></td>
+                    <td  width="350" colspan="6"><p align="right" class="aaa"><strong>Итого</strong></p></td>
+                    <td  width="55" colspan="2"><p align="center" class="aaa">Шт.</p></td>
+                    <td  width="60" valign="bottom"><p align="center" class="aaa">1</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10" valign="top"><p class="aaa"><strong><em>Подтверждение отправки</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center">&nbsp;</p></td>
+                    <td  width="224" colspan="3"><p align="center" class="aaa">ФИО</p></td>
+                    <td  width="125" colspan="3"><p align="center" class="aaa">Подпись</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center" class="aaa">Отправитель</p></td>
+                    <td  width="224" colspan="3"><p align="center">&nbsp;</p>
+                        <p align="center">&nbsp;</p></td>
+                    <td  width="125" colspan="3"><p align="center">&nbsp;</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+                <tr>
+                    <td  width="496" colspan="10"><p class="aaa"><strong><em>Подтверждение доставки</em></strong></p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center">&nbsp;</p></td>
+                    <td  width="224" colspan="3"><p align="center" class="aaa">ФИО</p></td>
+                    <td  width="125" colspan="3"><p align="center" class="aaa">Подпись</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">Дата</p></td>
+                </tr>
+                <tr>
+                    <td  width="76" colspan="2"><p align="center" class="aaa">Получатель</p></td>
+                    <td  width="224" colspan="3"><p align="center">&nbsp;</p>
+                        <p align="center">&nbsp;</p></td>
+                    <td  width="125" colspan="3"><p align="center">&nbsp;</p></td>
+                    <td  width="71" colspan="2"><p align="center" class="aaa">{{date}}</p></td>
+                </tr>
+            </table></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
