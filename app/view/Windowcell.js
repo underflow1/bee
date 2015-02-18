@@ -6,7 +6,7 @@ Ext.define('BeeApp.view.Windowcell', {
         alias: 'widget.windowcell',
         id: 'windowcell',
         itemID: 'windowcell',
-        width : 450,
+        width : 373,
         title: 'Действия с сим картой',
         modal: true,
         border: false,
@@ -47,36 +47,38 @@ Ext.define('BeeApp.view.Windowcell', {
                 name: 'companyname'
             }]
         },{
-            xtype: 'checkboxfield',
-            boxLabel: 'Отправить письмо',
-            checked: true,
-            id: 'lettercheckbox',
-            listeners: {
-                change: function (v) {
-                    currentdata.sendletter = v.checked;
-                    console.log(currentdata);
-                },
-                render: function(v) {
-                    currentdata.sendletter = v.checked;
-                    //console.log(currentdata);
+            xtype: 'panel',
+            //bodyPadding: 10,
+            layout:'hbox',
+            buttons: [{
+                xtype: 'checkboxfield',
+                boxLabel: 'Отправлять письмо',
+                checked: true,
+                id: 'lettercheckbox',
+                listeners: {
+                    change: function (v) {
+                        currentdata.sendletter = v.checked;
+                        console.log(currentdata);
+                    },
+                    render: function(v) {
+                        currentdata.sendletter = v.checked;
+                    }
                 }
-            }
+            },{
+                text: 'Приложение',
+                scope: this,
+                action: 'pril'
+            },{
+                text: 'Перевыпуск',
+                scope: this,
+                action: 'showchangesim'
+            }]
         }],
         buttons: [{
-            text: 'Приложение',
-            scope: this,
-            action: 'pril'
-        },{
             text: 'Возврат',
             scope: this,
             action: 'return',
             itemID: 'block_hide'
-        },{
-            text: 'Блокировать',
-            scope: this,
-            action: 'block',
-            id: 'blockbutton',
-            itemID: 'block_button'
         },{
             text: 'Выдать',
             scope: this,
@@ -88,14 +90,16 @@ Ext.define('BeeApp.view.Windowcell', {
             action: 'showtransfer',
             itemID: 'block_hide'
         },{
-            text: 'Перевыпуск',
-            scope: this,
-            action: 'showchangesim'
-        },{
             text: 'Сменить ТП',
             scope: this,
             action: 'showchangeplan',
             itemID: 'block_hide'
+        },{
+            text: 'Блокировать',
+            scope: this,
+            action: 'block',
+            id: 'blockbutton',
+            itemID: 'block_button'
         }],
 
         initComponent: function() {

@@ -3,30 +3,37 @@ Ext.define('BeeApp.view.Mainview' ,{
     alias: 'widget.mainview',
     id: 'mainviewgrid_id',
     store: 'Currentstate',
-    height: 900,
-    width: 1245,
-    title: 'Список всех номеров на текущий момент',
+    //height: 900,
+    //width: 1245,
+    title: "<table width='100%'><tbody><tr ><td><strong><font style='font-size: 10pt;' color='white'>Список всех номеров на текущий момент</font></strong></td><td><div align='right'><strong><font style='font-size: 10pt;'color='white'>" + currentdata.login + "</font></strong></div></td></tr></tbody></table>",
+    viewConfig: {
+        getRowClass: function(record) {
+            if(record.get('blocked')){
+                return 'blocked';
+            }
+        }
+    },
+    //features: [Ext.create('Ext.grid.feature.Grouping', {groupHeaderTpl: 'Группа  {name}'})],
 
     initComponent: function() {
         this.columns = [
             {
                 text     : 'номер',
                 dataIndex: 'phonenumber',
-                width: 80
+                width: 90
             },{
                 text     : 'номер симкарты',
                 dataIndex: 'simnumber',
-                width: 125
+                width: 150
             },
             {
                 text     : 'ТП',
                 dataIndex: 'tariff',
-                width: 125
-            },
-            {
+                width: 145
+            },{
                 text     : 'ФИО',
                 dataIndex: 'fio',
-                width: 250
+                width: 280
             },{
                 text     : 'Должность',
                 dataIndex: 'position',
@@ -34,23 +41,21 @@ Ext.define('BeeApp.view.Mainview' ,{
             },{
                 text     : 'назначение',
                 dataIndex: 'purpose',
-                width: 125
-            },{
-                xtype: 'checkcolumn',
-                disabled : true,
-                disabledCls : 'x-item-enabled',
-                text     : 'блок',
-                dataIndex: 'blocked',
-                width: 50
-            },{
-                text     : 'Договор',
-                dataIndex: 'contract',
-                width: 70
+                width: 100
             },{
                 text     : 'Компания',
                 dataIndex: 'companyname',
-                width: 200
-            },{
+                //width: 200,
+                flex: 1
+            }
+            /*,{
+             xtype: 'checkcolumn',
+             disabled : true,
+             disabledCls : 'x-item-enabled',
+             text     : 'блок',
+             dataIndex: 'blocked',
+             width: 50
+             },{
                 text     : 'уд',
                 dataIndex: 'deduction',
                 width: 50
@@ -66,7 +71,7 @@ Ext.define('BeeApp.view.Mainview' ,{
                 text     : 'роум',
                 dataIndex: 'roam',
                 width: 50
-            }
+            } */
         ];
 
         this.callParent(arguments);

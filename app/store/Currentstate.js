@@ -14,5 +14,6 @@ Ext.define('BeeApp.store.Currentstate', {
             root: 'data'
         }
     }
+    ,groupField: 'companyname'
 });
 

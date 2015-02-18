@@ -1,14 +1,4 @@
-var currentdata = new Object();
-currentdata.letter =  Object();
 
-Ext.Ajax.request({
-    url: '/currentuser',
-    success: function(response) {
-        currentdata.login = Ext.decode(response.responseText).data.login;
-        currentdata.rights = Ext.decode(Ext.decode(response.responseText).data.rights);
-        console.log(currentdata);
-    }
-});
 
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
