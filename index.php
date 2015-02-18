@@ -10,9 +10,24 @@ F3::set('DB',
     )
 );
 
+
 require_once __DIR__.'/silex/vendor/autoload.php';
 require_once 'twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
+
+function checkrights($access) {
+    $principal = explode("@",$_SERVER['REMOTE_USER']);
+    $login = $principal[0];
+    $rights = new DB\SQL\Mapper(F3::get('DB'), 'rights');
+    $rights->load("login = \"$login\"");
+    $rightsstring = $rights->rights;
+    $rightsobj = json_decode($rightsstring);
+    if (property_exists($rightsobj, $access)) {
+        return $rightsobj->$access;
+    } else {
+        return false;
+    }
+}
 
 function validateDate($date)
 {
@@ -38,18 +53,62 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
+$app->get('/sssss', function() use($app) {
+    $link = mssql_connect('sql02.ce.int', 'zupishe', '123asdASD');
+    if (!$link || !mssql_select_db('zup_20150218', $link)) {
+        die('Unable to connect or select MSSQL database!');
+    }
+
+    $query = mssql_query("
+SELECT fi._Description, so._Fld1703
+FROM [_Reference117] as so
+LEFT JOIN [_Reference138] AS fi ON fi._IDRRef = so._Fld1679RRef
+");
+
+$stack = array();
+while ($row = mssql_fetch_assoc($query)) {
+    //"_IDRRef" => $row['_IDRRef'],
+    $rowarray = array("_Description" => iconv("CP1251", "UTF-8", trim($row['_Description'])), "_Fld1703" => trim($row['_Fld1703']));
+    array_push($stack, $rowarray);
+}
+    mssql_free_result($query);
+    mssql_close($link);
+
+    $asd =  json_encode($stack);
+
+    $asd = preg_replace_callback(
+        '/\\\\u([0-9a-f]{4})/i',
+        function ($matches) {
+            $sym = mb_convert_encoding(
+                pack('H*', $matches[1]),
+                'UTF-8',
+                'UTF-16'
+            );
+            return $sym;
+        },
+        $asd
+    );
+    return $asd;
+});
+
+
 $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($app) {
     $test = new Sim();
     $result = $test-> getcurrentstate($phonenumber);
-    return json_encode(array(
+    return $app->json(array(
         "success" => true,
         "data" => $result
     ));
 });
 
 $app->get('/testsim/{phonenumber}/setblock/{state}', function($phonenumber,$state) use($app) {
-    $test = new Sim();
-    return $test-> setblock($phonenumber,$state);
+    if(checkrights('block')){
+        $test = new Sim();
+        return $test-> setblock($phonenumber,$state);
+    } else {
+        return $app->json(array("errorMessage" => "Недостаточно прав"),403);
+    }
+
 });
 
 $app->get('/testsim/{phonenumber}/settariff/{tariff}', function($phonenumber,$tariff) use($app) {
@@ -158,10 +217,12 @@ WHERE total.cardholderid <> 433 AND total.deduction > 0 OR total.summa > 50
 ORDER BY total.companyname, total.fio
 ";
     $post = $app['db']->fetchAll($sql);
-return json_encode(array(
+
+    return $app->json(array(
         "success" => true,
         "data" => $post
     ));
+//return json_encode();
 });
 
 $app->get('/', function() use($app) {
@@ -266,7 +327,7 @@ $app->get('/current/{phonenumber}', function($phonenumber) use ($app) {
     return json_encode(array(
         "success" => true,
         "data" => $vari
-    ));
+   ));
 });
 
 $app->run();

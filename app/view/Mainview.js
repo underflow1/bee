@@ -24,19 +24,20 @@ Ext.define('BeeApp.view.Mainview' ,{
                 text     : 'номер симкарты',
                 dataIndex: 'simnumber',
                 width: 150
-            },
-            {
+            },{
                 text     : 'ТП',
                 dataIndex: 'tariff',
                 width: 145
             },{
                 text     : 'ФИО',
                 dataIndex: 'fio',
-                width: 280
+                width: 280,
+                flex: 1
             },{
                 text     : 'Должность',
                 dataIndex: 'position',
-                width: 250
+                width: 250,
+                flex: 1
             },{
                 text     : 'назначение',
                 dataIndex: 'purpose',

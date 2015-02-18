@@ -206,6 +206,9 @@ Ext.define('BeeApp.controller.Bee', {
                             Ext.Msg.alert(blocktext, Ext.decode(response.responseText).success);
                             me._refreshWindowcell();
                             me._sendObject();
+                        },
+                        failure: function(response) {
+                            Ext.Msg.alert('Ошибка', Ext.decode(response.responseText).errorMessage);
                         }
                     })
                 }
