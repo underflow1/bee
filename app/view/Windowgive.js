@@ -10,7 +10,7 @@ var purpose = [
     Ext.define('BeeApp.view.Windowgive', {
         extend: 'Ext.window.Window',
         alias: 'widget.windowgive',
-        width : 400,
+        width : 600,
         title: 'выдать сим карту',
         modal: true,
         items: [{
@@ -27,6 +27,43 @@ var purpose = [
                 name: 'phonenumber',
                 readOnly: true
             },{
+                xtype: 'combobox',
+                fieldLabel: 'ФИО',
+                name: 'fio',
+                readOnly: false,
+                store: 'Zupdata',
+                valueField: 'fio',
+                displayField:'fio',
+                typeAhead: true,
+                queryMode: 'local',
+                hideTrigger:false,
+                minChars: 3,
+                listeners: {
+                    select: function(a,b){
+                        Ext.getCmp('givepositionfield').setValue(b[0].get('position'));
+                        Ext.getCmp('givetruddognumberfield').setValue(b[0].get('truddognumber'));
+                        Ext.getCmp('givetruddogdatefield').setValue(b[0].get('truddogdate'));
+                        var index = Ext.StoreMgr.lookup("Companystore").findRecord('id',b[0].get('companycode'));
+                        Ext.getCmp('givetruddogcompanyidfield').setValue(index);
+                    }
+                },
+                listConfig: {
+                    loadingText: 'Searching...',
+                    emptyText: 'No matching posts found.',
+                    getInnerTpl: function () {
+                        return '<div>' +
+                        '<b>{fio}</b> <br>' +
+                        '{position}' +
+                        '</div>';
+                        //                      '</tpl>'
+                    }
+                }
+            },{
+                fieldLabel: 'должность',
+                id: 'givepositionfield',
+                name: 'position',
+                readOnly: false
+            },{
                 name: 'tariffid',
                 xtype: 'combobox',
                 editable: false,
@@ -35,18 +72,6 @@ var purpose = [
                 valueField: 'id',
                 displayField:'internalname',
                 queryMode:'local'
-            },{
-                fieldLabel: 'ФИО',
-                name: 'fio',
-                readOnly: false,
-                xtype: 'combobox',
-                store: 'Zupdata',
-                valueField: 'fio',
-                displayField:'fio'
-            },{
-                fieldLabel: 'должность',
-                name: 'position',
-                readOnly: false
             },{
                 fieldLabel: 'назначение',
                 xtype: 'combobox',
@@ -81,10 +106,12 @@ var purpose = [
                 value: 0
             },{
                 fieldLabel: 'договор',
+                id: 'givetruddognumberfield',
                 name: 'truddognumber',
                 readOnly: false
             },{
                 xtype: 'datefield',
+                id: 'givetruddogdatefield',
                 format: 'Y-m-d',
                 fieldLabel: 'дата договора',
                 name: 'truddogdate',
@@ -92,6 +119,7 @@ var purpose = [
                 value: new Date()
             },{
                 fieldLabel: 'Компания',
+                id: 'givetruddogcompanyidfield',
                 name: 'truddogcompanyid',
                 readOnly: false,
                 xtype: 'combobox',

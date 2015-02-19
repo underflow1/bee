@@ -23,7 +23,6 @@ Ext.define('BeeApp.view.Windowtransfer', {
                 readOnly: true
             },{
                 xtype: 'combobox',
-                id: 'trasferfiocombobox',
                 fieldLabel: 'ФИО',
                 name: 'fio',
                 readOnly: false,
@@ -33,21 +32,25 @@ Ext.define('BeeApp.view.Windowtransfer', {
                 typeAhead: true,
                 queryMode: 'local',
                 hideTrigger:false,
-                minchars: 4,
+                minChars: 3,
+                listeners: {
+                    select: function(a,b){
+                        Ext.getCmp('trasferpositionfield').setValue(b[0].get('position'));
+                        Ext.getCmp('trasfertruddognumberfield').setValue(b[0].get('truddognumber'));
+                        Ext.getCmp('trasfertruddogdatefield').setValue(b[0].get('truddogdate'));
+                        var index = Ext.StoreMgr.lookup("Companystore").findRecord('id',b[0].get('companycode'));
+                        Ext.getCmp('trasfertruddogcompanyidfield').setValue(index);
+                    }
+                },
                 listConfig: {
                     loadingText: 'Searching...',
                     emptyText: 'No matching posts found.',
                     getInnerTpl: function () {
-                        return '' +
-                        '<tpl if="fired">' +
-                        '<table class="x-field x-table-plain" width="100%"><tbody><tr><td><div><font color = #a9a9a9><b>{fio}</b></font></div></td><td><div align="right"><font color="#a9a9a9">уволен: {[Ext.Date.format(values.firedate, "Y-m-d")]}</font></div></td></tr></tbody></table>' +
-                        '<font color = #a9a9a9>{position}</font>' +
-                        '<tpl else>' +
-                        '<div>' +
+                        return '<div>' +
                         '<b>{fio}</b> <br>' +
                         '{position}' +
-                        '</div>' +
-                        '</tpl>'
+                        '</div>';
+  //                      '</tpl>'
                     }
                 }
             },{
@@ -86,6 +89,7 @@ Ext.define('BeeApp.view.Windowtransfer', {
                 value: new Date()
             },{
                 fieldLabel: 'Компания',
+                id: 'trasfertruddogcompanyidfield',
                 name: 'truddogcompanyid',
                 readOnly: false,
                 xtype: 'combobox',

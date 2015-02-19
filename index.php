@@ -36,7 +36,7 @@ function zeroes($number) {
         return $number;
     }
 };
-
+/*
 function fired($date) {
     if ($date == "Янв  1 2001 12:00:00:000") {
         return false;
@@ -44,7 +44,7 @@ function fired($date) {
         return true;
     }
 };
-
+*/
 
 
 function validateDate($date)
@@ -77,14 +77,36 @@ $app->get('/sssss', function() use($app) {
         die('Unable to connect or select MSSQL database!');
     }
     $query = mssql_query("
-        SELECT fi._Description as fio, so._Fld1703 AS firedateorig, do._Description AS position, so._Fld1685 as truddognumber, so._Fld1686 as truddogdate
+        SELECT fi._Description as fio, so._Fld1703 AS firedateorig, do._Description AS position, so._Fld1685 as truddognumber, so._Fld1686 as truddogdate, co._Fld1438 as companycode
         FROM [_Reference117] as so
         LEFT JOIN [_Reference138] AS fi ON fi._IDRRef = so._Fld1679RRef
         LEFT JOIN [_Reference51] AS do ON do._IDRRef = so._Fld1689RRef
+        LEFT JOIN [_Reference80] AS co ON co._IDRRef = so._Fld1681RRef
+        WHERE so._Fld1703 = '2001-01-01 00:00:00.000'
         ORDER BY so._Fld1703, fi._Description
     ");
-//        WHERE so._Marked = 0x01
-    $i = 0;
+
+    $companycode = array(
+        "ОР-" =>	"0",
+        "КЭ-" =>	"1",
+        "ИНФ" =>	"0",
+        "РОС" =>	"14",
+        "ПЭТ" =>	"8",
+        "СТК" =>	"10",
+        "КБ-" =>	"4",
+        "ФЛ-" =>	"12",
+        "ЭСР" =>	"13",
+        "ФЗ" => 	"0",
+        "СИК" =>	"9",
+        "ИНТ" =>	"0",
+        "ПСТ" =>	"6",
+        "ИФТ" =>	"2",
+        "ПСП" =>	"7",
+        "УБ-" =>	"11",
+        "АС-" =>	"0",
+        "ЛСТ" =>	"5"
+    );
+
     $stack = array();
     $month = array(
         "Янв" => "01",
@@ -101,53 +123,27 @@ $app->get('/sssss', function() use($app) {
         "Дек" => "12",
     );
 
-    $company = array(
-        "КЭ" => "01",
-        "КЭ-" => "01",
-        "ИФТ" => "02",
-        "СКО" => "03",
-        "КБ" => "04",
-        "ЛС" => "05",
-        "ЛСТ" => "05",
-        "ПС" => "06",
-        "ПСП" => "06",
-        "ПП" => "07",
-        "ПЭТ" => "08",
-        "СиК" => "09",
-        "СИК " => "09",
-        "СИК" => "09",
-        "СН" => "10",
-        "СТК" => "10",
-        "УК" => "11",
-        "УБУК" => "11",
-        "ФЛ" => "12",
-        "ФЗ" => "12",
-        "ЭР" => "13",
-        "ЭСР" => "13",
-        "РОС" => "14",
-        "ПСТ" => "0",
-        "ИНФ" => "0",
-        "" => "0"
-
-    );
-
     while ($row = mssql_fetch_assoc($query)) {
-        if (fired($row['firedateorig'])) {
+        /*if (fired($row['firedateorig'])) {
             $date = explode(' ', str_replace('  ', ' ', $row['firedateorig']));
             $date2 = date_format(new DateTime(($date[2]-2000)."-".$month[$date[0]]."-".zeroes($date[1])), 'Y-m-d');
             $fired = true;
         } else {
             $date2 = '';
             $fired = false;
-        }
+        } */
         $date = explode(' ', str_replace('  ', ' ', $row['truddogdate']));
-        $date3 = date_format(new DateTime(($date[2]-2000)."-".$month[$date[0]]."-".zeroes($date[1])), 'Y-m-d');
-
+        $truddogdate = date_format(new DateTime(($date[2]-2000)."-".$month[$date[0]]."-".$date[1]), 'Y-m-d');
         $truddognumber = iconv("CP1251", "UTF-8", trim($row['truddognumber']));
-        $companycode = preg_replace("/[^A-Za-z0-9 ]/", '', trim(preg_replace('/[0-9]+/', '', $truddognumber)));
-        $truddognumber = str_replace($companycode,"",$truddognumber);
-
-        $rowarray = array("fio" => iconv("CP1251", "UTF-8", trim($row['fio'])), "fired" => $fired, "firedate" => $date2, "position" => iconv("CP1251", "UTF-8", trim($row['position'])), "companycode" => $company[$companycode], "truddognumber" => $truddognumber, "truddogdate" => $date3 );
+        $truddognumber2 = preg_replace('/[^0-9]/', '', $truddognumber);
+        $rowarray = array(
+            "fio" => iconv("CP1251", "UTF-8", trim($row['fio'])),
+            //"fired" => $fired,
+            //"firedate" => $date2,
+            "position" => iconv("CP1251", "UTF-8", trim($row['position'])),
+            "companycode" => $companycode[iconv("CP1251", "UTF-8", trim($row['companycode']))],
+            "truddognumber" => $truddognumber2,
+            "truddogdate" => $truddogdate );
         array_push($stack, $rowarray);
     }
     mssql_free_result($query);

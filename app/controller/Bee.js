@@ -10,10 +10,6 @@ Ext.define('BeeApp.controller.Bee', {
             'viewport > mainview': {
                 itemdblclick: this._showWindow
             },
-            '#trasferfiocombobox': {
-                select: this._fillTransferfields
-            },
-
             'windowcell': {
                 close: this._updateGrid
             },
@@ -60,12 +56,6 @@ Ext.define('BeeApp.controller.Bee', {
                 click: this._giveTheNumber
             }
         });
-    },
-
-    _fillTransferfields: function(a,b) {
-        Ext.getCmp('trasferpositionfield').setValue(b[0].get('position'));
-        Ext.getCmp('trasfertruddognumberfield').setValue(b[0].get('truddognumber'));
-        Ext.getCmp('trasfertruddogdatefield').setValue(b[0].get('truddogdate'));
     },
 
     _sendObject: function() {

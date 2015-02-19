@@ -10,6 +10,6 @@ Ext.define('BeeApp.model.Zupdata', {
         {name: 'fired', type: 'bool'},
         {name: 'truddogdate', type: 'string'},
         {name: 'truddognumber', type: 'integer'},
-        {name: 'companycode', type: 'string'}
+        {name: 'companycode', type: 'integer'}
     ]
 });
