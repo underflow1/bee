@@ -38,7 +38,11 @@ var purpose = [
             },{
                 fieldLabel: 'ФИО',
                 name: 'fio',
-                readOnly: false
+                readOnly: false,
+                xtype: 'combobox',
+                store: 'Zupdata',
+                valueField: 'fio',
+                displayField:'fio'
             },{
                 fieldLabel: 'должность',
                 name: 'position',

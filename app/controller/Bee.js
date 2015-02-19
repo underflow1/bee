@@ -2,7 +2,7 @@ Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
     views: ['Mainview', 'Windowcell', 'Windowsimnumber','Windowplan','Windowgive','Windowtransfer'],
-    stores: ['Currentstate', 'Companystore','Tariffstore'],
+    stores: ['Currentstate', 'Companystore','Tariffstore','Zupdata'],
     models: ['Currentstate'],
 
     init: function() {
@@ -10,6 +10,10 @@ Ext.define('BeeApp.controller.Bee', {
             'viewport > mainview': {
                 itemdblclick: this._showWindow
             },
+            '#trasferfiocombobox': {
+                select: this._fillTransferfields
+            },
+
             'windowcell': {
                 close: this._updateGrid
             },
@@ -58,7 +62,11 @@ Ext.define('BeeApp.controller.Bee', {
         });
     },
 
-
+    _fillTransferfields: function(a,b) {
+        Ext.getCmp('trasferpositionfield').setValue(b[0].get('position'));
+        Ext.getCmp('trasfertruddognumberfield').setValue(b[0].get('truddognumber'));
+        Ext.getCmp('trasfertruddogdatefield').setValue(b[0].get('truddogdate'));
+    },
 
     _sendObject: function() {
         if(Ext.getCmp('lettercheckbox').checked){

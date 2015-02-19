@@ -29,6 +29,24 @@ function checkrights($access) {
     }
 }
 
+function zeroes($number) {
+    if ($number < 10) {
+        return "0".$number;
+    } else {
+        return $number;
+    }
+};
+
+function fired($date) {
+    if ($date == "Янв  1 2001 12:00:00:000") {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+
+
 function validateDate($date)
 {
     $format = 'Y-m-d';
@@ -58,39 +76,85 @@ $app->get('/sssss', function() use($app) {
     if (!$link || !mssql_select_db('zup_20150218', $link)) {
         die('Unable to connect or select MSSQL database!');
     }
-
     $query = mssql_query("
-SELECT fi._Description, so._Fld1703
-FROM [_Reference117] as so
-LEFT JOIN [_Reference138] AS fi ON fi._IDRRef = so._Fld1679RRef
-");
+        SELECT fi._Description as fio, so._Fld1703 AS firedateorig, do._Description AS position, so._Fld1685 as truddognumber, so._Fld1686 as truddogdate
+        FROM [_Reference117] as so
+        LEFT JOIN [_Reference138] AS fi ON fi._IDRRef = so._Fld1679RRef
+        LEFT JOIN [_Reference51] AS do ON do._IDRRef = so._Fld1689RRef
+        ORDER BY so._Fld1703, fi._Description
+    ");
+//        WHERE so._Marked = 0x01
+    $i = 0;
+    $stack = array();
+    $month = array(
+        "Янв" => "01",
+        "Фев" => "02",
+        "Мар" => "03",
+        "Апр" => "04",
+        "Май" => "05",
+        "Июн" => "06",
+        "Июл" => "07",
+        "Авг" => "08",
+        "Сен" => "09",
+        "Окт" => "10",
+        "Ноя" => "11",
+        "Дек" => "12",
+    );
 
-$stack = array();
-while ($row = mssql_fetch_assoc($query)) {
-    //"_IDRRef" => $row['_IDRRef'],
-    $rowarray = array("_Description" => iconv("CP1251", "UTF-8", trim($row['_Description'])), "_Fld1703" => trim($row['_Fld1703']));
-    array_push($stack, $rowarray);
-}
+    $company = array(
+        "КЭ" => "01",
+        "КЭ-" => "01",
+        "ИФТ" => "02",
+        "СКО" => "03",
+        "КБ" => "04",
+        "ЛС" => "05",
+        "ЛСТ" => "05",
+        "ПС" => "06",
+        "ПСП" => "06",
+        "ПП" => "07",
+        "ПЭТ" => "08",
+        "СиК" => "09",
+        "СИК " => "09",
+        "СИК" => "09",
+        "СН" => "10",
+        "СТК" => "10",
+        "УК" => "11",
+        "УБУК" => "11",
+        "ФЛ" => "12",
+        "ФЗ" => "12",
+        "ЭР" => "13",
+        "ЭСР" => "13",
+        "РОС" => "14",
+        "ПСТ" => "0",
+        "ИНФ" => "0",
+        "" => "0"
+
+    );
+
+    while ($row = mssql_fetch_assoc($query)) {
+        if (fired($row['firedateorig'])) {
+            $date = explode(' ', str_replace('  ', ' ', $row['firedateorig']));
+            $date2 = date_format(new DateTime(($date[2]-2000)."-".$month[$date[0]]."-".zeroes($date[1])), 'Y-m-d');
+            $fired = true;
+        } else {
+            $date2 = '';
+            $fired = false;
+        }
+        $date = explode(' ', str_replace('  ', ' ', $row['truddogdate']));
+        $date3 = date_format(new DateTime(($date[2]-2000)."-".$month[$date[0]]."-".zeroes($date[1])), 'Y-m-d');
+
+        $truddognumber = iconv("CP1251", "UTF-8", trim($row['truddognumber']));
+        $companycode = preg_replace("/[^A-Za-z0-9 ]/", '', trim(preg_replace('/[0-9]+/', '', $truddognumber)));
+        $truddognumber = str_replace($companycode,"",$truddognumber);
+
+        $rowarray = array("fio" => iconv("CP1251", "UTF-8", trim($row['fio'])), "fired" => $fired, "firedate" => $date2, "position" => iconv("CP1251", "UTF-8", trim($row['position'])), "companycode" => $company[$companycode], "truddognumber" => $truddognumber, "truddogdate" => $date3 );
+        array_push($stack, $rowarray);
+    }
     mssql_free_result($query);
     mssql_close($link);
 
-    $asd =  json_encode($stack);
-
-    $asd = preg_replace_callback(
-        '/\\\\u([0-9a-f]{4})/i',
-        function ($matches) {
-            $sym = mb_convert_encoding(
-                pack('H*', $matches[1]),
-                'UTF-8',
-                'UTF-16'
-            );
-            return $sym;
-        },
-        $asd
-    );
-    return $asd;
+return $app->json(array("success" => true, "data" => $stack));
 });
-
 
 $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($app) {
     $test = new Sim();
