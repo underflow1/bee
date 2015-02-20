@@ -6,7 +6,7 @@ Ext.define('BeeApp.view.Windowcell', {
         alias: 'widget.windowcell',
         id: 'windowcell',
         itemID: 'windowcell',
-        width : 373,
+        width : 500,
         title: 'Действия с сим картой',
         modal: true,
         border: false,

@@ -7,7 +7,7 @@ Ext.define('BeeApp.controller.Bee', {
 
     init: function() {
         this.control({
-            'viewport > mainview': {
+            'mainview': {
                 itemdblclick: this._showWindow
             },
             'windowcell': {

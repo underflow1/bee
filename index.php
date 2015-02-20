@@ -77,14 +77,41 @@ $app->get('/sssss', function() use($app) {
         die('Unable to connect or select MSSQL database!');
     }
     $query = mssql_query("
+if exists (
+        select * from tempdb.dbo.sysobjects o
+        where o.xtype in ('U')
+        and o.id = object_id(N'tempdb..#uniontable')
+)
+BEGIN
+  DROP TABLE #uniontable;
+  DROP TABLE #uniontable2;
+END
+SELECT _Fld4859RRef AS employee_id, _Fld4862RRef AS position_id, _Fld4864 AS event_date
+INTO #uniontable
+FROM [_Document223_VT4857]
+UNION
+SELECT _Fld3146RRef AS employee_id, _Fld3152RRef AS position_id, _Fld3148 AS event_date
+FROM [_Document182_VT3144]
+SELECT ut.employee_id, ut.position_id
+INTO #uniontable2
+FROM #uniontable AS ut
+INNER JOIN (
+SELECT employee_id, MAX(event_date) as dmax
+FROM #uniontable
+GROUP BY employee_id
+) as umax ON umax.employee_id = ut.employee_id AND umax.dmax = ut.event_date
+
         SELECT fi._Description as fio, so._Fld1703 AS firedateorig, do._Description AS position, so._Fld1685 as truddognumber, so._Fld1686 as truddogdate, co._Fld1438 as companycode
         FROM [_Reference117] as so
         LEFT JOIN [_Reference138] AS fi ON fi._IDRRef = so._Fld1679RRef
-        LEFT JOIN [_Reference51] AS do ON do._IDRRef = so._Fld1689RRef
         LEFT JOIN [_Reference80] AS co ON co._IDRRef = so._Fld1681RRef
+        LEFT JOIN [#uniontable2] AS position ON position.employee_id = so._IDRRef
+        LEFT JOIN [_Reference51] AS do ON do._IDRRef = position.position_id
         WHERE so._Fld1703 = '2001-01-01 00:00:00.000'
         ORDER BY so._Fld1703, fi._Description
     ");
+
+
 
     $companycode = array(
         "ОР-" =>	"0",
@@ -159,6 +186,42 @@ $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($
         "success" => true,
         "data" => $result
     ));
+});
+
+$app->get('/detail/{type}', function($type) use($app) {
+    switch ($type) {
+        case 'phonenumber':
+            $sql = "SELECT id
+                    ,phonenumber AS displaydata
+                    ,phonenumber
+                    FROM phonenumbers
+                    ORDER BY phonenumber ASC";
+            break;
+        case 'fio':
+            $sql = "SELECT id
+                    ,fio AS displaydata
+                    ,phonenumber
+                    ,startdate
+                    ,if((stopdate IS NULL), CURDATE(), stopdate) as stopdate
+                    ,if ((stopdate IS NULL), '', 'hidden') as misc
+                    FROM holders
+                    WHERE fio <> 'резерв' AND fio <> 'для QR кодов' AND fio <> 'Объект'
+                    ORDER BY displaydata ASC";
+            break;
+        default:
+            $sql = '';
+    }
+    if (strlen($sql)>0) {
+        $post = $app['db']->fetchAll($sql);
+        return $app->json(array(
+            "success" => true,
+            "data" => $post
+        ));
+    } else {
+        return $app->json(array(
+            "success" => false,
+        ),404);
+    }
 });
 
 $app->get('/testsim/{phonenumber}/setblock/{state}', function($phonenumber,$state) use($app) {

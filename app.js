@@ -21,14 +21,23 @@ Ext.application({
 
     name: 'BeeApp',
     appFolder: 'app',
-    controllers: ['Bee'],
+    controllers: ['Bee', 'Detailcontroller'],
 
     launch: function() {
+        var tabs = new Ext.TabPanel({
+            title: "<table width='100%'><tbody><tr ><td><strong><font style='font-size: 10pt;' color='white'>Список всех номеров на текущий момент</font></strong></td><td><div align='right'><strong><font style='font-size: 10pt;'color='white'>" + currentdata.login + "</font></strong></div></td></tr></tbody></table>",
+            items: [{
+                xtype: 'mainview',
+                title: 'список сим карт'
+            },{
+                xtype: 'detailview',
+                title: 'детализация'
+            }]
+        });
+
         Ext.create('Ext.container.Viewport', {
             layout: 'fit',
-            items: {
-                xtype: 'mainview'
-            }
+            items: [tabs]
         });
     }
 });
