@@ -8,7 +8,7 @@ Ext.define('BeeApp.store.Detailitemstore', {
     storeId: 'Detailitemstore_id',
     proxy:{
         type: 'ajax',
-        url: '/detail/fio',
+        url: '/detailitemslist/fio',
         reader: {
             type: 'json',
             root: 'data'

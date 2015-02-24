@@ -27,9 +27,9 @@ Ext.define('BeeApp.view.Detailsettings' ,{
                     change: function(a,b) {
                         if(b) {
                            // var mystore = Ext.StoreMgr.lookup("").get
-                            Ext.getStore('Detailitemstore').load({url:'/detail/fio'});
+                            Ext.getStore('Detailitemstore').load({url:'/detailitemslist/fio'});
                         } else {
-                            Ext.getStore('Detailitemstore').load({url:'/detail/phonenumber'});
+                            Ext.getStore('Detailitemstore').load({url:'/detailitemslist/phonenumber'});
                         }
                     }
                 }
@@ -37,8 +37,19 @@ Ext.define('BeeApp.view.Detailsettings' ,{
     },{
         xtype: 'textfield',
         value: 'asdf',
-        id: 'detailobject_id'
-
+        id: 'detailphonenumber_id'
+    },{
+        xtype: 'textfield',
+        value: 'asdf',
+        id: 'detaildisplaydata_id'
+    },{
+        xtype: 'textfield',
+        value: 'asdf',
+        id: 'detailstartdate_id'
+    },{
+        xtype: 'textfield',
+        value: 'asdf',
+        id: 'detailstopdate_id'
     }],
 
 

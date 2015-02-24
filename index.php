@@ -188,7 +188,25 @@ $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($
     ));
 });
 
-$app->get('/detail/{type}', function($type) use($app) {
+
+$app->get('/detail/{phonenumber}/{startdate}/{stopdate}', function($phonenumber, $startdate, $stopdate) use($app) {
+    $sql = "
+    SELECT abonent, calldate, calltime, duration, paysize, initiator, receiver, action_description, service_description, type
+
+    FROM detail_raw
+    WHERE calldate >= \"$startdate\" AND calldate <= \"$stopdate\" AND abonent = \"$phonenumber\"
+    ";
+    $post = $app['db']->fetchAll($sql);
+    return $app->json(array(
+        "success" => true,
+        "data" => $post
+    ));
+});
+
+
+ 
+
+$app->get('/detailitemslist/{type}', function($type) use($app) {
     switch ($type) {
         case 'phonenumber':
             $sql = "SELECT id

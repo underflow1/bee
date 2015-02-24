@@ -1,6 +1,13 @@
 /**
  * Created by underflow on 07.02.2015.
  */
+
+var purpose = [
+    [1, 'связь'],
+    [2, 'на отдел'],
+    [3, 'интернет']
+];
+
 Ext.define('BeeApp.view.Windowtransfer', {
         extend: 'Ext.window.Window',
         alias: 'widget.windowtransfer',
