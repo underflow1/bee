@@ -28,75 +28,94 @@
       <file leaf-file-name="Detailitemgrid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Detailitemgrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="274" max-vertical-offset="952">
-              <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1292">
+              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Detailsettings.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Detailsettings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/view/Detailsettings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="1156">
-              <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.627907" vertical-offset="408" max-vertical-offset="1632">
+              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Detailitemstore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/store/Detailitemstore.js">
+      <file leaf-file-name="Windowgive.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/Windowgive.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="2516">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Windowplan.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/Windowplan.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="850">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Windowcell.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/Windowcell.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="2006">
+              <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="21" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63301283" vertical-offset="3107" max-vertical-offset="8194">
-              <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
+            <state vertical-scroll-proportion="-12.884615" vertical-offset="6890" max-vertical-offset="8194">
+              <caret line="425" column="5" selection-start-line="425" selection-start-column="5" selection-end-line="425" selection-end-column="16" />
               <folding>
                 <element signature="e#1548#1593#0#PHP" expanded="true" />
-                <marker date="1424801507752" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
-                <marker date="1424801507752" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
-                <marker date="1424801507752" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
-                <marker date="1424801507752" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
-                <marker date="1424801507752" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
-                <marker date="1424801507752" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
-                <marker date="1424801507752" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
-                <marker date="1424801507752" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
-                <marker date="1424801507752" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
-                <marker date="1424801507752" expanded="true" signature="14267:14332" placeholder="SELECT login..rights..." />
-                <marker date="1424801507752" expanded="true" signature="14876:15550" placeholder="SELECT f1.ph..phonenumbers..." />
+                <marker date="1424870745781" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
+                <marker date="1424870745781" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
+                <marker date="1424870745781" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
+                <marker date="1424870745781" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
+                <marker date="1424870745781" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
+                <marker date="1424870745781" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
+                <marker date="1424870745781" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
+                <marker date="1424870745781" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
+                <marker date="1424870745781" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
+                <marker date="1424870745781" expanded="true" signature="14268:14320" placeholder="SELECT MAX(c..detail_raw2..." />
+                <marker date="1424870745781" expanded="true" signature="14819:15493" placeholder="SELECT f1.ph..phonenumbers..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Detailmodel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/model/Detailmodel.js">
+      <file leaf-file-name="Windowtransfer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/Windowtransfer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#46#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="2108">
+              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Detailstore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/store/Detailstore.js">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
               <folding>
-                <element signature="e#0#46#0" expanded="false" />
+                <marker date="1424870380187" expanded="false" signature="709:725" placeholder="..." />
+                <marker date="1424870380187" expanded="false" signature="843:859" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -105,18 +124,8 @@
       <file leaf-file-name="Detailgrid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/Detailgrid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="186" max-vertical-offset="1105">
-              <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Detailcontroller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/Detailcontroller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1105">
+              <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -126,17 +135,7 @@
         <entry file="file://$PROJECT_DIR$/app/view/Detailview.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Bee.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="5627">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -179,7 +178,6 @@
         <option value="$PROJECT_DIR$/app/view/Windowcell.js" />
         <option value="$PROJECT_DIR$/templates/pril.html" />
         <option value="$PROJECT_DIR$/data/sim.php" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/app/view/Mainview.js" />
         <option value="$PROJECT_DIR$/app/model/Zupdata.js" />
         <option value="$PROJECT_DIR$/app/view/Windowgive.js" />
@@ -189,20 +187,22 @@
         <option value="$PROJECT_DIR$/app/store/Detailstore.js" />
         <option value="$PROJECT_DIR$/app/store/Detailitemstore.js" />
         <option value="$PROJECT_DIR$/app/view/Detailgrid.js" />
-        <option value="$PROJECT_DIR$/app/view/Detailitemgrid.js" />
-        <option value="$PROJECT_DIR$/app/view/Detailsettings.js" />
-        <option value="$PROJECT_DIR$/app/view/Detailview.js" />
         <option value="$PROJECT_DIR$/app/controller/Bee.js" />
         <option value="$PROJECT_DIR$/app/controller/Detailcontroller.js" />
+        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/app/view/Detailview.js" />
+        <option value="$PROJECT_DIR$/app/view/Detailitemgrid.js" />
+        <option value="$PROJECT_DIR$/app/view/Detailsettings.js" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="630" />
-    <option name="width" value="1290" />
-    <option name="height" value="1040" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -278,10 +278,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -363,15 +359,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="a30bbdf8-c3ba-41fe-907c-26429f8dad1b" server_name="192.168.99.225">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="a30bbdf8-c3ba-41fe-907c-26429f8dad1b" server_name="192.168.99.225">
       <method />
     </configuration>
     <list size="0" />
@@ -410,10 +406,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="630" y="0" width="1290" height="1040" extended-state="0" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18281938" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1825054" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969433" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932165" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -421,19 +417,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19756098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1996805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18290043" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959612" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1892779" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -471,18 +467,27 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/index.php</url>
-          <line>466</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/view/Detailview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="442">
+          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/Bee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="5627">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
@@ -510,17 +515,17 @@
           <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
           <folding>
             <element signature="e#1548#1593#0#PHP" expanded="true" />
-            <marker date="1424801507752" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
-            <marker date="1424801507752" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
-            <marker date="1424801507752" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
-            <marker date="1424801507752" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
-            <marker date="1424801507752" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
-            <marker date="1424801507752" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="14267:14332" placeholder="SELECT login..rights..." />
-            <marker date="1424801507752" expanded="true" signature="14876:15550" placeholder="SELECT f1.ph..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
+            <marker date="1424870745781" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
+            <marker date="1424870745781" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
+            <marker date="1424870745781" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
+            <marker date="1424870745781" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
+            <marker date="1424870745781" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="14268:14320" placeholder="SELECT MAX(c..detail_raw2..." />
+            <marker date="1424870745781" expanded="true" signature="14819:15493" placeholder="SELECT f1.ph..phonenumbers..." />
           </folding>
         </state>
       </provider>
@@ -573,17 +578,17 @@
           <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
           <folding>
             <element signature="e#1548#1593#0#PHP" expanded="true" />
-            <marker date="1424801507752" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
-            <marker date="1424801507752" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
-            <marker date="1424801507752" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
-            <marker date="1424801507752" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
-            <marker date="1424801507752" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
-            <marker date="1424801507752" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="14267:14332" placeholder="SELECT login..rights..." />
-            <marker date="1424801507752" expanded="true" signature="14876:15550" placeholder="SELECT f1.ph..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
+            <marker date="1424870745781" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
+            <marker date="1424870745781" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
+            <marker date="1424870745781" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
+            <marker date="1424870745781" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
+            <marker date="1424870745781" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="14268:14320" placeholder="SELECT MAX(c..detail_raw2..." />
+            <marker date="1424870745781" expanded="true" signature="14819:15493" placeholder="SELECT f1.ph..phonenumbers..." />
           </folding>
         </state>
       </provider>
@@ -622,17 +627,17 @@
           <caret line="113" column="49" selection-start-line="113" selection-start-column="34" selection-end-line="113" selection-end-column="49" />
           <folding>
             <element signature="e#1548#1593#0#PHP" expanded="true" />
-            <marker date="1424801507752" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
-            <marker date="1424801507752" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
-            <marker date="1424801507752" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
-            <marker date="1424801507752" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
-            <marker date="1424801507752" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
-            <marker date="1424801507752" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="14267:14332" placeholder="SELECT login..rights..." />
-            <marker date="1424801507752" expanded="true" signature="14876:15550" placeholder="SELECT f1.ph..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
+            <marker date="1424870745781" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
+            <marker date="1424870745781" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
+            <marker date="1424870745781" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
+            <marker date="1424870745781" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
+            <marker date="1424870745781" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="14268:14320" placeholder="SELECT MAX(c..detail_raw2..." />
+            <marker date="1424870745781" expanded="true" signature="14819:15493" placeholder="SELECT f1.ph..phonenumbers..." />
           </folding>
         </state>
       </provider>
@@ -686,13 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Windowplan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="969">
-          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/letter_activate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="442">
@@ -742,20 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3531856" vertical-offset="0" max-vertical-offset="722">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Windowcell.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2801724" vertical-offset="893" max-vertical-offset="1887">
-          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/view/Mainview.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1445">
@@ -784,26 +768,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Windowgive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2482">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/model/Currentstate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Windowtransfer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2108">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -811,27 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/Detailmodel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/store/Detailstore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,31 +786,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Detailgrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="186" max-vertical-offset="1105">
-          <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Detailitemgrid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="274" max-vertical-offset="952">
-          <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Detailview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <caret line="20" column="3" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding />
+          <folding>
+            <marker date="1424852803213" expanded="true" signature="-1:-1" placeholder="{&quot;extend&quot;: 'Ext.data.Store'...}" />
+            <marker date="1424852803213" expanded="true" signature="-1:-1" placeholder="{&quot;type&quot;: 'ajax'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -877,38 +803,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/Detailcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-          <caret line="19" column="74" selection-start-line="19" selection-start-column="74" selection-end-line="19" selection-end-column="74" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="595">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding>
+            <marker date="1424852803211" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1424852803211" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/Detailsettings.js">
+    <entry file="file://$PROJECT_DIR$/app/view/Detailgrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="429" max-vertical-offset="1156">
-          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="1105">
+          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63301283" vertical-offset="3107" max-vertical-offset="8194">
-          <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
+        <state vertical-scroll-proportion="-12.884615" vertical-offset="6890" max-vertical-offset="8194">
+          <caret line="425" column="5" selection-start-line="425" selection-start-column="5" selection-end-line="425" selection-end-column="16" />
           <folding>
             <element signature="e#1548#1593#0#PHP" expanded="true" />
-            <marker date="1424801507752" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
-            <marker date="1424801507752" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
-            <marker date="1424801507752" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
-            <marker date="1424801507752" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
-            <marker date="1424801507752" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
-            <marker date="1424801507752" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
-            <marker date="1424801507752" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
-            <marker date="1424801507752" expanded="true" signature="14267:14332" placeholder="SELECT login..rights..." />
-            <marker date="1424801507752" expanded="true" signature="14876:15550" placeholder="SELECT f1.ph..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="5734:5974" placeholder="SELECT abone..detail_raw..." />
+            <marker date="1424870745781" expanded="true" signature="6253:6426" placeholder="SELECT id ,p..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="6488:6911" placeholder="SELECT id ,f..holders..." />
+            <marker date="1424870745781" expanded="true" signature="10617:12510" placeholder="SELECT total..phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10734:12510" placeholder="SELECT main...phonenumber..." />
+            <marker date="1424870745781" expanded="true" signature="10898:12510" placeholder="SELECT phone..." />
+            <marker date="1424870745781" expanded="true" signature="13514:13535" placeholder="SELECT * FRO..company..." />
+            <marker date="1424870745781" expanded="true" signature="13729:13749" placeholder="SELECT * FRO..tariff..." />
+            <marker date="1424870745781" expanded="true" signature="13949:13985" placeholder="SELECT phone..phonenumbers..." />
+            <marker date="1424870745781" expanded="true" signature="14268:14320" placeholder="SELECT MAX(c..detail_raw2..." />
+            <marker date="1424870745781" expanded="true" signature="14819:15493" placeholder="SELECT f1.ph..phonenumbers..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Windowtransfer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2108">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <marker date="1424870380187" expanded="false" signature="709:725" placeholder="..." />
+            <marker date="1424870380187" expanded="false" signature="843:859" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Detailview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Windowplan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="850">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Windowcell.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="2006">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="21" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Detailitemgrid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1292">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Windowgive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="2516">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/Detailsettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.627907" vertical-offset="408" max-vertical-offset="1632">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

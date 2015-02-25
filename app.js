@@ -7,8 +7,8 @@ currentdata.letter =  Object();
 Ext.Ajax.request({
     url: '/currentuser',
     success: function(response) {
-        currentdata.login = Ext.decode(response.responseText).data.login;
-        currentdata.rights = Ext.decode(Ext.decode(response.responseText).data.rights);
+        currentdata= Ext.decode(response.responseText).data;
+        //currentdata.rights = Ext.decode(Ext.decode(response.responseText).data.rights);
         console.log(currentdata);
     }
 });

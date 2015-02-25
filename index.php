@@ -420,20 +420,20 @@ $app->get('/phonenumbers', function() use ($app) {
 $app->get('/currentuser', function() use ($app) {
     $principal = explode("@",$_SERVER['REMOTE_USER']);
     $login = $principal[0];
-    $sql = "SELECT login, rights FROM rights WHERE login = \"$login\" LIMIT 1";
+
+    $sql = "SELECT MAX(calldate) AS maxcalldate FROM detail_raw2";
     $post = $app['db']->fetchAll($sql);
-    $falseresult = '{"return":false,"block":false,"transfer":false,"give":false,"changesim":false,"changeplan":false,"pril":false}';
-    if (!empty($post)) {
-        return json_encode(array(
-            "success" => true,
-            "data" => $post[0]
-        ));
-    } else {
-        return json_encode(array(
-            "success" => false,
-            "data" => array("login" => $login, "rights" => $falseresult )
-        ));
-    }
+    $maxcalldate = new DateTime($post[0]['maxcalldate']);
+    $mincalldate = new DateTime($post[0]['maxcalldate']);
+    $mincalldate = $mincalldate->modify('-1 month +1 day');
+
+    return $app-> json(array(
+        "success" => true,
+        "data" => array(
+            "login" => $login,
+            "maxcalldate" => $maxcalldate,
+            "mincalldate" => $mincalldate
+            )));
 });
 
 $app->get('/current', function() use ($app) {

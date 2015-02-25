@@ -12,7 +12,7 @@ Ext.define('BeeApp.view.Detailview' ,{
     },{
         xtype: 'detailsettings',
         region: 'north',
-        height: 75
+        height: 95
     },{
         xtype: 'detailitemgrid',
         region: 'west',
