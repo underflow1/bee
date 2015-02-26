@@ -189,13 +189,25 @@ $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($
 });
 
 
-$app->get('/detail/{phonenumber}/{startdate}/{stopdate}', function($phonenumber, $startdate, $stopdate) use($app) {
+$app->get('/detail/{phonenumber}/{startdate}/{stopdate}/{zero}/{gprs}', function($phonenumber, $startdate, $stopdate, $zero, $gprs) use($app) {
+
+    $wherestatement = "calldate >= \"$startdate\" AND calldate <= \"$stopdate\" AND abonent = \"$phonenumber\"";
+
+    if ($gprs == 'true') {
+        $gprs = "";
+    } else {
+        $gprs = "AND type <> 'GPRS' ";
+    }
+    if($zero == 'true') {
+        $zero = "";
+    } else {
+        $zero = "AND paysize > 0 ";
+    }
 
     $sql = "
     SELECT abonent, calldate, calltime, duration, paysize, initiator, receiver, action_description, service_description, type
-
     FROM detail_raw
-    WHERE calldate >= \"$startdate\" AND calldate <= \"$stopdate\" AND abonent = \"$phonenumber\" AND type <> 'GPRS' AND paysize > 0
+    WHERE $wherestatement $gprs $zero
     ";
     $post = $app['db']->fetchAll($sql);
     return $app->json(array(

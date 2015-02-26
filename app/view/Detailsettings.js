@@ -16,7 +16,8 @@ Ext.define('BeeApp.view.Detailsettings' ,{
             {
                 boxLabel: 'по номерам',
                 name: 'type',
-                inputValue: 'phonenumber'
+                inputValue: 'phonenumber',
+                id: 'phonetyperadio_id'
             },{
                 checked: true,
                 boxLabel: 'по ФИО',
@@ -77,9 +78,18 @@ Ext.define('BeeApp.view.Detailsettings' ,{
         layout: 'vbox',
         defaultType: 'checkbox',
         items: [{
-            boxLabel: 'вызовы с нулевой стоимостью'
+            boxLabel: 'вызовы с нулевой стоимостью',
+            checked: true,
+            id: 'zeropaysizecheckbox_id',
+            listeners: {
+                change: function(a) {
+                    Ext.getCmp('gprscheckbox_id').setDisabled(!a.checked);
+                    console.log(a.checked + ' второй чек: ' + Ext.getCmp('gprscheckbox_id').checked);
+                }
+            }
         },{
-            boxLabel: 'GPRS трафик'
+            boxLabel: 'GPRS трафик',
+            id: 'gprscheckbox_id'
         }]
     },{
         margin: "14 5 10 5",

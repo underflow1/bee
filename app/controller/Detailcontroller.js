@@ -19,8 +19,9 @@ Ext.define('BeeApp.controller.Detailcontroller', {
     },
 
     _getDetailDataButtonClick: function() {
-        console.log('/detail/'+ Ext.getCmp('detailphonenumber_id') + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue);
-        Ext.getStore('Detailstore').load({url:'/detail/' + Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue});
+
+        console.log('/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked);
+        Ext.getStore('Detailstore').load({url:'/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked});
     }
 
 });

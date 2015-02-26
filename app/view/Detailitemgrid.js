@@ -16,29 +16,34 @@ Ext.define('BeeApp.view.Detailitemgrid' ,{
     },
     listeners:{
         itemclick: function(grid, record) {
+            $start = record.raw.startdate;
+            $stop = record.raw.stopdate;
+            if (new Date($start) > new Date($stop)) {
+                $start = $stop;
+            }
             Ext.getCmp('detailphonenumber_id').setValue(record.raw.phonenumber);
-            Ext.getCmp('detaildisplaydata_id').setValue(record.raw.displaydata);
-            Ext.getCmp('datedetailstartdate_id').maxValue = new Date(record.raw.stopdate);
-            Ext.getCmp('datedetailstopdate_id').maxValue = new Date(record.raw.stopdate);
-
-            $spordate = Ext.Date.add(new Date(record.raw.stopdate), Ext.Date.MONTH, -1);
-            if ($spordate >= new Date(record.raw.startdate)) {
-                    //Ext.getCmp('datedetailstartdate_id').setValue(new Date(record.raw.stopdate));
-                    Ext.getCmp('datedetailstartdate_id').setValue($spordate);
-                Ext.getCmp('datedetailstartdate_id').minValue = $spordate;
+            if (record.raw.displaydata == record.raw.phonenumber) {
+                Ext.getCmp('detaildisplaydata_id').setValue('Без учета держателя');
             } else {
-                Ext.getCmp('datedetailstartdate_id').setValue(new Date(record.raw.startdate));
-                Ext.getCmp('datedetailstopdate_id').minValue = new Date(record.raw.stopdate);
-        }
-            Ext.getCmp('datedetailstopdate_id').setValue(new Date(record.raw.stopdate));
-        },
-        itemdblclick: function(grid, record) {
-            //if (record.raw.phonenumber == record.raw.displaydata) {
+                Ext.getCmp('detaildisplaydata_id').setValue(record.raw.displaydata)
+            }
 
-         //   } else {
-        //        Ext.getStore('Detailstore').load({url:'/detail/'+record.raw.phonenumber+'/'+record.raw.startdate+'/'+record.raw.stopdate});
-        //    }
-         //   Ext.getCmp('detailphonenumber_id').setValue(record.raw.phonenumber);
+            Ext.getCmp('datedetailstartdate_id').setMinValue(new Date($start));
+            Ext.getCmp('datedetailstartdate_id').setMaxValue(new Date($stop));
+            Ext.getCmp('datedetailstopdate_id').setMinValue(new Date($start));
+            Ext.getCmp('datedetailstopdate_id').setMaxValue(new Date($stop));
+
+            if ($start == $stop) {
+                Ext.getCmp('datedetailstartdate_id').setValue($start);
+            } else {
+                if (Ext.Date.add(new Date($stop), Ext.Date.MONTH, -1) < new Date($start)) {
+                    Ext.getCmp('datedetailstartdate_id').setValue($start);
+                } else {
+                    Ext.getCmp('datedetailstartdate_id').setValue(Ext.Date.add(new Date($stop), Ext.Date.MONTH, -1));
+                }
+            }
+
+            Ext.getCmp('datedetailstopdate_id').setValue($stop);
         }
 
     },

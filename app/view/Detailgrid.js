@@ -31,11 +31,11 @@ Ext.define('BeeApp.view.Detailgrid' ,{
             },{
                 text     : 'стоимость',
                 dataIndex: 'paysize',
-                width: 85,
+                width: 130,
                 summaryType: 'sum',
-                summaryRenderer: function(value, summaryData, dataIndex) {
-                    return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : '');
-                }
+                 summaryRenderer: function(value) {
+                    return Ext.String.format('Итого: {0}', Ext.util.Format.number(value, '0.00'));
+               }
             },{
                 text     : 'инициатор',
                 dataIndex: 'initiator',
