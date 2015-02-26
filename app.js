@@ -3,11 +3,13 @@ Ext.Loader.setConfig({
 });
 
 var currentdata = new Object();
-currentdata.letter =  Object();
+currentdata.letter = Object();
+currentdata.letter.test = 'test';
+
 Ext.Ajax.request({
     url: '/currentuser',
     success: function(response) {
-        currentdata= Ext.decode(response.responseText).data;
+        currentdata.login= Ext.decode(response.responseText).data.login;
         //currentdata.rights = Ext.decode(Ext.decode(response.responseText).data.rights);
         console.log(currentdata);
     }

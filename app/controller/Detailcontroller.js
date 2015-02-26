@@ -19,9 +19,12 @@ Ext.define('BeeApp.controller.Detailcontroller', {
     },
 
     _getDetailDataButtonClick: function() {
-
-        console.log('/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked);
-        Ext.getStore('Detailstore').load({url:'/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked});
+        if (!Ext.isDefined(Ext.getCmp('detailphonenumber_id').value)) {
+            Ext.Msg.alert('Ошибка', 'Ничего не выбрано');
+        } else {
+            console.log('/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked);
+            Ext.getStore('Detailstore').load({url:'/detail/'+ Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue + '/' + Ext.getCmp('zeropaysizecheckbox_id').checked+ '/' + Ext.getCmp('gprscheckbox_id').checked});
+        }
     }
 
 });

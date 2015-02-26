@@ -66,7 +66,9 @@ Ext.define('BeeApp.view.Windowcell', {
             },{
                 text: 'накладная',
                 scope: this,
-                action: 'nakl'
+                //action: 'nakl'
+                target: '_blank',
+                href: '/nakl/9684597356'
             },{
                 text: 'Приложение',
                 scope: this,

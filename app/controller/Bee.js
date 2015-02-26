@@ -1,3 +1,5 @@
+
+
 Ext.define('BeeApp.controller.Bee', {
     extend: 'Ext.app.Controller',
 
@@ -125,6 +127,7 @@ Ext.define('BeeApp.controller.Bee', {
                 scope: this,
                 url: '/testsim/' + currentdata.phonenumber + '/setsimnumber/' + form.getForm().findField('simnumber').getValue(),
                 success: function() {
+                    console.log(currentdata);
                     this._refreshWindowcell();
                     currentdata.letter.simnumber = form.getForm().getValues();
                     currentdata.letter.template = 'letter_changesim.html';
@@ -158,7 +161,6 @@ Ext.define('BeeApp.controller.Bee', {
     },
 
     _simReturn: function() {
-        if(currentdata.rights.give){
             var me = this;
             Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
                 if (btn2 === 'yes') {
@@ -176,14 +178,9 @@ Ext.define('BeeApp.controller.Bee', {
                     });
                 }
             });
-        } else {
-            console.log('права: ' + currentdata.rights.give);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _setBlock: function() {
-        if(currentdata.rights.block){
             var me = this;
             Ext.MessageBox.confirm('Confirm', 'Are you sure you want to do that?', function (btn2) {
                 if (btn2 === 'yes') {
@@ -211,84 +208,39 @@ Ext.define('BeeApp.controller.Bee', {
                     })
                 }
             })
-        } else {
-            console.log('права: ' + currentdata.rights.block);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _showWindowGive: function() {
-        if(currentdata.rights.give){
             var view = Ext.widget('windowgive');
             view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
             view.show();
-        } else {
-            console.log('права: ' + currentdata.rights.give);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _showWindowTransfer: function() {
-        if(currentdata.rights.transfer){
             var view = Ext.widget('windowtransfer');
             view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
             view.show();
-        } else {
-            console.log('права: ' + currentdata.rights.transfer);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _showWindowsimnumber: function() {
-        if(currentdata.rights.changesim){
             var view = Ext.widget('windowsimnumber');
             view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
             view.show();
-        } else {
-            console.log('права: ' + currentdata.rights.changesim);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _showWindowPlan: function(){
-        if(currentdata.rights.changeplan){
             console.log('права: ' + currentdata.rights.changeplan);
             var view = Ext.widget('windowplan');
             view.down('form').getForm().findField('phonenumber').setValue(currentdata.phonenumber);
             view.show();
-        } else {
-            console.log('права: ' + currentdata.rights.changeplan);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
     },
 
     _printPril: function() {
-        if(currentdata.rights.pril){
-            var pril = Ext.create("Ext.window.Window", {
-                    title: 'HTML Window',
-                    modal: true,
-                    html: "<iframe width=100% height=100% src=/pril/" + currentdata.phonenumber + '>',
-                    width: 650,
-                    height: 500
-                }
-            );
-            pril.show();
-        } else {
-            console.log('права: ' + currentdata.rights.pril);
-            Ext.Msg.alert('Нарушение!', 'недостаточно прав для выполнения данной операции');
-        }
+        window.open('/pril/' + currentdata.phonenumber);
     },
 
     _printNakl: function() {
-            var nakl = Ext.create("Ext.window.Window", {
-                    title: 'HTML Window',
-                    modal: true,
-                    html: "<iframe width=100% height=100% src=/nakl/" + currentdata.phonenumber + '>',
-                    width: 650,
-                    height: 500
-                }
-            );
-            nakl.show();
+        window.open('/nakl/' + currentdata.phonenumber);
     },
 
     _showWindow: function(grid,record) {

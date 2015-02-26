@@ -59,13 +59,13 @@ Ext.define('BeeApp.view.Detailsettings' ,{
             xtype: 'datefield',
             fieldlabel: 'Описание',
             format: 'Y-m-d',
-            id: 'datedetailstartdate_id',
-            listeners: {
+            id: 'datedetailstartdate_id'
+            /*listeners: {
                 select: function(a) {
                     currentdata.mincalldate.date = a.rawValue;
                     console.log(a.rawValue)
                 }
-            }
+            }*/
         },{
             xtype: 'datefield',
             format: 'Y-m-d',
