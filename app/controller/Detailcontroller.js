@@ -10,20 +10,17 @@ Ext.define('BeeApp.controller.Detailcontroller', {
 
     init: function() {
         this.control({
+            'button[action=getdetaildata]': {
+                click: this._getDetailDataButtonClick
+            }
 
 
         });
     },
 
-    _detailitemgridClick: function(grid, record) {
-        //view = Ext.getCmp('detailobject_id').setValue(record.raw.displaydata);
-        //Ext.getCmp('detailstartdate_id').setValue(record.raw.startdate);
-        //Ext.getCmp('detailstopdate_id').setValue(record.raw.stopdate);
-        //console.log(record);
-      //  view = Ext.getCmp('detailobject_id').setValue(record.raw.displaydata);
-        //view.query('textfield[itemID=detailsibject]').forEach(function(textfields){textfields.setValue(record.raw.item)});
-        //console.log(view);
-
+    _getDetailDataButtonClick: function() {
+        console.log('/detail/'+ Ext.getCmp('detailphonenumber_id') + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue);
+        Ext.getStore('Detailstore').load({url:'/detail/' + Ext.getCmp('detailphonenumber_id').value + '/' + Ext.getCmp('datedetailstartdate_id').rawValue + '/' + Ext.getCmp('datedetailstopdate_id').rawValue});
     }
 
 });

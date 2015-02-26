@@ -13,33 +13,37 @@ Ext.define('BeeApp.view.Detailgrid' ,{
     initComponent: function() {
         this.columns = [
             {
-                text     : 'abonent',
+                text     : 'абонент',
                 dataIndex: 'abonent',
-                flex: 1
+                width: 100
             },{
-                text     : 'calldate',
+                text     : 'дата',
                 dataIndex: 'calldate',
-                flex: 1
+                width: 100
             },{
-                text     : 'calltime',
+                text     : 'время',
                 dataIndex: 'calltime',
-                flex: 1
+                width: 100
             },{
-                text     : 'duration',
+                text     : 'длительность',
                 dataIndex: 'duration',
-                flex: 1
+                width: 110
             },{
-                text     : 'paysize',
+                text     : 'стоимость',
                 dataIndex: 'paysize',
-                flex: 1,
+                width: 85,
                 summaryType: 'sum',
                 summaryRenderer: function(value, summaryData, dataIndex) {
                     return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : '');
                 }
             },{
-                text     : 'receiver',
+                text     : 'инициатор',
+                dataIndex: 'initiator',
+                width: 100
+            },{
+                text     : 'получатель',
                 dataIndex: 'receiver',
-                flex: 1
+                width: 100
             },{
                 text     : 'action_description',
                 dataIndex: 'action_description',

@@ -9,19 +9,15 @@ Ext.define('BeeApp.view.Detailsettings' ,{
     items: [{
         xtype: 'fieldset',
         title: 'выбор типа',
-        defaultType: 'radio', // each item will be a radio button
+        defaultType: 'radio',
         layout: 'vbox',
-        //height : 85,
         margin: "5 5 5 5",
-        //width: 150,
         items: [
             {
-              //  margin: "5 5 5 5",
                 boxLabel: 'по номерам',
                 name: 'type',
                 inputValue: 'phonenumber'
             },{
-            //    margin: "5 5 5 5",
                 checked: true,
                 boxLabel: 'по ФИО',
                 name: 'type',
@@ -40,11 +36,9 @@ Ext.define('BeeApp.view.Detailsettings' ,{
         xtype: 'fieldset',
         title: 'текущая информация',
         margin: "5 5 5 5",
-        //layout: 'vbox',
         width: 300,
         defaults :{
             anchor: '100%',
-            //labelWidth: 110,
             readOnly: true
         },
         defaultType: 'textfield',
@@ -77,9 +71,21 @@ Ext.define('BeeApp.view.Detailsettings' ,{
             id: 'datedetailstopdate_id'
         }]
     },{
+        xtype: 'fieldset',
+        title: 'выводить:',
+        margin: "5 5 5 5",
+        layout: 'vbox',
+        defaultType: 'checkbox',
+        items: [{
+            boxLabel: 'вызовы с нулевой стоимостью'
+        },{
+            boxLabel: 'GPRS трафик'
+        }]
+    },{
         margin: "14 5 10 5",
         xtype: 'button',
-        text: 'вывести детализацию'
+        text: 'вывести детализацию',
+        action: 'getdetaildata'
 
     }],
 

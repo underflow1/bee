@@ -9,6 +9,7 @@ Ext.define('BeeApp.model.Detailmodel', {
         {name: 'calltime', type: 'string'},
         {name: 'duration', type: 'string'},
         {name: 'paysize', type: 'float'},
+        {name: 'initiator', type: 'string'},
         {name: 'receiver', type: 'string'},
         {name: 'action_description', type: 'string'},
         {name: 'service_description', type: 'string'},

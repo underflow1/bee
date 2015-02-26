@@ -190,11 +190,12 @@ $app->get('/testsim/{phonenumber}/getcurrentstate', function($phonenumber) use($
 
 
 $app->get('/detail/{phonenumber}/{startdate}/{stopdate}', function($phonenumber, $startdate, $stopdate) use($app) {
+
     $sql = "
     SELECT abonent, calldate, calltime, duration, paysize, initiator, receiver, action_description, service_description, type
 
     FROM detail_raw
-    WHERE calldate >= \"$startdate\" AND calldate <= \"$stopdate\" AND abonent = \"$phonenumber\"
+    WHERE calldate >= \"$startdate\" AND calldate <= \"$stopdate\" AND abonent = \"$phonenumber\" AND type <> 'GPRS' AND paysize > 0
     ";
     $post = $app['db']->fetchAll($sql);
     return $app->json(array(
@@ -207,11 +208,17 @@ $app->get('/detail/{phonenumber}/{startdate}/{stopdate}', function($phonenumber,
  
 
 $app->get('/detailitemslist/{type}', function($type) use($app) {
+    $sql = "SELECT MAX(calldate) AS maxdate FROM detail_raw2";
+    $post = $app['db']->fetchAll($sql);
+    $maxdate = $post[0]['maxdate'];
+
     switch ($type) {
         case 'phonenumber':
             $sql = "SELECT id
                     ,phonenumber AS displaydata
                     ,phonenumber
+                    ,'2013-10-26' AS startdate
+                    ,\"$maxdate\" AS stopdate
                     FROM phonenumbers
                     ORDER BY phonenumber ASC";
             break;
@@ -220,7 +227,7 @@ $app->get('/detailitemslist/{type}', function($type) use($app) {
                     ,fio AS displaydata
                     ,phonenumber
                     ,startdate
-                    ,if((stopdate IS NULL), CURDATE(), stopdate) as stopdate
+                    ,if((stopdate IS NULL), \"$maxdate\", stopdate) as stopdate
                     ,if ((stopdate IS NULL), '', 'hidden') as misc
                     FROM holders
                     WHERE fio <> 'резерв' AND fio <> 'для QR кодов' AND fio <> 'Объект'
